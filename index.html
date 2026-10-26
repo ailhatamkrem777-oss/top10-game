@@ -1,189 +1,264 @@
 <!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOP 10 | التحدي الأسطوري</title>
+<style>
+:root{--bg:#0b1020;--panel:#151d32;--panel2:#1d2943;--gold:#ffd166;--cyan:#55d6be;--text:#f4f7ff;--muted:#aab6d3;--red:#ff6b7a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:radial-gradient(circle at top,#1d3154,var(--bg) 58%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+.wrap{max-width:900px;margin:auto;padding:18px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-size:28px;font-weight:900;letter-spacing:1px}.brand span{color:var(--gold)}
+.tag{border:1px solid #ffffff22;padding:7px 12px;border-radius:999px;color:var(--muted);font-size:13px}
+.card{background:#151d32eF;border:1px solid #ffffff16;border-radius:22px;padding:22px;margin-top:18px;box-shadow:0 14px 40px #0003}
+.hero{text-align:center;padding:20px 10px}.hero h1{font-size:clamp(24px,5vw,36px);margin:5px 0 12px}
+.hero p{color:var(--muted);line-height:1.6;margin:0 auto 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:12px}
+.btn-tile{background:var(--panel2);border:2px solid #ffffff18;color:var(--text);border-radius:15px;padding:18px 10px;cursor:pointer;text-align:center;width:100%;font-size:16px;font-weight:bold;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:.15s;user-select:none;-webkit-user-select:none}
+.btn-tile:active{transform:scale(0.97)}
+.btn-tile.active{background:var(--cyan)!important;color:#171b28!important;border-color:#fff!important;box-shadow:0 0 15px rgba(85,214,190,0.4)}
+.btn-tile .emoji{font-size:30px;line-height:1}
+.main-btn{border:0;border-radius:13px;padding:14px;background:var(--gold);color:#171b28;font-weight:900;cursor:pointer;width:100%;font-size:18px;margin-top:15px;transition:.15s}
+.main-btn:active{transform:scale(0.98)}
+.main-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.question{font-size:clamp(20px,4vw,26px);line-height:1.5;margin:18px 0;text-align:right}
+.answers{display:grid;grid-template-columns:1fr;gap:10px}
+.answer{background:var(--panel2);color:var(--text);border:1px solid #ffffff20;text-align:right;padding:14px;border-radius:12px;font-size:16px;cursor:pointer;width:100%;transition:.15s}
+.answer:active{filter:brightness(1.2)}
+.pill{background:#0b1223;padding:7px 11px;border-radius:10px;color:var(--gold);font-weight:bold;font-size:14px}
+.bar{height:8px;background:#ffffff15;border-radius:10px;overflow:hidden;margin-top:12px}
+.bar div{height:100%;background:var(--cyan);width:0;transition:.2s}
+.note{background:#0b1223;border-radius:12px;padding:12px;color:var(--muted);line-height:1.6;text-align:right;margin-top:12px}
+.between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;width:100%;font-size:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand">TOP <span>10</span></div><div class="tag">🎮 التحدي الأسطوري</div></header>
+  
+  <section id="home" class="card hero">
+    <div style="font-size:40px">🏆</div><h1>منو يسيطر على القمة؟</h1>
+    <p>اختر التصنيف، الصعوبة، ونمط اللعب للبدء!</p>
+    
+    <div style="text-align:right;margin-top:15px"><h3 style="margin:0">1. اختر التصنيف</h3></div>
+    <div class="grid" id="cat-group">
+      <button type="button" class="btn-tile" data-cat="football"><span class="emoji">⚽</span><span>كرة القدم</span></button>
+      <button type="button" class="btn-tile" data-cat="anime"><span class="emoji">🍥</span><span>أنمي</span></button>
+      <button type="button" class="btn-tile" data-cat="movies"><span class="emoji">🎬</span><span>أفلام ومسلسلات</span></button>
+      <button type="button" class="btn-tile" data-cat="games"><span class="emoji">🎮</span><span>ألعاب فيديو</span></button>
+      <button type="button" class="btn-tile" data-cat="music"><span class="emoji">🎨</span><span>فن وموسيقى</span></button>
+      <button type="button" class="btn-tile" data-cat="general"><span class="emoji">🌍</span><span>معلومات عامة</span></button>
+    </div>
+    
+    <div id="diff-box" class="hidden" style="text-align:right;margin-top:20px">
+      <h3 style="margin:0">2. اختر الصعوبة</h3>
+      <div class="grid" id="diff-group">
+        <button type="button" class="btn-tile" data-diff="easy"><span class="emoji">🟢</span><span>سهل</span></button>
+        <button type="button" class="btn-tile" data-diff="medium"><span class="emoji">🟡</span><span>متوسط</span></button>
+        <button type="button" class="btn-tile" data-diff="hard"><span class="emoji">🔴</span><span>صعب</span></button>
+      </div>
+    </div>
 
-<html lang="ar" dir="rtl">  
-<head>  
-<meta charset="utf-8">  
-<meta name="viewport" content="width=device-width,initial-scale=1">  
-<title>TOP 10 | تحدّي المعلومات</title>  
-<style>  
-:root{--bg:#0b1020;--panel:#151d32;--panel2:#1d2943;--gold:#ffd166;--cyan:#55d6be;--text:#f4f7ff;--muted:#aab6d3;--red:#ff6b7a}  
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1d3154,var(--bg) 58%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}  
-.wrap{max-width:900px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-size:28px;font-weight:900;letter-spacing:1px}.brand span{color:var(--gold)}.tag{border:1px solid #ffffff22;padding:7px 12px;border-radius:999px;color:var(--muted);font-size:13px}  
-.card{background:#151d32eF;border:1px solid #ffffff16;border-radius:22px;padding:22px;margin-top:18px;box-shadow:0 14px 40px #0003}.hero{text-align:center;padding:30px 20px}.hero h1{font-size:clamp(27px,6vw,42px);margin:5px 0 12px}.hero p{color:var(--muted);line-height:1.8;margin:0 auto 20px;max-width:620px}  
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}.tile,button,select,input{font:inherit}.tile{background:var(--panel2);border:1px solid #ffffff18;color:var(--text);border-radius:15px;padding:15px 10px;cursor:pointer;text-align:center;transition:.15s}.tile:hover,button:hover{transform:translateY(-1px);filter:brightness(1.1)}.tile .emoji{font-size:25px;display:block;margin-bottom:8px}.tile small{color:var(--muted);display:block;margin-top:5px}  
-button{border:0;border-radius:13px;padding:12px 17px;background:var(--gold);color:#171b28;font-weight:800;cursor:pointer}.secondary{background:var(--panel2);color:var(--text);border:1px solid #ffffff20}.green{background:var(--cyan)}.hidden{display:none!important}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.between{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.muted{color:var(--muted)}.question{font-size:clamp(21px,4vw,29px);line-height:1.6;margin:18px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{background:var(--panel2);color:var(--text);border:1px solid #ffffff20;text-align:right;min-height:58px}.answer.correct{background:#145c4e;border-color:var(--cyan)}.answer.wrong{background:#662a3a;border-color:var(--red)}.pill{background:#0b1223;padding:7px 11px;border-radius:10px;color:var(--gold);font-weight:bold}.bar{height:8px;background:#ffffff15;border-radius:10px;overflow:hidden;margin-top:12px}.bar div{height:100%;background:var(--cyan);width:0;transition:.2s}.note{background:#0b1223;border-radius:12px;padding:12px;color:var(--muted);line-height:1.7}.footer{text-align:center;color:#7f8ba8;font-size:12px;padding:22px}  
-input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;min-width:0;width:100%}.field{display:grid;gap:7px;margin:12px 0}.ranklist{display:grid;gap:8px}.rankitem{display:flex;align-items:center;gap:10px;background:var(--panel2);padding:12px;border-radius:12px}.rankitem b{color:var(--gold);min-width:24px}.rankitem select{width:auto;flex:1}.tiny{font-size:13px}  
-@media(max-width:520px){.wrap{padding:12px}.card{padding:16px}.answers{grid-template-columns:1fr}.brand{font-size:24px}}  
-</style>  
-</head>  
-<body>  
-<div class="wrap">  
-  <header class="top"><div class="brand">TOP <span>10</span></div><div class="tag">🎮 تحدّى معلوماتك ويا الأصدقاء</div></header>  
-  <section id="home" class="card hero">  
-    <div style="font-size:48px">🏆</div><h1>منو يعرف أكثر؟</h1>  
-    <p>اختار تصنيفك ونمط اللعب، جاوب صح واجمع النقاط. كل إجابة صحيحة = نقطة واحدة، والغلط = صفر. اللعبة تشتغل على الموبايل والكمبيوتر، وتكدر تلعبون بالتناوب على نفس الجهاز.</p>  
-    <h3>اختار التصنيف</h3>  
-    <div class="grid" id="categories"></div>  
-    <h3 style="margin-top:24px">نمط اللعب</h3>  
-    <div class="grid" id="modes">  
-      <button class="tile" onclick="pickMode('quiz')"><span class="emoji">🧠</span>اختيارات متعددة<small>جاوب من 4 خيارات</small></button>  
-      <button class="tile" onclick="pickMode('tf')"><span class="emoji">⚖️</span>صح لو خطأ<small>اختبر معلوماتك بسرعة</small></button>  
-      <button class="tile" onclick="pickMode('top10')"><span class="emoji">🔟</span>تحدّي TOP 10<small>رتّب الإجابات</small></button>  
-      <button class="tile" onclick="pickMode('speed')"><span class="emoji">⚡</span>جولة سريعة<small>5 أسئلة متتالية</small></button>  
-    </div>  
-    <div class="field" style="max-width:320px;margin:20px auto 0"><label for="players">عدد اللاعبين</label><select id="players"><option value="1">لاعب واحد</option><option value="2">لاعبان</option><option value="3">3 لاعبين</option><option value="4">4 لاعبين</option></select></div>  
-    <div id="selectionHint" class="note hidden" style="margin-top:14px"></div>  
-    <div class="row" style="justify-content:center;margin-top:15px"><button id="startBtn" onclick="startGame()" disabled>ابدأ اللعب</button></div>  
-  </section>  
-  <section id="game" class="card hidden">  
-    <div class="between"><span class="pill" id="roundLabel">السؤال 1</span><span class="pill" id="scoreLabel">النقاط: 0</span><button class="secondary tiny" onclick="goHome()">رجوع للقائمة</button></div>  
-    <div class="bar"><div id="progress"></div></div>  
-    <div class="muted tiny" id="playerLabel" style="margin-top:13px"></div>  
-    <div class="question" id="question"></div>  
-    <div id="answers" class="answers"></div>  
-    <div id="rankArea" class="hidden"></div>  
-    <div id="feedback" class="note hidden" style="margin-top:14px"></div>  
-    <div class="row" style="justify-content:flex-start;margin-top:16px"><button id="nextBtn" class="hidden" onclick="nextQuestion()">السؤال التالي ←</button></div>  
-  </section>  
-  <section id="result" class="card hidden hero">  
-    <div style="font-size:48px">🏆</div><h1>خلص التحدّي!</h1><p id="resultText"></p><div id="leaderboard" class="note"></div>  
-    <div class="row" style="justify-content:center;margin-top:18px"><button onclick="goHome()">العب مرة ثانية</button></div>  
-  </section>  
-  <div class="footer">TOP 10 · لعبة معلومات وترفيه عربية</div>  
-</div>  
-<script>  
-const data = {  
- football:{name:"كرة القدم",emoji:"⚽",q:[  
- {q:"منو فاز بكأس العالم 2022؟",a:["الأرجنتين","فرنسا","البرازيل","كرواتيا"],c:0,t:"الأرجنتين فازت بالنهائي على فرنسا بركلات الترجيح."},  
- {q:"كم لاعب من كل فريق يكون داخل الملعب ببداية مباراة كرة القدم؟",a:["9","10","11","12"],c:2,t:"الفريق يبدأ المباراة بـ11 لاعباً."},  
- {q:"أي منتخب يُلقّب بالسامبا؟",a:["إيطاليا","البرازيل","ألمانيا","المكسيك"],c:1,t:"منتخب البرازيل معروف بمنتخب السامبا."},  
- {q:"شنو اسم البطولة الأوروبية للأندية الأشهر؟",a:["كوبا أمريكا","دوري أبطال أوروبا","كأس آسيا","اليورو"],c:1,t:"دوري أبطال أوروبا بطولة أندية أوروبية."},  
- {q:"كم دقيقة وقت المباراة الأصلي عادةً؟",a:["60","80","90","100"],c:2,t:"90 دقيقة، مقسمة على شوطين."},  
- {q:"أي لاعب اشتهر بلقب البرغوث؟",a:["كريستيانو رونالدو","ليونيل ميسي","نيمار","لوكا مودريتش"],c:1,t:"ليونيل ميسي يُعرف بلقب البرغوث."},  
- {q:"أي دولة استضافت كأس العالم 2018؟",a:["قطر","روسيا","ألمانيا","جنوب أفريقيا"],c:1,t:"أقيمت بطولة 2018 في روسيا."},  
- {q:"شنو لون البطاقة اللي تعني الطرد؟",a:["الصفراء","الخضراء","الحمراء","الزرقاء"],c:2,t:"البطاقة الحمراء تعني الطرد."}]},  
- anime:{name:"أنمي",emoji:"🍥",q:[  
- {q:"منو بطل أنمي ون بيس؟",a:["لوفي","زورو","سانجي","لاو"],c:0,t:"مونكي دي لوفي هو بطل ون بيس."},  
- {q:"شنو اسم القرية اللي ينتمي إلها ناروتو؟",a:["قرية الورق","قرية الرمل","قرية الضباب","قرية الصوت"],c:0,t:"ناروتو من قرية الورق المخفية."},  
- {q:"منو صديق غوكو المعروف بشعره الأصلع؟",a:["غوهان","كريلين","فيجيتا","بيكولو"],c:1,t:"كريلين صديق غوكو منذ الطفولة."},  
- {q:"أي أنمي بيه دفتر يقتل من يُكتب اسمه؟",a:["Death Note","Bleach","Haikyuu!!","One Piece"],c:0,t:"هذا هو دفتر الموت Death Note."}]},  
- movies:{name:"أفلام ومسلسلات",emoji:"🎬",q:[  
- {q:"بأي عالم سينمائي تظهر شخصية آيرون مان؟",a:["دي سي","مارفل","ستار وورز","بيكسار"],c:1,t:"آيرون مان من عالم مارفل."},  
- {q:"شنو اسم مدرسة السحر في هاري بوتر؟",a:["هوجورتس","نارنيا","كاميلوت","أوليمبوس"],c:0,t:"اسمها هوجورتس."},  
- {q:"سلسلة أفلام Jurassic Park تتمحور حول شنو؟",a:["الديناصورات","الفضاء","القراصنة","الروبوتات"],c:0,t:"السلسلة معروفة بالديناصورات."}]},  
- games:{name:"ألعاب فيديو",emoji:"🎮",q:[  
- {q:"منو الشخصية الرئيسية بسلسلة GTA غالباً؟",a:["شخصية قابلة للعب تختلف حسب الجزء","ماريو","سونيك","باك مان"],c:0,t:"تختلف الشخصية الرئيسية حسب جزء GTA."},  
- {q:"أي شركة طوّرت لعبة Minecraft؟",a:["Mojang","Valve","Nintendo","Ubisoft"],c:0,t:"طورتها Mojang."},  
- {q:"شنو اسم بطل سلسلة The Legend of Zelda؟",a:["Zelda","Link","Mario","Kirby"],c:1,t:"البطل القابل للعب غالباً هو Link."}]},  
- general:{name:"معلومات عامة",emoji:"🌍",q:[  
- {q:"شنو أكبر كوكب بالمجموعة الشمسية؟",a:["الأرض","المريخ","المشتري","الزهرة"],c:2,t:"المشتري هو الأكبر."},  
- {q:"كم عدد قارات العالم وفق التقسيم الشائع؟",a:["5","6","7","8"],c:2,t:"التقسيم الشائع يضم سبع قارات."},  
- {q:"شنو عاصمة اليابان؟",a:["كيوتو","طوكيو","أوساكا","هيروشيما"],c:1,t:"عاصمة اليابان هي طوكيو."},  
- {q:"أي غاز تمتصه النباتات من الهواء؟",a:["الأوكسجين","النيتروجين","ثاني أكسيد الكربون","الهيدروجين"],c:2,t:"تستخدم النباتات ثاني أكسيد الكربون في البناء الضوئي."}]},  
- music:{name:"فن وموسيقى",emoji:"🎨",q:[  
- {q:"آلة البيانو تُصنّف أساساً ضمن أي نوع؟",a:["آلات مفاتيح","آلات نفخ","آلات إيقاع فقط","آلات وترية بالقوس"],c:0,t:"البيانو من آلات المفاتيح."},  
- {q:"من يرسم اللوحات الفنية؟",a:["الرسام","المخرج فقط","المذيع","المهندس الصوتي"],c:0,t:"الرسام هو من يرسم اللوحات."}]}  
-};  // بنك إضافي لتوسيع الأسئلة لكل فئة، مع إجابات وخيارات ونظام نقاط.
-const extraFacts = {
-football: [
-["من فاز بكأس العالم 2022؟","الأرجنتين",["فرنسا","كرواتيا","البرازيل"],"الأرجنتين فازت بالنهائي."],
-["من فاز بكأس العالم 2018؟","فرنسا",["كرواتيا","بلجيكا","ألمانيا"],"فرنسا فازت بالنهائي."],
-["من فاز بكأس العالم 2014؟","ألمانيا",["الأرجنتين","هولندا","البرازيل"],"ألمانيا فازت بالنهائي."],
-["من فاز بكأس العالم 2010؟","إسبانيا",["هولندا","ألمانيا","أوروغواي"],"إسبانيا فازت بالنهائي."],
-["من فاز بكأس العالم 2006؟","إيطاليا",["فرنسا","ألمانيا","البرتغال"],"إيطاليا فازت بالنهائي."],
-["من فاز بكأس العالم 2002؟","البرازيل",["ألمانيا","تركيا","إيطاليا"],"البرازيل فازت بالنهائي."],
-["من فاز بكأس العالم 1998؟","فرنسا",["البرازيل","كرواتيا","هولندا"],"فرنسا فازت بالنهائي."],
-["من فاز بكأس العالم 1994؟","البرازيل",["إيطاليا","السويد","بلغاريا"],"البرازيل فازت بركلات الترجيح."],
-["من فاز بكأس العالم 1990؟","ألمانيا الغربية",["الأرجنتين","إيطاليا","إنجلترا"],"ألمانيا الغربية فازت بالنهائي."],
-["من فاز بكأس العالم 1986؟","الأرجنتين",["ألمانيا الغربية","فرنسا","البرازيل"],"الأرجنتين فازت بالنهائي."],
-["ما جنسية كريستيانو رونالدو؟","برتغالي",["أرجنتيني","برازيلي","إسباني"],"رونالدو من البرتغال."],
-["ما جنسية ليونيل ميسي؟","أرجنتيني",["برتغالي","أوروغواياني","إسباني"],"ميسي من الأرجنتين."],
-["ما جنسية نيمار؟","برازيلي",["أرجنتيني","كولومبي","برتغالي"],"نيمار برازيلي."],
-["أي منتخب يُلقب بالسامبا؟","البرازيل",["الأرجنتين","إيطاليا","ألمانيا"],"لقب منتخب البرازيل هو السامبا."],
-["أي منتخب يُلقب بالتانغو؟","الأرجنتين",["البرازيل","فرنسا","البرتغال"],"التانغو لقب شائع للأرجنتين."],
-["كم لاعباً يبدأ به كل فريق؟","11 لاعباً",["9 لاعبين","10 لاعبين","12 لاعباً"],"الفريق يبدأ بـ11 لاعباً."],
-["كم مدة المباراة الأصلية؟","90 دقيقة",["60 دقيقة","80 دقيقة","100 دقيقة"],"شوطان مدة كل منهما 45 دقيقة."],
-["ما لون بطاقة الطرد؟","الحمراء",["الصفراء","الخضراء","الزرقاء"],"البطاقة الحمراء تعني الطرد."],
-["ما لون بطاقة الإنذار؟","الصفراء",["الحمراء","البيضاء","السوداء"],"البطاقة الصفراء تعني الإنذار."],
-["ما اسم البطولة الأوروبية الأشهر للأندية؟","دوري أبطال أوروبا",["اليورو","كوبا أمريكا","كأس آسيا"],"بطولة قارية للأندية."],
-["ما اسم بطولة منتخبات أوروبا؟","اليورو",["كوبا أمريكا","كأس آسيا","كأس أفريقيا"],"بطولة أمم أوروبا للمنتخبات."],
-["ما اسم بطولة منتخبات أمريكا الجنوبية؟","كوبا أمريكا",["اليورو","كأس آسيا","كأس أفريقيا"],"بطولة قارية لأمريكا الجنوبية."],
-["ما اسم بطولة المنتخبات الأفريقية؟","كأس الأمم الأفريقية",["اليورو","كوبا أمريكا","كأس آسيا"],"بطولة قارية أفريقية."],
-["ما اسم بطولة المنتخبات الآسيوية؟","كأس آسيا",["اليورو","كوبا أمريكا","كأس أفريقيا"],"بطولة قارية آسيوية."],
-["أي نادٍ ملعبه أولد ترافورد؟","مانشستر يونايتد",["ليفربول","أرسنال","تشيلسي"],"أولد ترافورد ملعب مانشستر يونايتد."],
-["أي نادٍ ملعبه أنفيلد؟","ليفربول",["مانشستر سيتي","أرسنال","توتنهام"],"أنفيلد ملعب ليفربول."],
-["أي نادٍ ملعبه سانتياغو برنابيو؟","ريال مدريد",["برشلونة","أتلتيكو مدريد","إشبيلية"],"ملعب ريال مدريد."],
-["أي نادٍ يرتبط ملعبه التاريخي بكامب نو؟","برشلونة",["ريال مدريد","فالنسيا","إشبيلية"],"كامب نو ملعب برشلونة التاريخي."],
-["ما مركز اللاعب الذي يحرس المرمى؟","حارس مرمى",["مهاجم","جناح","قلب دفاع"],"حارس المرمى يحمي الشباك."],
-["ماذا تسمى الركلة من زاوية الملعب؟","ركلة ركنية",["ركلة جزاء","رمية تماس","ركلة بداية"],"تُنفذ من زاوية الملعب."],
-["ماذا تسمى إعادة الكرة باليد من خط التماس؟","رمية تماس",["ركلة ركنية","ركلة جزاء","ركلة مرمى"],"تُنفذ من خط التماس."],
-["ماذا تسمى المخالفة التي تؤدي لركلة من نقطة الجزاء؟","ركلة جزاء",["ركلة ركنية","رمية تماس","ركلة بداية"],"تُحتسب في حالات محددة داخل منطقة الجزاء."],
-["من فاز بكأس العالم 1970؟","البرازيل",["إيطاليا","ألمانيا الغربية","أوروغواي"],"البرازيل فازت بالبطولة."],
-["من فاز بكأس العالم 1966؟","إنجلترا",["ألمانيا الغربية","البرتغال","الاتحاد السوفيتي"],"إنجلترا فازت بالبطولة."],
-["من فاز بكأس العالم 1958؟","البرازيل",["السويد","فرنسا","ألمانيا الغربية"],"البرازيل فازت بالبطولة."],
-["من فاز بأول كأس عالم عام 1930؟","أوروغواي",["الأرجنتين","إيطاليا","البرازيل"],"أوروغواي استضافت وفازت بأول نسخة."],
-["من فاز بكأس العالم 2022 مع الأرجنتين؟","ليونيل ميسي",["نيمار","كريستيانو رونالدو","لوكا مودريتش"],"ميسي قاد الأرجنتين للقب."],
-["أي لاعب يُعرف بلقب البرغوث؟","ليونيل ميسي",["كريستيانو رونالدو","هاري كين","محمد صلاح"],"البرغوث لقب ميسي."],
-["أي لاعب برتغالي مشهور برقمه 7؟","كريستيانو رونالدو",["لويس فيغو","برونو فيرنانديز","جواو فيليكس"],"رونالدو ارتبط بالرقم 7."],
-["أي دولة استضافت كأس العالم 2018؟","روسيا",["قطر","البرازيل","ألمانيا"],"أقيمت البطولة في روسيا."],
-["أي دولة استضافت كأس العالم 2022؟","قطر",["روسيا","اليابان","جنوب أفريقيا"],"استضافت قطر نسخة 2022."],
-["ما اسم تقنية مراجعة قرارات التحكيم بالفيديو؟","VAR",["GPS","NBA","FIFA+"],"VAR تساعد الحكام بمراجعة لقطات محددة."],
-["ما اسم الاتحاد الدولي لكرة القدم؟","فيفا",["يويفا","آسيا","كاف"],"فيفا هو الاتحاد الدولي."],
-["ما اسم الاتحاد الأوروبي لكرة القدم؟","يويفا",["فيفا","كاف","كونكاكاف"],"يويفا يشرف على مسابقات أوروبا."],
-["ما اسم الاتحاد الأفريقي لكرة القدم؟","كاف",["يويفا","فيفا","آسيا"],"كاف هو الاتحاد الأفريقي."],
-["أي منتخب فاز بكأس العالم 2010؟","إسبانيا",["ألمانيا","هولندا","البرازيل"],"إسبانيا أحرزت لقب 2010."],
-["ما اسم الجائزة الفردية الشهيرة التي تمنحها فرانس فوتبول؟","الكرة الذهبية",["الحذاء الذهبي الأوروبي","القفاز الذهبي","جائزة بوشكاش"],"الكرة الذهبية جائزة فردية معروفة."],
-["أي نادٍ إيطالي يُعرف بلقب السيدة العجوز؟","يوفنتوس",["ميلان","إنتر","روما"],"السيدة العجوز لقب يوفنتوس."],
-["أي نادٍ ألماني مقره ميونخ؟","بايرن ميونخ",["بوروسيا دورتموند","لايبزيغ","باير ليفركوزن"],"بايرن من مدينة ميونخ."],
-["ما اسم ملعب مانشستر سيتي؟","ملعب الاتحاد",["أنفيلد","أولد ترافورد","الإمارات"],"ملعب الاتحاد هو ملعب مانشستر سيتي."],
-["ما اسم ملعب أرسنال؟","ملعب الإمارات",["أنفيلد","ويمبلي","سان سيرو"],"ملعب الإمارات هو ملعب أرسنال."]
-],
-anime: [
-["من بطل ون بيس؟","مونكي دي لوفي",["زورو","سانجي","لاو"],"لوفي هو بطل ون بيس."],
-["من بطل ناروتو؟","ناروتو أوزوماكي",["ساسكي","كاكاشي","إيتاتشي"],"ناروتو هو الشخصية الرئيسية."],
-["ما اسم دفتر القتل في Death Note؟","دفتر الموت",["دفتر الظلال","دفتر الأرواح","دفتر الزمن"],"عنوان الأنمي يعني دفتر الموت."],
-["من بطل Dragon Ball؟","غوكو",["فيجيتا","غوهان","بيكولو"],"غوكو بطل السلسلة."],
-["من صديق لوفي المبارز؟","رورونوا زورو",["سانجي","أوسوب","فرانكي"],"زورو مبارز طاقم قبعة القش."],
-["ما اسم القرية في ناروتو؟","قرية الورق",["قرية الرمل","قرية الضباب","قرية الصوت"],"ناروتو من قرية الورق."],
-["ما لون شعر غوكو غالباً؟","أسود",["أخضر","أزرق","أبيض"],"شعره أسود في هيئته الأساسية."],
-["من هو سايان في Dragon Ball؟","غوكو",["لايت","لوفي","إيتشيغو"],"غوكو من السايان."],
-["أي أنمي تدور أحداثه حول صائدي العمالقة؟","Attack on Titan",["One Piece","Bleach","Haikyuu!!"],"العمالقة محور القصة."],
-["أي أنمي مشهور بكرة الطائرة؟","Haikyuu!!",["Death Note","Naruto","Chainsaw Man"],"هايكيو عن الكرة الطائرة."],
-["من بطل Bleach؟","إيتشيغو كوروساكي",["لوفي","ناروتو","غون"],"إيتشيغو بطل Bleach."],
-["ما اسم أخ ناروتو الذي ليس أخاه الحقيقي؟","ساسكي ليس أخاه",["كاكاشي","إيتاتشي","شينو"],"ساسكي صديق ومنافس ناروتو وليس أخاه."],
-["من الشخصية التي تحمل دفتر الموت أولاً في القصة؟","لايت ياغامي",["إل","ناروتو","لوفي"],"لايت يعثر على الدفتر."],
-["أي أنمي فيه شخصية اسمها تانجيرو؟","Demon Slayer",["One Piece","Bleach","Dragon Ball"],"تانجيرو بطل قاتل الشياطين."],
-["ما اسم أخت تانجيرو؟","نيزوكو",["ساكورا","روكيا","هيناتا"],"نيزوكو أخت تانجيرو."],
-["أي أنمي فيه مدرسة الأبطال الخارقين UA؟","My Hero Academia",["Naruto","One Piece","Death Note"],"UA مدرسة في My Hero Academia."],
-["من بطل My Hero Academia؟","إيزوكو ميدوريا",["باكوغو","تودوروكي","أول مايت"],"ميدوريا الشخصية الرئيسية."],
-["أي أنمي بطلُه إدوارد إلريك؟","Fullmetal Alchemist",["Bleach","One Piece","Blue Lock"],"إدوارد هو بطل الخيميائي المعدني."],
-["أي أنمي يتمحور حول كرة القدم ومشروع بلو لوك؟","Blue Lock",["Haikyuu!!","Kuroko no Basket","Slam Dunk"],"بلو لوك عن تطوير المهاجمين."],
-["من بطل Hunter x Hunter؟","غون فريكس",["كيلوا","كورابيكا","ليوريو"],"غون هو البطل الرئيسي."]
-],
-movies: [
-["في أي عالم تظهر شخصية آيرون مان؟","مارفل",["دي سي","ستار وورز","بيكسار"],"آيرون مان من مارفل."],
-["ما اسم مدرسة السحر في هاري بوتر؟","هوجورتس",["نارنيا","كاميلوت","أوليمبوس"],"هوجورتس مدرسة السحر."],
-["سلسلة Jurassic Park تتمحور حول ماذا؟","الديناصورات",["الفضاء","القراصنة","الروبوتات"],"الديناصورات محور السلسلة."],
-["من الشخصية الرئيسية في فيلم Finding Nemo؟","نيمو",["دوري","شريك","وودي"],"نيمو سمكة صغيرة يبحث عنها والده."],
-["ما اسم البطل في سلسلة أفلام Spider-Man؟","الرجل العنكبوت",["باتمان","سوبرمان","ثور"],"سبايدرمان بطل مارفل."],
-["باتمان ينتمي لأي عالم قصصي؟","دي سي",["مارفل","بيكسار","دريم ووركس"],"باتمان شخصية من دي سي."],
-["ما اسم لعبة الأطفال في Toy Story؟","وودي",["نيمو","شيرخان","سيمبا"],"وودي من شخصيات Toy Story."],
-["ما اسم الأسد في The Lion King؟","سيمبا",["موفاسا فقط","تيمون","بومبا"],"سيمبا هو بطل القصة."],
-["أي سلسلة أفلام تدور حول عالم السحرة هاري بوتر؟","Harry Potter",["Twilight","Rocky","Fast & Furious"],"هاري بوتر سلسلة فانتازيا."],
-["أي سلسلة أفلام تشتهر بسباقات السيارات؟","Fast & Furious",["Harry Potter","Shrek","Frozen"],"السلسلة مشهورة بالسيارات والسباقات."],
-["ما اسم السفينة الشهيرة في فيلم Titanic؟","تايتانيك",["بلاك بيرل","إنتربرايز","ميلينيوم فالكون"],"السفينة تحمل اسم الفيلم."],
-["ما نوع شخصية شريك؟","غول",["تنين","روبوت","قرش"],"شريك غول أخضر."],
-["أي فيلم رسوم متحركة فيه إلسا وآنا؟","Frozen",["Moana","Coco","Up"],"إلسا وآنا من Frozen."],
-["أي فيلم فيه شخصية جاك سبارو؟","Pirates of the Caribbean",["Titanic","Avatar","Jaws"],"جاك سبارو قرصان مشهور."],
-["ما اسم عالم أفلام حرب النجوم بالإنجليزية؟","Star Wars",["Star Trek","Stargate","Star City"],"حرب النجوم سلسلة خيال علمي."],
-["ما اسم البطل الخارق الذي يُعرف بدرع عليه نجمة؟","كابتن أمريكا",["آيرون مان","ثور","هالك"],"كابتن أمريكا يحمل درعاً مميزاً."],
-["أي فيلم فيه شخصية اسمها شريك؟","Shrek",["Cars","Up","Coco"],"شريك بطل فيلم يحمل اسمه."],
-["أي فيلم رسوم متحركة يتناول مشاعر داخل عقل طفلة؟","Inside Out",["Cars","Ratatouille","Up"],"الفيلم يتناول المشاعر."],
-["ما اسم الفأر الطباخ في Ratatouille؟","ريمي",["ميكي","جيري","ستيوارت"],"ريمي يحب الطبخ."],
-["أي فيلم مشهور بشخصية جاك من سفينة تايتانيك؟","Titanic",["Avatar","Joker","Rocky"],"جاك شخصية في فيلم تايتانيك."]
-],
-games: [
-["أي شركة طورت Minecraft؟","Mojang",["Valve","Nintendo","Ubisoft"],"Mojang طورت اللعبة."],
-["من بطل The Legend of Zelda غالباً؟","Link",["Zelda","Mario","Kirby"],"Link هو البطل القابل للعب غالباً."],
-["ما اسم السباك الشهير من نينتندو؟","ماريو",["سونيك","كراش","باك مان"],"ماريو شخصية نينتندو."],
-["أي
+    <div id="mode-box" class="hidden" style="text-align:right;margin-top:20px">
+      <h3 style="margin:0">3. اختر نمط اللعب</h3>
+      <div class="grid" id="mode-group">
+        <button type="button" class="btn-tile" data-mode="top10"><span class="emoji">🔟</span><span>تحدّي TOP 10</span></button>
+        <button type="button" class="btn-tile" data-mode="quiz"><span class="emoji">🧠</span><span>اختيارات متعددة</span></button>
+        <button type="button" class="btn-tile" data-mode="tf"><span class="emoji">⚖️</span><span>صح لو خطأ</span></button>
+        <button type="button" class="btn-tile" data-mode="whoami"><span class="emoji">🕵️‍♂️</span><span>منو أني؟</span></button>
+      </div>
+    </div>
+
+    <div style="text-align:right;margin-top:15px"><label style="display:block;margin-bottom:5px">عدد اللاعبين</label><select id="players"><option value="1">لاعب واحد</option><option value="2">لاعبان</option></select></div>
+    
+    <button type="button" class="main-btn" id="startBtn" disabled>ابدأ التحدي</button>
+  </section>
+
+  <section id="game" class="card hidden">
+    <div class="between"><span class="pill" id="roundLabel">السؤال 1</span><span class="pill" id="scoreLabel">النقاط: 0</span></div>
+    <div class="bar"><div id="progress"></div></div>
+    <div class="question" id="question"></div>
+    <div id="answers" class="answers"></div>
+    <div id="feedback" class="note hidden"></div>
+    <button type="button" class="main-btn hidden" id="nextBtn" onclick="nextQuestion()">السؤال التالي ←</button>
+  </section>
+
+  <section id="result" class="card hidden hero">
+    <div style="font-size:40px">🏆</div><h1>انتهاء التحدي!</h1><p id="resultText"></p>
+    <button type="button" class="main-btn" onclick="location.reload()">العب مرة ثانية</button>
+  </section>
+</div>
+
+<script>
+const db = {
+  football: {
+    easy: [
+      {q: "من هو المنتخب الفائز بكأس العالم 2022؟", a: ["الأرجنتين", "فرنسا", "البرازيل", "البرتغال"], t: "فازت الأرجنتين بقيادة ميسي."},
+      {q: "كم عدد لاعبي فريق كرة القدم داخل الملعب؟", a: ["11 لاعباً", "10 لاعبين", "9 لاعبين", "12 لاعباً"], t: "يبدأ كل فريق بـ 11 لاعباً أساسياً."}
+    ],
+    medium: [
+      {q: "من هو الهداف التاريخي لدوري أبطال أوروبا؟", a: ["كريستيانو رونالدو", "ليونيل ميسي", "روبرت ليفاندوفسكي", "بنزيما"], t: "رونالدو يتصدر قائمة هدافي الأبطال."}
+    ],
+    hard: [
+      {q: "في أي عام أقيمت أول بطولة كأس العالم لكرة القدم؟", a: ["1930", "1950", "1924", "1938"], t: "أقيمت في الأوروغواي عام 1930."}
+    ]
+  },
+  anime: {
+    easy: [
+      {q: "من هو بطل أنمي ون بيس (One Piece)؟", a: ["مونكي دي لوفي", "رورونوا زورو", "سانجي", "شانكس"], t: "لوفي طموحه أن يصبح ملك القراصنة."},
+      {q: "ما اسم القرية التي ينتمي إليها ناروتو؟", a: ["قرية الورق (كونوها)", "قرية الرمل", "قرية الضباب", "قرية السحاب"], t: "ناروتو نشأ في قرية الورق المخفية."}
+    ],
+    medium: [
+      {q: "ما اسم بطل أنمي قاتل الشياطين؟", a: ["تانجيرو كامادو", "نزوكو", "زينيتسو", "إينوسكي"], t: "تانجيرو ينضم لفيلق قتلة الشياطين."}
+    ],
+    hard: [
+      {q: "ما اسم بطل أنمي هنتر × هنتر الرئيسي؟", a: ["غون فريكس", "كيلوا زولديك", "كورابيكا", "هيسوكا"], t: "غون فريكس يبحث عن أبيه جين."}
+    ]
+  },
+  movies: {
+    easy: [
+      {q: "ما اسم مدرسة السحر في سلسلة أفلام هاري بوتر؟", a: ["هوجورتس", "نارنيا", "كاميلوت", "أكسفورد"], t: "مدرسة هوجورتس السحرية الشهيرة."},
+      {q: "من هو بطل سلسلة أفلام آيرون مان؟", a: ["توني ستارك", "بروس واين", "بيتر باركر", "كلارك كنت"], t: "توني ستارك هو الشخصية العبقرية خلف الدرع."}
+    ],
+    medium: [
+      {q: "أي فيلم للمخرج كريستوفر نولان يتحدث عن الأحلام المتداخلة؟", a: ["Inception", "Interstellar", "Tenet", "Memento"], t: "فيلم إنسبشن الأسطوري."}
+    ],
+    hard: [
+      {q: "ما الفيلم الذي حقق الرقم القياسي بالفوز بـ 11 جائزة أوسكار؟", a: ["تايتانيك", "أفاتار", "المصارع", "الجوكر"], t: "تايتانيك حقق 11 أوسكار تاريخية."}
+    ]
+  },
+  games: {
+    easy: [
+      {q: "أي شركة طوّرت لعبة ماينكرافت (Minecraft)؟", a: ["Mojang", "Valve", "Nintendo", "Ubisoft"], t: "موجانغ هي المطور الأساسي لماينكرافت."},
+      {q: "ما اسم بطل ألعاب ماريو من نينتندو؟", a: ["ماريو", "سونيك", "لويجي", "كراش"], t: "ماريو هو أشهر سباك وأيقونة ألعاب."}
+    ],
+    medium: [
+      {q: "ما اسم إله الحرب وبطل سلسلة God of War؟", a: ["كريتوس", "زهاوس", "أثينا", "أرس"], t: "كريتوس المحارب الإسبرطي الشهير."}
+    ],
+    hard: [
+      {q: "ما اسم الفطريات المسؤولة عن تحول البشر بزومبي في The Last of Us؟", a: ["كوردايسبس (Cordyceps)", "تيدروس", "فيروس إكس", "المتحورة ب"], t: "فطر كوردايسبس الحقيقي المتحكم بالحشرات."}
+    ]
+  },
+  music: {
+    easy: [
+      {q: "ما هي الآلة الموسيقية التي تحتوي على مفاتيح سوداء وبيضاء؟", a: ["البيانو", "الجيتار", "الكمان", "الناي"], t: "البيانو هو ملك الآلات الموسيقية."}
+    ],
+    medium: [
+      {q: "أي فنان تشكيلي اشتهر بقطع أذنه ولوحة ليلة مرصعة بالنجوم؟", a: ["فان جوخ", "بيكاسو", "مونيه", "سيزان"], t: "فينسنت فان جوخ من أعظم الرسامين."}
+    ],
+    hard: [
+      {q: "أي مؤلف موسيقي كلاسيكي استمر بالتأليف رغم فقدانه للسمع؟", a: ["بتهوفن", "موتسارت", "باخ", "ففالدي"], t: "لودفيغ فان بتهوفن أبدع رغم الصمم."}
+    ]
+  },
+  general: {
+    easy: [
+      {q: "ما هو أكبر كوكب في المجموعة الشمسية؟", a: ["المشتري", "زحل", "المريخ", "الأرض"], t: "المشتري أكبر كواكب مجموعتنا الشمسية."},
+      {q: "ما هي عاصمة جمهورية العراق؟", a: ["بغداد", "البصرة", "أربيل", "الموصل"], t: "بغداد العاصمة التاريخية."}
+    ],
+    medium: [
+      {q: "ما هو أعمق محيط على وجه الأرض؟", a: ["المحيط الهادئ", "المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"], t: "المحيط الهادئ يحوي خندق ماريانا."}
+    ],
+    hard: [
+      {q: "ما هو العنصر الكيميائي الذي يمتلك أعلى درجة انصهار؟", a: ["التنجستن", "الحديد", "الكربون", "الذهب"], t: "التنجستن يمتلك أعلى نقطة انصهار."}
+    ]
+  }
+};
+
+let selCat = null, selDiff = null, selMode = null;
+let currentQ = 0, score = 0, questions = [];
+
+document.querySelectorAll('#cat-group .btn-tile').forEach(btn => {
+  btn.onclick = function() {
+    document.querySelectorAll('#cat-group .btn-tile').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    selCat = this.getAttribute('data-cat');
+    document.getElementById('diff-box').classList.remove('hidden');
+    checkReady();
+  };
+});
+
+document.querySelectorAll('#diff-group .btn-tile').forEach(btn => {
+  btn.onclick = function() {
+    document.querySelectorAll('#diff-group .btn-tile').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    selDiff = this.getAttribute('data-diff');
+    document.getElementById('mode-box').classList.remove('hidden');
+    checkReady();
+  };
+});
+
+document.querySelectorAll('#mode-group .btn-tile').forEach(btn => {
+  btn.onclick = function() {
+    document.querySelectorAll('#mode-group .btn-tile').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    selMode = this.getAttribute('data-mode');
+    checkReady();
+  };
+});
+
+function checkReady() {
+  document.getElementById('startBtn').disabled = !(selCat && selDiff && selMode);
+}
+
+document.getElementById('startBtn').onclick = function() {
+  let catObj = db[selCat];
+  let pool = catObj[selDiff] || catObj['easy'] || [];
+  questions = [...pool].sort(() => Math.random() - 0.5);
+  currentQ = 0; score = 0;
+  
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('game').classList.remove('hidden');
+  loadQuestion();
+};
+
+function loadQuestion() {
+  let qData = questions[currentQ];
+  document.getElementById('roundLabel').innerText = `السؤال ${currentQ + 1} من ${questions.length}`;
+  document.getElementById('scoreLabel').innerText = `النقاط: ${score}`;
+  document.getElementById('progress').style.width = `${((currentQ + 1) / questions.length) * 100}%`;
+  document.getElementById('question').innerText = qData.q;
+  document.getElementById('feedback').classList.add('hidden');
+  document.getElementById('nextBtn').classList.add('hidden');
+  
+  let aBox = document.getElementById('answers');
+  aBox.innerHTML = '';
+  
+  let opts = qData.a.map((text, idx) => ({text, isCorrect: idx === 0}));
+  opts.sort(() => Math.random() - 0.5);
+  
+  opts.forEach(opt => {
+    let b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'answer';
+    b.innerText = opt.text;
+    b.onclick = function() {
+      document.querySelectorAll('.answer').forEach(btn => btn.disabled = true);
+      if(opt.isCorrect) score++;
+      let fb = document.getElementById('feedback');
+      fb.classList.remove('hidden');
+      fb.innerHTML = `<b>${opt.isCorrect ? 'إجابة صحيحة! ✓' : 'إجابة خاطئة! ✗'}</b><br>${qData.t}`;
+      document.getElementById('scoreLabel').innerText = `النقاط: ${score}`;
+      document.getElementById('nextBtn').classList.remove('hidden');
+    };
+    aBox.appendChild(b);
+  });
+}
+
+function nextQuestion() {
+  currentQ++;
+  if(currentQ < questions.length) {
+    loadQuestion();
+  } else {
+    document.getElementById('game').classList.add('hidden');
+    document.getElementById('result').classList.remove('hidden');
+    document.getElementById('resultText').innerText = `جمعت ${score} من أصل ${questions.length} نقاط!`;
+  }
+}
+</script>
+</body>
+</html>
