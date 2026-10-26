@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TOP 10 | التحدي الأسطوري</title>
+<title>TOP 10 | التحدي الأسطوري - كرة القدم</title>
 <style>
 :root{--bg:#0b1020;--panel:#151d32;--panel2:#1d2943;--gold:#ffd166;--cyan:#55d6be;--text:#f4f7ff;--muted:#aab6d3;--red:#ff6b7a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -34,7 +34,10 @@ body{margin:0;background:radial-gradient(circle at top,#1d3154,var(--bg) 58%);co
 .bar div{height:100%;background:var(--cyan);width:0;transition:.2s}
 .note{background:#0b1223;border-radius:12px;padding:12px;color:var(--muted);line-height:1.6;text-align:right;margin-top:12px}
 .between{display:flex;justify-content:space-between;align-items:center;gap:10px}
-select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;width:100%;font-size:16px}
+input[type="text"],select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;width:100%;font-size:16px}
+.rank-inputs{display:grid;gap:8px;margin-top:10px}
+.rank-row{display:flex;align-items:center;gap:8px}
+.rank-row span{font-weight:bold;color:var(--gold);width:30px;text-align:center}
 </style>
 </head>
 <body>
@@ -43,20 +46,10 @@ select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-ra
   
   <section id="home" class="card hero">
     <div style="font-size:40px">🏆</div><h1>منو يسيطر على القمة؟</h1>
-    <p>اختر التصنيف، الصعوبة، ونمط اللعب للبدء!</p>
+    <p>اختر الصعوبة، ونمط اللعب للبدء!</p>
     
-    <div style="text-align:right;margin-top:15px"><h3 style="margin:0">1. اختر التصنيف</h3></div>
-    <div class="grid" id="cat-group">
-      <button type="button" class="btn-tile" data-cat="football"><span class="emoji">⚽</span><span>كرة القدم</span></button>
-      <button type="button" class="btn-tile" data-cat="anime"><span class="emoji">🍥</span><span>أنمي</span></button>
-      <button type="button" class="btn-tile" data-cat="movies"><span class="emoji">🎬</span><span>أفلام ومسلسلات</span></button>
-      <button type="button" class="btn-tile" data-cat="games"><span class="emoji">🎮</span><span>ألعاب فيديو</span></button>
-      <button type="button" class="btn-tile" data-cat="music"><span class="emoji">🎨</span><span>فن وموسيقى</span></button>
-      <button type="button" class="btn-tile" data-cat="general"><span class="emoji">🌍</span><span>معلومات عامة</span></button>
-    </div>
-    
-    <div id="diff-box" class="hidden" style="text-align:right;margin-top:20px">
-      <h3 style="margin:0">2. اختر الصعوبة</h3>
+    <div id="diff-box" style="text-align:right;margin-top:20px">
+      <h3 style="margin:0">1. اختر الصعوبة</h3>
       <div class="grid" id="diff-group">
         <button type="button" class="btn-tile" data-diff="easy"><span class="emoji">🟢</span><span>سهل</span></button>
         <button type="button" class="btn-tile" data-diff="medium"><span class="emoji">🟡</span><span>متوسط</span></button>
@@ -65,12 +58,12 @@ select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-ra
     </div>
 
     <div id="mode-box" class="hidden" style="text-align:right;margin-top:20px">
-      <h3 style="margin:0">3. اختر نمط اللعب</h3>
+      <h3 style="margin:0">2. اختر نمط اللعب</h3>
       <div class="grid" id="mode-group">
         <button type="button" class="btn-tile" data-mode="top10"><span class="emoji">🔟</span><span>تحدّي TOP 10</span></button>
         <button type="button" class="btn-tile" data-mode="quiz"><span class="emoji">🧠</span><span>اختيارات متعددة</span></button>
         <button type="button" class="btn-tile" data-mode="tf"><span class="emoji">⚖️</span><span>صح لو خطأ</span></button>
-        <button type="button" class="btn-tile" data-mode="whoami"><span class="emoji">🕵️‍♂️</span><span>منو أني؟</span></button>
+        <button type="button" class="btn-tile" data-mode="whoami"><span class="emoji">🕵️‍♂️</span><span>منو أني؟ (سيرة ذاتية)</span></button>
       </div>
     </div>
 
@@ -84,103 +77,71 @@ select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-ra
     <div class="bar"><div id="progress"></div></div>
     <div class="question" id="question"></div>
     <div id="answers" class="answers"></div>
+    <div id="textInputArea" class="hidden"></div>
     <div id="feedback" class="note hidden"></div>
     <button type="button" class="main-btn hidden" id="nextBtn" onclick="nextQuestion()">السؤال التالي ←</button>
   </section>
 
-  <section id="result" class="card hidden hero">
+  <section id="result" class="card hero hidden">
     <div style="font-size:40px">🏆</div><h1>انتهاء التحدي!</h1><p id="resultText"></p>
     <button type="button" class="main-btn" onclick="location.reload()">العب مرة ثانية</button>
   </section>
 </div>
 
 <script>
-const db = {
-  football: {
-    easy: [
-      {q: "من هو المنتخب الفائز بكأس العالم 2022؟", a: ["الأرجنتين", "فرنسا", "البرازيل", "البرتغال"], t: "فازت الأرجنتين بقيادة ميسي."},
-      {q: "كم عدد لاعبي فريق كرة القدم داخل الملعب؟", a: ["11 لاعباً", "10 لاعبين", "9 لاعبين", "12 لاعباً"], t: "يبدأ كل فريق بـ 11 لاعباً أساسياً."}
-    ],
-    medium: [
-      {q: "من هو الهداف التاريخي لدوري أبطال أوروبا؟", a: ["كريستيانو رونالدو", "ليونيل ميسي", "روبرت ليفاندوفسكي", "بنزيما"], t: "رونالدو يتصدر قائمة هدافي الأبطال."}
-    ],
-    hard: [
-      {q: "في أي عام أقيمت أول بطولة كأس العالم لكرة القدم؟", a: ["1930", "1950", "1924", "1938"], t: "أقيمت في الأوروغواي عام 1930."}
-    ]
-  },
-  anime: {
-    easy: [
-      {q: "من هو بطل أنمي ون بيس (One Piece)؟", a: ["مونكي دي لوفي", "رورونوا زورو", "سانجي", "شانكس"], t: "لوفي طموحه أن يصبح ملك القراصنة."},
-      {q: "ما اسم القرية التي ينتمي إليها ناروتو؟", a: ["قرية الورق (كونوها)", "قرية الرمل", "قرية الضباب", "قرية السحاب"], t: "ناروتو نشأ في قرية الورق المخفية."}
-    ],
-    medium: [
-      {q: "ما اسم بطل أنمي قاتل الشياطين؟", a: ["تانجيرو كامادو", "نزوكو", "زينيتسو", "إينوسكي"], t: "تانجيرو ينضم لفيلق قتلة الشياطين."}
-    ],
-    hard: [
-      {q: "ما اسم بطل أنمي هنتر × هنتر الرئيسي؟", a: ["غون فريكس", "كيلوا زولديك", "كورابيكا", "هيسوكا"], t: "غون فريكس يبحث عن أبيه جين."}
-    ]
-  },
-  movies: {
-    easy: [
-      {q: "ما اسم مدرسة السحر في سلسلة أفلام هاري بوتر؟", a: ["هوجورتس", "نارنيا", "كاميلوت", "أكسفورد"], t: "مدرسة هوجورتس السحرية الشهيرة."},
-      {q: "من هو بطل سلسلة أفلام آيرون مان؟", a: ["توني ستارك", "بروس واين", "بيتر باركر", "كلارك كنت"], t: "توني ستارك هو الشخصية العبقرية خلف الدرع."}
-    ],
-    medium: [
-      {q: "أي فيلم للمخرج كريستوفر نولان يتحدث عن الأحلام المتداخلة؟", a: ["Inception", "Interstellar", "Tenet", "Memento"], t: "فيلم إنسبشن الأسطوري."}
-    ],
-    hard: [
-      {q: "ما الفيلم الذي حقق الرقم القياسي بالفوز بـ 11 جائزة أوسكار؟", a: ["تايتانيك", "أفاتار", "المصارع", "الجوكر"], t: "تايتانيك حقق 11 أوسكار تاريخية."}
-    ]
-  },
-  games: {
-    easy: [
-      {q: "أي شركة طوّرت لعبة ماينكرافت (Minecraft)؟", a: ["Mojang", "Valve", "Nintendo", "Ubisoft"], t: "موجانغ هي المطور الأساسي لماينكرافت."},
-      {q: "ما اسم بطل ألعاب ماريو من نينتندو؟", a: ["ماريو", "سونيك", "لويجي", "كراش"], t: "ماريو هو أشهر سباك وأيقونة ألعاب."}
-    ],
-    medium: [
-      {q: "ما اسم إله الحرب وبطل سلسلة God of War؟", a: ["كريتوس", "زهاوس", "أثينا", "أرس"], t: "كريتوس المحارب الإسبرطي الشهير."}
-    ],
-    hard: [
-      {q: "ما اسم الفطريات المسؤولة عن تحول البشر بزومبي في The Last of Us؟", a: ["كوردايسبس (Cordyceps)", "تيدروس", "فيروس إكس", "المتحورة ب"], t: "فطر كوردايسبس الحقيقي المتحكم بالحشرات."}
-    ]
-  },
-  music: {
-    easy: [
-      {q: "ما هي الآلة الموسيقية التي تحتوي على مفاتيح سوداء وبيضاء؟", a: ["البيانو", "الجيتار", "الكمان", "الناي"], t: "البيانو هو ملك الآلات الموسيقية."}
-    ],
-    medium: [
-      {q: "أي فنان تشكيلي اشتهر بقطع أذنه ولوحة ليلة مرصعة بالنجوم؟", a: ["فان جوخ", "بيكاسو", "مونيه", "سيزان"], t: "فينسنت فان جوخ من أعظم الرسامين."}
-    ],
-    hard: [
-      {q: "أي مؤلف موسيقي كلاسيكي استمر بالتأليف رغم فقدانه للسمع؟", a: ["بتهوفن", "موتسارت", "باخ", "ففالدي"], t: "لودفيغ فان بتهوفن أبدع رغم الصمم."}
-    ]
-  },
-  general: {
-    easy: [
-      {q: "ما هو أكبر كوكب في المجموعة الشمسية؟", a: ["المشتري", "زحل", "المريخ", "الأرض"], t: "المشتري أكبر كواكب مجموعتنا الشمسية."},
-      {q: "ما هي عاصمة جمهورية العراق؟", a: ["بغداد", "البصرة", "أربيل", "الموصل"], t: "بغداد العاصمة التاريخية."}
-    ],
-    medium: [
-      {q: "ما هو أعمق محيط على وجه الأرض؟", a: ["المحيط الهادئ", "المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"], t: "المحيط الهادئ يحوي خندق ماريانا."}
-    ],
-    hard: [
-      {q: "ما هو العنصر الكيميائي الذي يمتلك أعلى درجة انصهار؟", a: ["التنجستن", "الحديد", "الكربون", "الذهب"], t: "التنجستن يمتلك أعلى نقطة انصهار."}
-    ]
+function getLevenshteinDistance(a, b) {
+  let tmp;
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+  if (a.length > b.length) { tmp = a; a = b; b = tmp; }
+  let i, j, row = [];
+  for (i = 0; i <= a.length; i++) { row[i] = i; }
+  for (i = 1; i <= b.length; i++) {
+    let res = i;
+    for (j = 1; j <= a.length; j++) {
+      tmp = row[j - 1] + (a[j - 1] === b[i - 1] ? 0 : 1);
+      row[j - 1] = res;
+      res = Math.min(Math.min(tmp, row[j] + 1), res + 1);
+    }
+    row[a.length] = res;
   }
+  return row[a.length];
+}
+
+function normalizeText(text) {
+  return String(text).trim().toLowerCase()
+    .replace(/[أإآ]/g, 'ا')
+    .replace(/ة/g, 'ه')
+    .replace(/ى/g, 'ي')
+    .replace(/[\u064B-\u0652]/g, '')
+    .replace(/\s+/g, ' ');
+}
+
+function isMatch(input, target) {
+  let normInput = normalizeText(input);
+  let normTarget = normalizeText(target);
+  if (!normInput) return false;
+  if (normInput === normTarget) return true;
+  let dist = getLevenshteinDistance(normInput, normTarget);
+  let maxLen = Math.max(normInput.length, normTarget.length);
+  return (dist / maxLen) <= 0.25 || dist <= 2;
+}
+
+const db = {
+  easy: [
+    {q: "من هو المنتخب الفائز بكأس العالم 2022؟", a: ["الأرجنتين", "فرنسا", "البرازيل", "البرتغال"], top10: ["الأرجنتين", "فرنسا", "كرواتيا", "المغرب", "هولندا", "إنجلترا", "البرازيل", "البرتغال", "اليابان", "السنغال"], bio: "قاد منتخب بلاده لتحقيق لقب كأس العالم 2022 في قطر، ويعتبره الكثيرون أفضل لاعب في تاريخ كرة القدم.", answer: "الأرجنتين", t: "فازت الأرجنتين بقيادة ميسي."},
+    {q: "كم عدد لاعبي فريق كرة القدم داخل الملعب؟", a: ["11 لاعباً", "10 لاعبين", "9 لاعبين", "12 لاعباً"], top10: ["11", "حارس", "مدافع", "وسط", "هجوم", "تبديل", "طرد", "خطأ", "تسلل", "ركنية"], bio: "هو العدد الأساسي للاعبي الفريق الواحد المسموح بتواجدهم على أرضية الملعب خلال مباراة رسمية.", answer: "11 لاعباً", t: "يبدأ كل فريق بـ 11 لاعباً أساسياً."}
+  ],
+  medium: [
+    {q: "من هو الهداف التاريخي لدوري أبطال أوروبا؟", a: ["كريستيانو رونالدو", "ليونيل ميسي", "روبرت ليفاندوفسكي", "كريم بنزيما"], top10: ["رونالدو", "ميسي", "ليفاندوفسكي", "بنزيما", "راؤول", "فان نيستلروي", "مولر", "هنري", "إبراهيموفيتش", "شيفشينكو"], bio: "أسطورة برتغالية، يعتبر الهداف التاريخي لبطولة دوري أبطال أوروبا ولعب لأندية كبرى مثل ريال مدريد ومانشستر يونايتد.", answer: "كريستيانو رونالدو", t: "رونالدو يتصدر قائمة هدافي الأبطال."}
+  ],
+  hard: [
+    {q: "في أي عام أقيمت أول بطولة كأس العالم لكرة القدم؟", a: ["1930", "1950", "1924", "1938"], top10: ["1930", "1934", "1938", "1950", "1954", "1958", "1962", "1966", "1970", "1974"], bio: "شهدت هذه السنة انطلاق أول نسخة من بطولة كأس العالم لكرة القدم، وأقيمت البطولة في دولة الأوروغواي.", answer: "1930", t: "أقيمت في الأوروغواي عام 1930."}
+  ]
 };
 
-let selCat = null, selDiff = null, selMode = null;
-let currentQ = 0, score = 0, questions = [];
-
-document.querySelectorAll('#cat-group .btn-tile').forEach(btn => {
-  btn.onclick = function() {
-    document.querySelectorAll('#cat-group .btn-tile').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    selCat = this.getAttribute('data-cat');
-    document.getElementById('diff-box').classList.remove('hidden');
-    checkReady();
-  };
-});
+let selDiff = null, selMode = null;
+let currentQ = 0, scores = [0,0], questions = [];
 
 document.querySelectorAll('#diff-group .btn-tile').forEach(btn => {
   btn.onclick = function() {
@@ -202,14 +163,13 @@ document.querySelectorAll('#mode-group .btn-tile').forEach(btn => {
 });
 
 function checkReady() {
-  document.getElementById('startBtn').disabled = !(selCat && selDiff && selMode);
+  document.getElementById('startBtn').disabled = !(selDiff && selMode);
 }
 
 document.getElementById('startBtn').onclick = function() {
-  let catObj = db[selCat];
-  let pool = catObj[selDiff] || catObj['easy'] || [];
+  let pool = db[selDiff] || db['easy'] || [];
   questions = [...pool].sort(() => Math.random() - 0.5);
-  currentQ = 0; score = 0;
+  currentQ = 0; scores = [0, 0];
   
   document.getElementById('home').classList.add('hidden');
   document.getElementById('game').classList.remove('hidden');
@@ -219,46 +179,117 @@ document.getElementById('startBtn').onclick = function() {
 function loadQuestion() {
   let qData = questions[currentQ];
   document.getElementById('roundLabel').innerText = `السؤال ${currentQ + 1} من ${questions.length}`;
-  document.getElementById('scoreLabel').innerText = `النقاط: ${score}`;
+  document.getElementById('scoreLabel').innerText = `النقاط: ${scores[0]}`;
   document.getElementById('progress').style.width = `${((currentQ + 1) / questions.length) * 100}%`;
   document.getElementById('question').innerText = qData.q;
   document.getElementById('feedback').classList.add('hidden');
   document.getElementById('nextBtn').classList.add('hidden');
   
   let aBox = document.getElementById('answers');
+  let textArea = document.getElementById('textInputArea');
   aBox.innerHTML = '';
+  textArea.innerHTML = '';
+  aBox.classList.remove('hidden');
+  textArea.classList.add('hidden');
+
+  if (selMode === 'top10') {
+    document.getElementById('question').innerText = `[تحدّي الترتيب] رتب أهم العناصر الـ 10 المعنية (أدخل إجابتك لكل مركز):`;
+    textArea.classList.remove('hidden');
+    let html = `<div class="rank-inputs">`;
+    for (let i = 1; i <= 10; i++) {
+      html += `<div class="rank-row"><span>#${i}</span><input type="text" id="rankInput_${i}" placeholder="الخيار للمركز ${i}"></div>`;
+    }
+    html += `</div><button class="main-btn" type="button" onclick="submitTop10Text()">تأكيد الترتيب والتسليم 🚀</button>`;
+    textArea.innerHTML = html;
+  } else if (selMode === 'whoami') {
+    document.getElementById('question').innerText = `[منو أني؟] اكتب الإجابة بناءً على الوصف:\n\n"${qData.bio}"`;
+    textArea.classList.remove('hidden');
+    textArea.innerHTML = `
+      <input type="text" id="whoamiInput" placeholder="اكتب الإجابة هنا..." style="margin-bottom:10px;">
+      <button class="main-btn" type="button" onclick="submitWhoAmIText()">تأكيد الإجابة 🕵️‍♂️</button>
+    `;
+  } else if (selMode === 'tf') {
+    let isTrue = Math.random() > 0.5;
+    document.getElementById('question').innerText = `${qData.q}\n\n(هل هذه العبارة صحيحة؟)`;
+    let b1 = document.createElement('button');
+    b1.className = 'answer'; b1.innerText = "صح ✓";
+    b1.onclick = () => handleAnswer(isTrue, qData.t);
+    let b2 = document.createElement('button');
+    b2.className = 'answer'; b2.innerText = "خطأ ✗";
+    b2.onclick = () => handleAnswer(!isTrue, qData.t);
+    aBox.appendChild(b1); aBox.appendChild(b2);
+  } else {
+    let opts = qData.a.map((text, idx) => ({text, isCorrect: idx === 0}));
+    opts.sort(() => Math.random() - 0.5);
+    opts.forEach(opt => {
+      let b = document.createElement('button');
+      b.className = 'answer';
+      b.innerText = opt.text;
+      b.onclick = () => handleAnswer(opt.isCorrect, qData.t);
+      aBox.appendChild(b);
+    });
+  }
+}
+
+function submitTop10Text() {
+  let qData = questions[currentQ];
+  let targetList = qData.top10;
+  let pts = 0;
+  let details = [];
+
+  for (let i = 1; i <= 10; i++) {
+    let val = document.getElementById(`rankInput_${i}`).value;
+    let correctTarget = targetList[i - 1];
+    if (isMatch(val, correctTarget)) {
+      pts += (11 - i);
+      details.push(`المركز ${i}: صح`);
+    } else {
+      details.push(`المركز ${i}: خطأ (${correctTarget})`);
+    }
+  }
+
+  scores[0] += pts;
+  let fb = document.getElementById('feedback');
+  fb.classList.remove('hidden');
+  fb.innerHTML = `<b>حصدت ${pts} نقطة!</b><br>` + details.join('<br>');
+  document.getElementById('scoreLabel').innerText = `النقاط: ${scores[0]}`;
+  document.getElementById('nextBtn').classList.add('hidden');
+}
+
+function submitWhoAmIText() {
+  let qData = questions[currentQ];
+  let val = document.getElementById('whoamiInput').value;
+  let correct = isMatch(val, qData.answer);
+  if (correct) scores[0] += 10;
   
-  let opts = qData.a.map((text, idx) => ({text, isCorrect: idx === 0}));
-  opts.sort(() => Math.random() - 0.5);
-  
-  opts.forEach(opt => {
-    let b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'answer';
-    b.innerText = opt.text;
-    b.onclick = function() {
-      document.querySelectorAll('.answer').forEach(btn => btn.disabled = true);
-      if(opt.isCorrect) score++;
-      let fb = document.getElementById('feedback');
-      fb.classList.remove('hidden');
-      fb.innerHTML = `<b>${opt.isCorrect ? 'إجابة صحيحة! ✓' : 'إجابة خاطئة! ✗'}</b><br>${qData.t}`;
-      document.getElementById('scoreLabel').innerText = `النقاط: ${score}`;
-      document.getElementById('nextBtn').classList.remove('hidden');
-    };
-    aBox.appendChild(b);
-  });
+  let fb = document.getElementById('feedback');
+  fb.classList.remove('hidden');
+  fb.innerHTML = `<b>${correct ? 'إجابة صحيحة! ✓' : 'إجابة خاطئة! ✗'}</b><br>الإجابة: (${qData.answer}).`;
+  document.getElementById('scoreLabel').innerText = `النقاط: ${scores[0]}`;
+  document.getElementById('nextBtn').classList.remove('hidden');
+}
+
+function handleAnswer(isCorrect, explanation) {
+  document.querySelectorAll('.answer').forEach(btn => btn.disabled = true);
+  if (isCorrect) scores[0] += 1;
+  let fb = document.getElementById('feedback');
+  fb.classList.remove('hidden');
+  fb.innerHTML = `<b>${isCorrect ? 'إجابة صحيحة! ✓' : 'إجابة خاطئة! ✗'}</b><br>${explanation}`;
+  document.getElementById('scoreLabel').innerText = `النقاط: ${scores[0]}`;
+  document.getElementById('nextBtn').classList.remove('hidden');
 }
 
 function nextQuestion() {
   currentQ++;
-  if(currentQ < questions.length) {
+  if (currentQ < questions.length) {
     loadQuestion();
   } else {
     document.getElementById('game').classList.add('hidden');
     document.getElementById('result').classList.remove('hidden');
-    document.getElementById('resultText').innerText = `جمعت ${score} من أصل ${questions.length} نقاط!`;
+    document.getElementById('resultText').innerText = `جمعت ${scores[0]} من أصل ${questions.length} نقاط!`;
   }
 }
 </script>
 </body>
 </html>
+
