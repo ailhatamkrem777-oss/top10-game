@@ -21,6 +21,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             background-color: var(--bg-color);
@@ -81,13 +82,18 @@
             background: #0f172a;
             border: 2px solid var(--border-color);
             border-radius: 10px;
-            padding: 12px;
+            padding: 14px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             font-size: 0.9rem;
             font-weight: 600;
             user-select: none;
+            position: relative;
+            z-index: 5;
+        }
+        .option-card:active {
+            transform: scale(0.97);
         }
         .option-card.selected {
             border-color: var(--accent-color);
@@ -107,6 +113,11 @@
             transition: background 0.2s;
             margin-top: 25px;
             box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 5;
+        }
+        .btn:active {
+            transform: scale(0.98);
         }
         .btn:hover {
             background: var(--accent-hover);
@@ -197,7 +208,7 @@
 
     <header>
         <h1>منصة التحدي والمعرفة</h1>
-        <p>اختر فئة واحدة، نمط اللعب، والصعوبة ثم انطلق!</p>
+        <p>اختر تصنيفاً واحداً، نمط اللعب، والصعوبة ثم انطلق!</p>
     </header>
 
     <div class="container">
@@ -205,31 +216,31 @@
         <div id="screen-setup" class="screen active">
             <h2>1. اختر التصنيف</h2>
             <div class="grid-options" id="cat-grid">
-                <div class="option-card selected" onclick="selectOption(this, 'cat', 'football')">⚽ كرة القدم</div>
-                <div class="option-card" onclick="selectOption(this, 'cat', 'anime')">🍥 أنمي</div>
-                <div class="option-card" onclick="selectOption(this, 'cat', 'history')">📜 التاريخ</div>
-                <div class="option-card" onclick="selectOption(this, 'cat', 'geography')">🌍 الجغرافيا</div>
-                <div class="option-card" onclick="selectOption(this, 'cat', 'games')">🎮 ألعاب فيديو</div>
-                <div class="option-card" onclick="selectOption(this, 'cat', 'movies')">🎬 أفلام ومسلسلات</div>
-                <div class="option-card" onclick="selectOption(this, 'cat', 'art')">🎨 فن وموسيقى</div>
-                <div class="option-card" onclick="selectOption(this, 'cat', 'general')">💡 معلومات عامة</div>
+                <div class="option-card selected" data-type="cat" data-value="football">⚽ كرة القدم</div>
+                <div class="option-card" data-type="cat" data-value="anime">🍥 أنمي</div>
+                <div class="option-card" data-type="cat" data-value="history">📜 التاريخ</div>
+                <div class="option-card" data-type="cat" data-value="geography">🌍 الجغرافيا</div>
+                <div class="option-card" data-type="cat" data-value="games">🎮 ألعاب فيديو</div>
+                <div class="option-card" data-type="cat" data-value="movies">🎬 أفلام ومسلسلات</div>
+                <div class="option-card" data-type="cat" data-value="art">🎨 فن وموسيقى</div>
+                <div class="option-card" data-type="cat" data-value="general">💡 معلومات عامة</div>
             </div>
 
             <h2>2. اختر نمط اللعب</h2>
             <div class="grid-options" id="mode-grid">
-                <div class="option-card selected" onclick="selectOption(this, 'mode', 'quiz')">🎯 مسابقة كلاسيكية</div>
-                <div class="option-card" onclick="selectOption(this, 'mode', 'top10')">🏆 ترتيب TOP 10</div>
-                <div class="option-card" onclick="selectOption(this, 'mode', 'memory')">🧠 اختبار الذاكرة</div>
+                <div class="option-card selected" data-type="mode" data-value="quiz">🎯 مسابقة كلاسيكية</div>
+                <div class="option-card" data-type="mode" data-value="top10">🏆 ترتيب TOP 10</div>
+                <div class="option-card" data-type="mode" data-value="memory">🧠 اختبار الذاكرة</div>
             </div>
 
             <h2>3. مستوى الصعوبة</h2>
             <div class="grid-options" id="diff-grid">
-                <div class="option-card selected" onclick="selectOption(this, 'diff', 'easy')">سهل</div>
-                <div class="option-card" onclick="selectOption(this, 'diff', 'medium')">متوسط</div>
-                <div class="option-card" onclick="selectOption(this, 'diff', 'hard')">صعب</div>
+                <div class="option-card selected" data-type="diff" data-value="easy">سهل</div>
+                <div class="option-card" data-type="diff" data-value="medium">متوسط</div>
+                <div class="option-card" data-type="diff" data-value="hard">صعب</div>
             </div>
 
-            <button class="btn" onclick="startChallenge()">بدء التحدي الآن</button>
+            <button class="btn" id="start-btn">بدء التحدي الآن</button>
         </div>
 
         <!-- الشاشة الثانية: المسابقة -->
@@ -240,7 +251,7 @@
             </div>
             <div class="question-text" id="quiz-question">جارِ التحميل...</div>
             <div class="choices-list" id="quiz-choices"></div>
-            <button class="btn btn-secondary" onclick="goHome()">العودة للقائمة</button>
+            <button class="btn btn-secondary" id="home-btn-1">العودة للقائمة</button>
         </div>
 
         <!-- الشاشة الثالثة: TOP 10 -->
@@ -248,8 +259,8 @@
             <h2>ترتيب العناصر (TOP 5)</h2>
             <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">رتب العناصر حسب الأصح تاريخياً أو شعبيةً:</p>
             <div id="top10-container"></div>
-            <button class="btn" onclick="finishTop10()">تحقق من الترتيب</button>
-            <button class="btn btn-secondary" onclick="goHome()">العودة للقائمة</button>
+            <button class="btn" id="check-top10-btn">تحقق من الترتيب</button>
+            <button class="btn btn-secondary" id="home-btn-2">العودة للقائمة</button>
         </div>
 
         <!-- الشاشة الرابعة: الذاكرة -->
@@ -257,9 +268,9 @@
             <div class="quiz-header">
                 <span id="memory-progress">بطاقة 1 / 3</span>
             </div>
-            <div class="flashcard" id="flashcard-box" onclick="flipCard()">اضغط لعرض الإجابة</div>
-            <button class="btn" onclick="nextMemoryCard()">البطاقة التالية</button>
-            <button class="btn btn-secondary" onclick="goHome()">العودة للقائمة</button>
+            <div class="flashcard" id="flashcard-box">اضغط لعرض الإجابة</div>
+            <button class="btn" id="next-flashcard-btn">البطاقة التالية</button>
+            <button class="btn btn-secondary" id="home-btn-3">العودة للقائمة</button>
         </div>
 
         <!-- شاشة النتائج -->
@@ -267,7 +278,7 @@
             <div class="stats-box">
                 <h3>انتهى التحدي!</h3>
                 <p id="final-score-text" style="font-size: 1.1rem; margin-bottom: 20px;"></p>
-                <button class="btn" onclick="goHome()">العب مرة أخرى</button>
+                <button class="btn" id="home-btn-4">العب مرة أخرى</button>
             </div>
         </div>
     </div>
@@ -396,16 +407,15 @@
             }
         };
 
-        let selectedCat = 'football';
-        let selectedMode = 'quiz';
-        let selectedDiff = 'easy';
+        let state = {
+            cat: 'football',
+            mode: 'quiz',
+            diff: 'easy',
+            index: 0,
+            score: 0,
+            questions: [],
+            isFlipped: false
+        };
 
-        let currentIndex = 0;
-        let score = 0;
-        let currentQuestions = [];
-        let isFlipped = false;
-
-        // دالة اختيار العناصر (تضمن اختيار خيار واحد فقط بكل قسم)
-        function selectOption(element, type, value) {
-            const container = element.parentElement;
-            container.querySelectorAll('.option-c
+        // تفعيل الضغط لكل الكاردات بشكل برمجي سليم 100%
+        document.querySelectorAll('.option-card').forEa
