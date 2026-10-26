@@ -9,10 +9,30 @@
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1d3154,var(--bg) 58%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
 .wrap{max-width:900px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-size:28px;font-weight:900;letter-spacing:1px}.brand span{color:var(--gold)}.tag{border:1px solid #ffffff22;padding:7px 12px;border-radius:999px;color:var(--muted);font-size:13px}
 .card{background:#151d32eF;border:1px solid #ffffff16;border-radius:22px;padding:22px;margin-top:18px;box-shadow:0 14px 40px #0003}.hero{text-align:center;padding:30px 20px}.hero h1{font-size:clamp(27px,6vw,42px);margin:5px 0 12px}.hero p{color:var(--muted);line-height:1.8;margin:0 auto 20px;max-width:620px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}.tile,button,select,input{font:inherit}.tile{background:var(--panel2);border:1px solid #ffffff18;color:var(--text);border-radius:15px;padding:15px 10px;cursor:pointer;text-align:center;transition:.15s}.tile:hover,button:hover{transform:translateY(-1px);filter:brightness(1.1)}.tile .emoji{font-size:25px;display:block;margin-bottom:8px}.tile small{color:var(--muted);display:block;margin-top:5px}
-button{border:0;border-radius:13px;padding:12px 17px;background:var(--gold);color:#171b28;font-weight:800;cursor:pointer}.secondary{background:var(--panel2);color:var(--text);border:1px solid #ffffff20}.green{background:var(--cyan)}.hidden{display:none!important}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.between{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.muted{color:var(--muted)}.question{font-size:clamp(21px,4vw,29px);line-height:1.6;margin:18px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{background:var(--panel2);color:var(--text);border:1px solid #ffffff20;text-align:right;min-height:58px}.answer.correct{background:#145c4e;border-color:var(--cyan)}.answer.wrong{background:#662a3a;border-color:var(--red)}.pill{background:#0b1223;padding:7px 11px;border-radius:10px;color:var(--gold);font-weight:bold}.bar{height:8px;background:#ffffff15;border-radius:10px;overflow:hidden;margin-top:12px}.bar div{height:100%;background:var(--cyan);width:0;transition:.2s}.note{background:#0b1223;border-radius:12px;padding:12px;color:var(--muted);line-height:1.7}.footer{text-align:center;color:#7f8ba8;font-size:12px;padding:22px}
-input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;min-width:0;width:100%}.field{display:grid;gap:7px;margin:12px 0}.ranklist{display:grid;gap:8px}.rankitem{display:flex;align-items:center;gap:10px;background:var(--panel2);padding:12px;border-radius:12px}.rankitem b{color:var(--gold);min-width:24px}.rankitem select{width:auto;flex:1}.tiny{font-size:13px}
-@media(max-width:520px){.wrap{padding:12px}.card{padding:16px}.answers{grid-template-columns:1fr}.brand{font-size:24px}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}.tile,button,select,input{font:inherit}
+.tile{background:var(--panel2);border:2px solid #ffffff18;color:var(--text);border-radius:15px;padding:15px 10px;cursor:pointer;text-align:center;transition:.15s}
+.tile:hover,button:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.tile.selected{background:var(--cyan);border-color:#fff;color:#171b28;font-weight:bold}
+.tile .emoji{font-size:25px;display:block;margin-bottom:8px}.tile small{color:var(--muted);display:block;margin-top:5px}
+.tile.selected small{color:#171b28}
+button{border:0;border-radius:13px;padding:12px 17px;background:var(--gold);color:#171b28;font-weight:800;cursor:pointer}
+.secondary{background:var(--panel2);color:var(--text);border:1px solid #ffffff20}.green{background:var(--cyan)}
+.hidden{display:none!important}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.between{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.muted{color:var(--muted)}.question{font-size:clamp(21px,4vw,29px);line-height:1.6;margin:18px 0}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.answer{background:var(--panel2);color:var(--text);border:1px solid #ffffff20;text-align:right;min-height:58px}
+.pill{background:#0b1223;padding:7px 11px;border-radius:10px;color:var(--gold);font-weight:bold}
+.bar{height:8px;background:#ffffff15;border-radius:10px;overflow:hidden;margin-top:12px}
+.bar div{height:100%;background:var(--cyan);width:0;transition:.2s}
+.note{background:#0b1223;border-radius:12px;padding:12px;color:var(--muted);line-height:1.7}
+.footer{text-align:center;color:#7f8ba8;font-size:12px;padding:22px}
+input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;width:100%}
+.field{display:grid;gap:7px;margin:12px 0}
+.ranklist{display:grid;gap:8px}
+.rankitem{display:flex;align-items:center;gap:10px;background:var(--panel2);padding:12px;border-radius:12px}
+.rankitem b{color:var(--gold);min-width:24px}.tiny{font-size:13px}
+@media(max-width:520px){.wrap{padding:12px}.card{padding:16px}.answers{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -21,31 +41,40 @@ input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;bor
   
   <section id="home" class="card hero">
     <div style="font-size:48px">🏆</div><h1>منو يسيطر على القمة؟</h1>
-    <p>اختر التصنيف، ثم حدد مستوى الصعوبة ونمط اللعب. أسئلة حقيقية ומثيرة لكل الفعاليات!</p>
+    <p>اختر التصنيف، ثم حدد مستوى الصعوبة ونمط اللعب لاختبار معلوماتك!</p>
     
-    <h3>1. اختر التصنيف</h3>
-    <div class="grid" id="categories"></div>
+    <div style="text-align:right">
+      <h3 style="margin-bottom:5px">1. اختر التصنيف</h3>
+    </div>
+    <div class="grid" id="categories">
+      <button class="tile" onclick="pickCategory('football', this)"><span class="emoji">⚽</span>كرة القدم<small>أسئلة ودوري أبطال</small></button>
+      <button class="tile" onclick="pickCategory('anime', this)"><span class="emoji">🍥</span>أنمي<small>ون بيس وناروتو</small></button>
+      <button class="tile" onclick="pickCategory('movies', this)"><span class="emoji">🎬</span>أفلام ومسلسلات<small>هاري بوتر ونولان</small></button>
+      <button class="tile" onclick="pickCategory('games', this)"><span class="emoji">🎮</span>ألعاب فيديو<small>ماينكرافت وجاد أوف وور</small></button>
+      <button class="tile" onclick="pickCategory('music', this)"><span class="emoji">🎨</span>فن وموسيقى<small>رسم وبيانو وعظماء</small></button>
+      <button class="tile" onclick="pickCategory('general', this)"><span class="emoji">🌍</span>معلومات عامة<small>علوم وتاريخ وجغرافيا</small></button>
+    </div>
     
-    <div id="difficulty-box" class="hidden" style="margin-top:20px">
-      <h3>2. اختر مستوى الصعوبة</h3>
+    <div id="difficulty-box" class="hidden" style="margin-top:20px; text-align:right">
+      <h3 style="margin-bottom:5px">2. اختر مستوى الصعوبة</h3>
       <div class="grid" id="difficulties">
-        <button class="tile" onclick="pickDifficulty('easy')"><span class="emoji">🟢</span>سهل<small>أسئلة ميسرة</small></button>
-        <button class="tile" onclick="pickDifficulty('medium')"><span class="emoji">🟡</span>متوسط<small>تحدي متوازن</small></button>
-        <button class="tile" onclick="pickDifficulty('hard')"><span class="emoji">🔴</span>صعب<small>لأصحاب الخبرة</small></button>
+        <button class="tile" onclick="pickDifficulty('easy', this)"><span class="emoji">🟢</span>سهل<small>أسئلة ميسرة</small></button>
+        <button class="tile" onclick="pickDifficulty('medium', this)"><span class="emoji">🟡</span>متوسط<small>تحدي متوازن</small></button>
+        <button class="tile" onclick="pickDifficulty('hard', this)"><span class="emoji">🔴</span>صعب<small>لأصحاب الخبرة</small></button>
       </div>
     </div>
 
-    <div id="modes-box" class="hidden" style="margin-top:20px">
-      <h3>3. اختر نمط اللعب</h3>
+    <div id="modes-box" class="hidden" style="margin-top:20px; text-align:right">
+      <h3 style="margin-bottom:5px">3. اختر نمط اللعب</h3>
       <div class="grid" id="modes">
-        <button class="tile" onclick="pickMode('top10')"><span class="emoji">🔟</span>تحدّي TOP 10<small>ترتيب العناصر والتسلسل</small></button>
-        <button class="tile" onclick="pickMode('quiz')"><span class="emoji">🧠</span>اختيارات متعددة<small>اختر الإجابة الصح</small></button>
-        <button class="tile" onclick="pickMode('tf')"><span class="emoji">⚖️</span>صح لو خطأ<small>سرعة بديهة</small></button>
-        <button class="tile" onclick="pickMode('whoami')"><span class="emoji">🕵️‍♂️</span>منو أني؟<small>احزر الشخصية أو الحدث</small></button>
+        <button class="tile" onclick="pickMode('top10', this)"><span class="emoji">🔟</span>تحدّي TOP 10<small>ترتيب العناصر</small></button>
+        <button class="tile" onclick="pickMode('quiz', this)"><span class="emoji">🧠</span>اختيارات متعددة<small>اختر الإجابة الصح</small></button>
+        <button class="tile" onclick="pickMode('tf', this)"><span class="emoji">⚖️</span>صح لو خطأ<small>سرعة بديهة</small></button>
+        <button class="tile" onclick="pickMode('whoami', this)"><span class="emoji">🕵️‍♂️</span>منو أني؟<small>احزر الشخصية أو الحدث</small></button>
       </div>
     </div>
 
-    <div class="field" style="max-width:320px;margin:20px auto 0"><label for="players">عدد اللاعبين</label><select id="players"><option value="1">لاعب واحد</option><option value="2">لاعبان</option><option value="3">3 لاعبين</option><option value="4">4 لاعبين</option></select></div>
+    <div class="field" style="max-width:320px;margin:20px auto 0; text-align:right"><label for="players">عدد اللاعبين</label><select id="players"><option value="1">لاعب واحد</option><option value="2">لاعبان</option><option value="3">3 لاعبين</option><option value="4">4 لاعبين</option></select></div>
     
     <div id="selectionHint" class="note" style="margin-top:14px">يرجى اختيار التصنيف أولاً.</div>
     <div class="row" style="justify-content:center;margin-top:15px"><button id="startBtn" onclick="startGame()" disabled>ابدأ التحدي</button></div>
@@ -162,36 +191,26 @@ const db = {
 
 let state = {category:null, difficulty:null, mode:null, playersCount:1, currentPlayer:0, currentQuestion:0, scores:[0,0,0,0], questions:[]};
 
-function initHome(){
-  let catEl = document.getElementById('categories');
-  catEl.innerHTML = '';
-  for(let k in db){
-    let item = db[k];
-    let btn = document.createElement('button');
-    btn.className = 'tile' + (state.category === k ? ' green' : '');
-    btn.innerHTML = `<span class="emoji">${item.emoji}</span>${item.name}<small>أسئلة متاحـة</small>`;
-    btn.onclick = () => { 
-      state.category = k; 
-      initHome(); 
-      document.getElementById('difficulty-box').classList.remove('hidden');
-      checkReady(); 
-    };
-    catEl.appendChild(btn);
-  }
+function pickCategory(cat, el){
+  state.category = cat;
+  document.querySelectorAll('#categories .tile').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('difficulty-box').classList.remove('hidden');
+  checkReady();
 }
 
-function pickDifficulty(d){
+function pickDifficulty(d, el){
   state.difficulty = d;
-  document.querySelectorAll('#difficulties .tile').forEach(b => b.classList.remove('green'));
-  event.currentTarget.classList.add('green');
+  document.querySelectorAll('#difficulties .tile').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
   document.getElementById('modes-box').classList.remove('hidden');
   checkReady();
 }
 
-function pickMode(m){
+function pickMode(m, el){
   state.mode = m;
-  document.querySelectorAll('#modes .tile').forEach(b => b.classList.remove('green'));
-  event.currentTarget.classList.add('green');
+  document.querySelectorAll('#modes .tile').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
   checkReady();
 }
 
@@ -325,26 +344,4 @@ function showResults(){
   document.getElementById('result').classList.remove('hidden');
   
   let resText = document.getElementById('resultText');
-  let lb = document.getElementById('leaderboard');
-  
-  if(state.playersCount === 1){
-    resText.innerText = `حصدت ${state.scores[0]} نقطة من أصل ${state.questions.length} أسئلة!`;
-    lb.innerHTML = `أداء أسطوري ورائع!`;
-  } else {
-    let maxScore = Math.max(...state.scores.slice(0, state.playersCount));
-    let winners = [];
-    for(let i=0; i<state.playersCount; i++){
-      if(state.scores[i] === maxScore) winners.push(`لاعب ${i+1}`);
-    }
-    resText.innerText = `انتهى التحدي! الفائزون: ${winners.join(' و ')}`;
-    
-    let html = `<b>لوحة النتائج النهائية:</b><div style="margin-top:8px">`;
-    for(let i=0; i<state.playersCount; i++){
-      html += `<div>اللاعب ${i+1}: ${state.scores[i]} نقطة</div>`;
-    }
-    html += `</div>`;
-    lb.innerHTML = html;
-  }
-}
-
-functi
+  let lb = document.getElementById('le
