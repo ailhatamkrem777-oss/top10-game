@@ -9,29 +9,26 @@
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1d3154,var(--bg) 58%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
 .wrap{max-width:900px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-size:28px;font-weight:900;letter-spacing:1px}.brand span{color:var(--gold)}.tag{border:1px solid #ffffff22;padding:7px 12px;border-radius:999px;color:var(--muted);font-size:13px}
 .card{background:#151d32eF;border:1px solid #ffffff16;border-radius:22px;padding:22px;margin-top:18px;box-shadow:0 14px 40px #0003}.hero{text-align:center;padding:30px 20px}.hero h1{font-size:clamp(27px,6vw,42px);margin:5px 0 12px}.hero p{color:var(--muted);line-height:1.8;margin:0 auto 20px;max-width:620px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}.tile,button,select,input{font:inherit}
-.tile{background:var(--panel2);border:2px solid #ffffff18;color:var(--text);border-radius:15px;padding:15px 10px;cursor:pointer;text-align:center;transition:.15s}
-.tile:hover,button:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}.tile,button,select{font:inherit}
+.tile{background:var(--panel2);border:2px solid #ffffff18;color:var(--text);border-radius:15px;padding:18px 10px;cursor:pointer;text-align:center;transition:.15s;width:100%}
+.tile:hover{transform:translateY(-1px);filter:brightness(1.1)}
 .tile.selected{background:var(--cyan);border-color:#fff;color:#171b28;font-weight:bold}
-.tile .emoji{font-size:25px;display:block;margin-bottom:8px}.tile small{color:var(--muted);display:block;margin-top:5px}
-.tile.selected small{color:#171b28}
-button{border:0;border-radius:13px;padding:12px 17px;background:var(--gold);color:#171b28;font-weight:800;cursor:pointer}
+.tile .emoji{font-size:28px;display:block;margin-bottom:8px}
+button.main-btn{border:0;border-radius:13px;padding:12px 17px;background:var(--gold);color:#171b28;font-weight:800;cursor:pointer;width:100%}
+button.main-btn:disabled{opacity:0.5;cursor:not-allowed}
 .secondary{background:var(--panel2);color:var(--text);border:1px solid #ffffff20}.green{background:var(--cyan)}
 .hidden{display:none!important}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
 .between{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .muted{color:var(--muted)}.question{font-size:clamp(21px,4vw,29px);line-height:1.6;margin:18px 0}
 .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.answer{background:var(--panel2);color:var(--text);border:1px solid #ffffff20;text-align:right;min-height:58px}
+.answer{background:var(--panel2);color:var(--text);border:1px solid #ffffff20;text-align:right;min-height:58px;width:100%;padding:12px;border-radius:12px;cursor:pointer}
 .pill{background:#0b1223;padding:7px 11px;border-radius:10px;color:var(--gold);font-weight:bold}
 .bar{height:8px;background:#ffffff15;border-radius:10px;overflow:hidden;margin-top:12px}
 .bar div{height:100%;background:var(--cyan);width:0;transition:.2s}
 .note{background:#0b1223;border-radius:12px;padding:12px;color:var(--muted);line-height:1.7}
 .footer{text-align:center;color:#7f8ba8;font-size:12px;padding:22px}
-input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;width:100%}
+select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;width:100%}
 .field{display:grid;gap:7px;margin:12px 0}
-.ranklist{display:grid;gap:8px}
-.rankitem{display:flex;align-items:center;gap:10px;background:var(--panel2);padding:12px;border-radius:12px}
-.rankitem b{color:var(--gold);min-width:24px}.tiny{font-size:13px}
 @media(max-width:520px){.wrap{padding:12px}.card{padding:16px}.answers{grid-template-columns:1fr}}
 </style>
 </head>
@@ -43,41 +40,39 @@ input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;bor
     <div style="font-size:48px">🏆</div><h1>منو يسيطر على القمة؟</h1>
     <p>اختر التصنيف، ثم حدد مستوى الصعوبة ونمط اللعب لاختبار معلوماتك!</p>
     
-    <div style="text-align:right">
-      <h3 style="margin-bottom:5px">1. اختر التصنيف</h3>
-    </div>
+    <div style="text-align:right"><h3 style="margin-bottom:5px">1. اختر التصنيف</h3></div>
     <div class="grid" id="categories">
-      <button class="tile" onclick="pickCategory('football', this)"><span class="emoji">⚽</span>كرة القدم<small>أسئلة ودوري أبطال</small></button>
-      <button class="tile" onclick="pickCategory('anime', this)"><span class="emoji">🍥</span>أنمي<small>ون بيس وناروتو</small></button>
-      <button class="tile" onclick="pickCategory('movies', this)"><span class="emoji">🎬</span>أفلام ومسلسلات<small>هاري بوتر ونولان</small></button>
-      <button class="tile" onclick="pickCategory('games', this)"><span class="emoji">🎮</span>ألعاب فيديو<small>ماينكرافت وجاد أوف وور</small></button>
-      <button class="tile" onclick="pickCategory('music', this)"><span class="emoji">🎨</span>فن وموسيقى<small>رسم وبيانو وعظماء</small></button>
-      <button class="tile" onclick="pickCategory('general', this)"><span class="emoji">🌍</span>معلومات عامة<small>علوم وتاريخ وجغرافيا</small></button>
+      <button class="tile" type="button" onclick="pickCategory('football', this)"><span class="emoji">⚽</span>كرة القدم</button>
+      <button class="tile" type="button" onclick="pickCategory('anime', this)"><span class="emoji">🍥</span>أنمي</button>
+      <button class="tile" type="button" onclick="pickCategory('movies', this)"><span class="emoji">🎬</span>أفلام ومسلسلات</button>
+      <button class="tile" type="button" onclick="pickCategory('games', this)"><span class="emoji">🎮</span>ألعاب فيديو</button>
+      <button class="tile" type="button" onclick="pickCategory('music', this)"><span class="emoji">🎨</span>فن وموسيقى</button>
+      <button class="tile" type="button" onclick="pickCategory('general', this)"><span class="emoji">🌍</span>معلومات عامة</button>
     </div>
     
     <div id="difficulty-box" class="hidden" style="margin-top:20px; text-align:right">
       <h3 style="margin-bottom:5px">2. اختر مستوى الصعوبة</h3>
       <div class="grid" id="difficulties">
-        <button class="tile" onclick="pickDifficulty('easy', this)"><span class="emoji">🟢</span>سهل<small>أسئلة ميسرة</small></button>
-        <button class="tile" onclick="pickDifficulty('medium', this)"><span class="emoji">🟡</span>متوسط<small>تحدي متوازن</small></button>
-        <button class="tile" onclick="pickDifficulty('hard', this)"><span class="emoji">🔴</span>صعب<small>لأصحاب الخبرة</small></button>
+        <button class="tile" type="button" onclick="pickDifficulty('easy', this)"><span class="emoji">🟢</span>سهل</button>
+        <button class="tile" type="button" onclick="pickDifficulty('medium', this)"><span class="emoji">🟡</span>متوسط</button>
+        <button class="tile" type="button" onclick="pickDifficulty('hard', this)"><span class="emoji">🔴</span>صعب</button>
       </div>
     </div>
 
     <div id="modes-box" class="hidden" style="margin-top:20px; text-align:right">
       <h3 style="margin-bottom:5px">3. اختر نمط اللعب</h3>
       <div class="grid" id="modes">
-        <button class="tile" onclick="pickMode('top10', this)"><span class="emoji">🔟</span>تحدّي TOP 10<small>ترتيب العناصر</small></button>
-        <button class="tile" onclick="pickMode('quiz', this)"><span class="emoji">🧠</span>اختيارات متعددة<small>اختر الإجابة الصح</small></button>
-        <button class="tile" onclick="pickMode('tf', this)"><span class="emoji">⚖️</span>صح لو خطأ<small>سرعة بديهة</small></button>
-        <button class="tile" onclick="pickMode('whoami', this)"><span class="emoji">🕵️‍♂️</span>منو أني؟<small>احزر الشخصية أو الحدث</small></button>
+        <button class="tile" type="button" onclick="pickMode('top10', this)"><span class="emoji">🔟</span>تحدّي TOP 10</button>
+        <button class="tile" type="button" onclick="pickMode('quiz', this)"><span class="emoji">🧠</span>اختيارات متعددة</button>
+        <button class="tile" type="button" onclick="pickMode('tf', this)"><span class="emoji">⚖️</span>صح لو خطأ</button>
+        <button class="tile" type="button" onclick="pickMode('whoami', this)"><span class="emoji">🕵️‍♂️</span>منو أني؟</button>
       </div>
     </div>
 
-    <div class="field" style="max-width:320px;margin:20px auto 0; text-align:right"><label for="players">عدد اللاعبين</label><select id="players"><option value="1">لاعب واحد</option><option value="2">لاعبان</option><option value="3">3 لاعبين</option><option value="4">4 لاعبين</option></select></div>
+    <div class="field" style="max-width:320px;margin:20px auto 0; text-align:right"><label for="players">عدد اللاعبين</label><select id="players"><option value="1">لاعب واحد</option><option value="2">لاعبان</option></select></div>
     
     <div id="selectionHint" class="note" style="margin-top:14px">يرجى اختيار التصنيف أولاً.</div>
-    <div class="row" style="justify-content:center;margin-top:15px"><button id="startBtn" onclick="startGame()" disabled>ابدأ التحدي</button></div>
+    <div class="row" style="justify-content:center;margin-top:15px"><button class="main-btn" id="startBtn" onclick="startGame()" disabled>ابدأ التحدي</button></div>
   </section>
 
   <section id="game" class="card hidden">
@@ -86,14 +81,13 @@ input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;bor
     <div class="muted tiny" id="playerLabel" style="margin-top:13px"></div>
     <div class="question" id="question"></div>
     <div id="answers" class="answers"></div>
-    <div id="rankArea" class="hidden"></div>
     <div id="feedback" class="note hidden" style="margin-top:14px"></div>
-    <div class="row" style="justify-content:flex-start;margin-top:16px"><button id="nextBtn" class="hidden" onclick="nextQuestion()">السؤال التالي ←</button></div>
+    <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="main-btn" id="nextBtn" class="hidden" style="width:auto" onclick="nextQuestion()">السؤال التالي ←</button></div>
   </section>
 
   <section id="result" class="card hidden hero">
     <div style="font-size:48px">🏆</div><h1>خلصت المعركة!</h1><p id="resultText"></p><div id="leaderboard" class="note"></div>
-    <div class="row" style="justify-content:center;margin-top:18px"><button onclick="goHome()">العب مرة ثانية</button></div>
+    <div class="row" style="justify-content:center;margin-top:18px"><button class="main-btn" style="width:auto" onclick="goHome()">العب مرة ثانية</button></div>
   </section>
   <div class="footer">TOP 10 · التحدي الشامل لجميع الفعاليات</div>
 </div>
@@ -105,16 +99,15 @@ const db = {
     easy: [
       {q: "من هو المنتخب الفائز بكأس العالم 2022؟", a: ["الأرجنتين", "فرنسا", "البرازيل", "البرتغال"], c: 0, t: "فازت الأرجنتين بقيادة ميسي بركلات الترجيح."},
       {q: "كم عدد لاعبي الفريق الواحد داخل الملعب؟", a: ["11 لاعباً", "10 لاعبين", "9 لاعبين", "12 لاعباً"], c: 0, t: "يبدأ كل فريق بـ 11 لاعباً أساسياً."},
-      {q: "أي نادٍ يُطلق عليه لقب الميرنغي أو الملكي؟", a: ["ريال مدريد", "برشلونة", "بايرن ميونخ", "مانشستر يونايتد"], c: 0, t: "ريال مدريد الإسباني يُعرف بالملكي."}
+      {q: "أي نادٍ يُطلق عليه لقب الملكي؟", a: ["ريال مدريد", "برشلونة", "بايرن ميونخ", "مانشستر يونايتد"], c: 0, t: "ريال مدريد الإسباني يُعرف بالملكي."}
     ],
     medium: [
       {q: "من هو الهداف التاريخي لدوري أبطال أوروبا؟", a: ["كريستيانو رونالدو", "ليونيل ميسي", "روبرت ليفاندوفسكي", "بنزيما"], c: 0, t: "رونالدو يتصدر قائمة هدافي الأبطال التاريخيين."},
-      {q: "أي منتخب فاز بكأس أمم إفريقيا لأكثر عدد من المرات؟", a: ["مصر", "الكاميرون", "غانا", "السنغال"], c: 0, t: "منتخب مصر حصد اللقب الإفريقي 7 مرات."},
-      {q: "من هو اللاعب الأكثر تتويجاً بالكرة الذهبية (Ballon d'Or)؟", a: ["ليونيل ميسي", "كريستيانو رونالدو", "كروس", "زيدان"], c: 0, t: "ميسي حقق الكرة الذهبية 8 مرات."}
+      {q: "أي منتخب فاز بكأس أمم إفريقيا لأكثر عدد من المرات؟", a: ["مصر", "الكاميرون", "غانا", "السنغال"], c: 0, t: "منتخب مصر حصد اللقب الإفريقي 7 مرات."}
     ],
     hard: [
       {q: "من هو المدرب الوحيد الذي فاز بدوري أبطال أوروبا 4 مرات؟", a: ["كارلو أنشيلوتي", "بيب جوارديولا", "زين الدين زيدان", "سر أليكس فيرغسون"], c: 0, t: "أنشيلوتي حقق المجد بـ 4 ألقاب دوري أبطال."},
-      {q: "في أي عام أقيمت أول بطولة كأس العالم لكرة القدم؟", a: ["1930", "1950", "1924", "1938"], c: 0, t: "أقيمت في الأوروغواي عام 1930 وفازت بها."}
+      {q: "في أي عام أقيمت أول بطولة كأس العالم لكرة القدم؟", a: ["1930", "1950", "1924", "1938"], c: 0, t: "أقيمت في الأوروغواي عام 1930."}
     ]
   },
   anime: {
@@ -135,14 +128,14 @@ const db = {
     name: "أفلام ومسلسلات", emoji: "🎬",
     easy: [
       {q: "ما اسم مدرسة السحر في سلسلة أفلام هاري بوتر؟", a: ["هوجورتس", "نارنيا", "كاميلوت", "أكسفورد"], c: 0, t: "هوجورتس هي مدرسة السحر الشهيرة."},
-      {q: "من هو بطل سلسلة أفلام آيرون مان (Iron Man)؟", a: ["توني ستارك", "بروس واين", "بيتر باركر", "كلارك كنت"], c: 0, t: "توني ستارك هو الشخصية العبقرية خلف الدرع."}
+      {q: "من هو بطل سلسلة أفلام آيرون مان؟", a: ["توني ستارك", "بروس واين", "بيتر باركر", "كلارك كنت"], c: 0, t: "توني ستارك هو الشخصية العبقرية خلف الدرع."}
     ],
     medium: [
-      {q: "أي فيلم للمخرج كريستوفر نولان يتحدث عن الأحلام المتداخلة؟", a: ["Inception", "Interstellar", "Tenet", "Memento"], c: 0, t: "فيلم إنسبشن يعتمد على سرقة الأفكار عبر الأحلام."},
-      {q: "ما اسم المحقق الذكي في مسلسل شيرلوك (Sherlock)؟", a: ["شيرلوك هولمز", "جون واتسون", "جيم موريارتي", "مايكروفت"], c: 0, t: "شيرلوك هولمز يؤديه بندكت كامبرباتش."}
+      {q: "أي فيلم يتحدث عن الأحلام المتداخلة وسرقة الأفكار؟", a: ["Inception", "Interstellar", "Tenet", "Memento"], c: 0, t: "فيلم إنسبشن من أروع أفلام الخيال العلمي."},
+      {q: "ما اسم المحقق الذكي في مسلسل شيرلوك؟", a: ["شيرلوك هولمز", "جون واتسون", "جيم موريارتي", "مايكروفت"], c: 0, t: "شيرلوك هولمز يؤديه بندكت كامبرباتش."}
     ],
     hard: [
-      {q: "أي أفلام حققت الرقم القياسي بالفوز بـ 11 جائزة أوسكار؟", a: ["تايتانيك، بن هور، وسيد الخواتم", "أفاتار، المصارع، والعراب", "الجوكر وإنسبشن", "جيمس بوند"], c: 0, t: "هذه الأفلام حققت 11 أوسكار تاريخية."}
+      {q: "ما هي الأفلام التي حققت الرقم القياسي بالفوز بـ 11 جائزة أوسكار؟", a: ["تايتانيك، بن هور، وسيد الخواتم", "أفاتار، المصارع، والعراب", "الجوكر وإنسبشن", "جيمس بوند"], c: 0, t: "هذه الأفلام حققت 11 أوسكار تاريخية."}
     ]
   },
   games: {
@@ -153,24 +146,24 @@ const db = {
     ],
     medium: [
       {q: "ما اسم إله الحرب وبطل سلسلة God of War؟", a: ["كريتوس", "زهاوس", "أثينا", "أرس"], c: 0, t: "كريتوس المحارب الإسبرطي الشهير."},
-      {q: "أي لعبة باتل رويال تشتهر بالبناء؟", a: ["فورتنايت (Fortnite)", "ببجي (PUBG)", "آبيكس", "كول آف ديوتي"], c: 0, t: "فورتنايت تتميز بميكانيكية البناء السريع."}
+      {q: "أي لعبة باتل رويال تشتهر بميكانيكية البناء؟", a: ["فورتنايت (Fortnite)", "ببجي (PUBG)", "آبيكس", "كول آف ديوتي"], c: 0, t: "فورتنايت تتميز ببناء الحصون السريع."}
     ],
     hard: [
-      {q: "ما اسم الفطريات المسؤولة عن تحول البشر بزومبي في The Last of Us؟", a: ["كوردايسبس (Cordyceps)", "تيدروس", "فيروس إكس", "المتحورة ب"], c: 0, t: "فطر كوردايسبس الحقيقي المتحكم بالحشرات تم تطبيقه بالقصة."}
+      {q: "ما اسم الفطريات المسؤولة عن تحول البشر بزومبي في The Last of Us؟", a: ["كوردايسبس (Cordyceps)", "تيدروس", "فيروس إكس", "المتحورة ب"], c: 0, t: "فطر كوردايسبس الحقيقي المتحكم بالحشرات."}
     ]
   },
   music: {
     name: "فن وموسيقى", emoji: "🎨",
     easy: [
-      {q: "ما هي الآلة الموسيقية التي تحتوي على مفاتيح سوداء وبيضاء؟", a: ["البيانو", "الجيتار", "الكمان", "الناي"], c: 0, t: "البيانو هو ملك الآلات الموسيقية ذات المفاتيح."},
+      {q: "ما هي الآلة الموسيقية التي تحتوي على مفاتيح سوداء وبيضاء؟", a: ["البيانو", "الجيتار", "الكمان", "الناي"], c: 0, t: "البيانو هو ملك الآلات الموسيقية."},
       {q: "من هو الرسام الشهير الذي رسم لوحة الموناليزا؟", a: ["ليوناردو دافنشي", "فان جوخ", "بيكاسو", "ميكل أنجلو"], c: 0, t: "دافنشي رسم الموناليزا الخالدة."}
     ],
     medium: [
-      {q: "أي فنان تشكيلي اشتهر بقطع أذنه ولوحة ليلة مرصعة بالنجوم؟", a: ["فينسنت فان جوخ", "بابلو بيكاسو", "مونيه", "سيزان"], c: 0, t: "فان جوخ من أعظم الرسامين بتاريخ الفن."},
-      {q: "ما هي الآلة الوترية التي تُعزف بالقوس وتحتوي على 4 أوتار؟", a: ["الكمان (Violin)", "الجيتار", "العود", "القانون"], c: 0, t: "الكمان يعلو طبقات العزف بالأوركسترا."}
+      {q: "أي فنان اشتهر بقطع أذنه ولوحة ليلة مرصعة بالنجوم؟", a: ["فينسنت فان جوخ", "بابلو بيكاسو", "مونيه", "سيزان"], c: 0, t: "فان جوخ من أعظم الرسامين تاريخياً."},
+      {q: "ما هي الآلة الوترية التي تُعزف بالقوس بالأوركسترا؟", a: ["الكمان (Violin)", "الجيتار", "العود", "القانون"], c: 0, t: "الكمان يعلو طبقات العزف."}
     ],
     hard: [
-      {q: "أي مؤلف موسيقي كلاسيكي استمر بالتأليف رغم فقدانه للسمع؟", a: ["بتهوفن", "موتسارت", "باخ", "ففالدي"], c: 0, t: "لودفيغ فان بتهوفن أبدع معاناته موسيقياً."}
+      {q: "أي مؤلف موسيقي كلاسيكي استمر بالتأليف رغم فقدانه للسمع؟", a: ["بتهوفن", "موتسارت", "باخ", "ففالدي"], c: 0, t: "لودفيغ فان بتهوفن أبدع رغم الصمم."}
     ]
   },
   general: {
@@ -180,7 +173,7 @@ const db = {
       {q: "ما هي عاصمة جمهورية العراق؟", a: ["بغداد", "البصرة", "أربيل", "الموصل"], c: 0, t: "بغداد العاصمة التاريخية."}
     ],
     medium: [
-      {q: "ما هو أعمق محيط على وجه الأرض؟", a: ["المحيط الهادئ", "المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"], c: 0, t: "المحيط الهادئ يحوي خندق ماريانا العميق."},
+      {q: "ما هو أعمق محيط على وجه الأرض؟", a: ["المحيط الهادئ", "المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"], c: 0, t: "المحيط الهادئ يحوي خندق ماريانا."},
       {q: "في أي قارة تقع أهرامات الجيزة؟", a: ["أفريقيا", "آسيا", "أوروبا", "أمريكا الشمالية"], c: 0, t: "مصر تقع في قارة أفريقيا."}
     ],
     hard: [
@@ -189,7 +182,7 @@ const db = {
   }
 };
 
-let state = {category:null, difficulty:null, mode:null, playersCount:1, currentPlayer:0, currentQuestion:0, scores:[0,0,0,0], questions:[]};
+let state = {category:null, difficulty:null, mode:null, playersCount:1, currentPlayer:0, currentQuestion:0, scores:[0,0], questions:[]};
 
 function pickCategory(cat, el){
   state.category = cat;
@@ -233,7 +226,7 @@ function startGame(){
   state.playersCount = parseInt(document.getElementById('players').value);
   state.currentPlayer = 0;
   state.currentQuestion = 0;
-  state.scores = [0,0,0,0];
+  state.scores = [0,0];
   
   let catObj = db[state.category];
   let pool = catObj[state.difficulty] || catObj['easy'];
@@ -266,10 +259,8 @@ function loadQuestion(){
   
   let qBox = document.getElementById('question');
   let aBox = document.getElementById('answers');
-  let rankArea = document.getElementById('rankArea');
   
   aBox.innerHTML = '';
-  rankArea.classList.add('hidden');
   aBox.classList.remove('hidden');
 
   if(state.mode === 'tf'){
@@ -278,25 +269,25 @@ function loadQuestion(){
     qBox.innerHTML = `${qData.q}<br><small class="muted" style="font-size:16px;display:block;margin-top:10px">هل هذه المعلومة صحيحة؟</small>`;
     
     let btnT = document.createElement('button');
-    btnT.className = 'answer'; btnT.innerText = "صح ✓";
+    btnT.type = 'button'; btnT.className = 'answer'; btnT.innerText = "صح ✓";
     btnT.onclick = () => handleAnswer(0 === correctAns, qData.t);
     let btnF = document.createElement('button');
-    btnF.className = 'answer'; btnF.innerText = "خطأ ✗";
+    btnF.type = 'button'; btnF.className = 'answer'; btnF.innerText = "خطأ ✗";
     btnF.onclick = () => handleAnswer(1 === correctAns, qData.t);
     aBox.appendChild(btnT); aBox.appendChild(btnF);
 
   } else if(state.mode === 'top10' || state.mode === 'whoami'){
-    qBox.innerText = state.mode === 'top10' ? `[تحدي TOP 10] رتب الخيارات التالية بالتسلسل الصحيح:` : `[منو أني؟] احزر الإجابة الصحيحة للعبارة: "${qData.q}"`;
-    aBox.classList.add('hidden');
-    rankArea.classList.remove('hidden');
-    
-    let shuffledOpts = [...qData.a].sort(() => Math.random() - 0.5);
-    let html = `<div class="muted tiny" style="margin-bottom:8px">رتب العناصر واضغط تأكيد:</div><div class="ranklist">`;
-    shuffledOpts.forEach((opt, idx) => {
-      html += `<div class="rankitem"><b>${idx+1}</b><span>${opt}</span></div>`;
+    qBox.innerText = state.mode === 'top10' ? `[تحدي الترتيب] ما هو الخيار الأصح أو الأول؟` : `[منو أني؟] ${qData.q}`;
+    let options = [...qData.a].sort(() => Math.random() - 0.5);
+    options.forEach((opt, idx) => {
+      let btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'answer';
+      btn.innerText = opt;
+      let isCorrect = (opt === qData.a[0]);
+      btn.onclick = () => handleAnswer(isCorrect, qData.t);
+      aBox.appendChild(btn);
     });
-    html += `</div><button class="green" style="margin-top:12px" onclick="handleAnswer(true, '${qData.t}')">تأكيد الإجابة</button>`;
-    rankArea.innerHTML = html;
 
   } else {
     qBox.innerText = qData.q;
@@ -305,6 +296,7 @@ function loadQuestion(){
     
     options.forEach(opt => {
       let btn = document.createElement('button');
+      btn.type = 'button';
       btn.className = 'answer';
       btn.innerText = opt.text;
       let isCorrect = (opt.idx === 0);
@@ -315,7 +307,7 @@ function loadQuestion(){
 }
 
 function handleAnswer(isCorrect, explanation){
-  let btns = document.querySelectorAll('.answer, #rankArea button');
+  let btns = document.querySelectorAll('.answer');
   btns.forEach(b => b.disabled = true);
   
   if(isCorrect){
@@ -344,4 +336,24 @@ function showResults(){
   document.getElementById('result').classList.remove('hidden');
   
   let resText = document.getElementById('resultText');
-  let lb = document.getElementById('le
+  let lb = document.getElementById('leaderboard');
+  
+  if(state.playersCount === 1){
+    resText.innerText = `حصدت ${state.scores[0]} نقطة من أصل ${state.questions.length} أسئلة!`;
+    lb.innerHTML = `أداء أسطوري ورائع!`;
+  } else {
+    let maxScore = Math.max(state.scores[0], state.scores[1]);
+    let winner = state.scores[0] === state.scores[1] ? "تعادل!" : (state.scores[0] === maxScore ? "اللاعب 1" : "اللاعب 2");
+    resText.innerText = `انتهى التحدي! الفائز: ${winner}`;
+    lb.innerHTML = `اللاعب 1: ${state.scores[0]} نقاط<br>اللاعب 2: ${state.scores[1]} نقاط`;
+  }
+}
+
+function goHome(){
+  document.getElementById('game').classList.add('hidden');
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('home').classList.remove('hidden');
+  state.category = null; state.difficulty = null; state.mode = null;
+  document.querySelectorAll('.tile').forEach(b => b.classList.remove('selected'));
+  document.getElementById('difficulty-box').classList.add('hidden');
+  document.getElementById('modes-
