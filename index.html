@@ -2,374 +2,365 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>منصة التحدي والمعرفة</title>
 <style>
-:root {
-  --bg:#0b1020; --panel:#151d33; --panel2:#202b46;
-  --text:#f5f7ff; --muted:#aab5d0; --main:#7c5cff;
-  --cyan:#20d9d2; --green:#29d391; --red:#ff637d;
-  --border:#34405e;
-}
+:root{--bg:#0b1020;--card:#151f36;--tile:#253451;--purple:#7959ff;--cyan:#23ddd0;--green:#24c987;--red:#ff627d}
 *{box-sizing:border-box}
-body{
-  margin:0;background:radial-gradient(circle at top,#1c2850,var(--bg) 55%);
-  color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh;
-}
+body{margin:0;background:radial-gradient(circle at top,#202d55,#0b1020 65%);color:#f5f7ff;font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+.container{max-width:950px;margin:auto;padding:16px}
+header{text-align:center;padding:20px 0}
+header .logo{font-size:45px}
+h1{font-size:clamp(25px,5vw,38px);margin:8px 0}
+.muted{color:#b2bfd9;line-height:1.8}
+.panel{background:var(--card);border:1px solid #354361;border-radius:18px;padding:20px;margin-bottom:16px}
+h2{margin-top:0}
+h3{margin:24px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px}
 button,input,select{font:inherit}
 button{cursor:pointer}
-.container{max-width:1050px;margin:auto;padding:20px}
-header{text-align:center;padding:22px 0}
-.logo{font-size:42px;margin-bottom:8px}
-h1{margin:5px 0;font-size:clamp(25px,5vw,38px)}
-.subtitle{color:var(--muted);line-height:1.8}
-.panel{
-  background:rgba(21,29,51,.96);border:1px solid var(--border);
-  border-radius:20px;padding:22px;margin-bottom:18px;
-  box-shadow:0 12px 35px #0003;
-}
-h2{margin-top:0}
-.section-title{font-size:18px;margin:22px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
-.choice{
-  padding:14px 10px;background:var(--panel2);border:2px solid transparent;
-  border-radius:13px;color:var(--text);text-align:center;min-height:54px;
-  transition:.15s;
-}
-.choice:hover{transform:translateY(-2px);border-color:var(--main)}
-.choice.selected{border-color:var(--cyan);background:#173c4c}
-.primary,.secondary,.danger{
-  border:0;border-radius:13px;padding:14px 20px;font-weight:bold;
-}
-.primary{background:linear-gradient(120deg,var(--main),#4c8dff);color:white}
-.secondary{background:var(--panel2);border:1px solid var(--border);color:white}
-.danger{background:#542437;color:white}
-.full{width:100%;margin-top:18px}
-label{display:block;margin:12px 0 7px;color:var(--muted)}
-input,select{
-  width:100%;padding:12px;background:#0d1427;color:white;
-  border:1px solid var(--border);border-radius:10px;outline:none;
-}
-input:focus,select:focus{border-color:var(--cyan)}
-.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+.choice,.answer,.secondary{color:white;background:var(--tile);border:2px solid transparent;border-radius:12px;padding:13px}
+.choice.selected{border-color:var(--cyan);background:#16404b}
+.choice:hover,.answer:hover{border-color:var(--cyan)}
+.primary{color:white;background:linear-gradient(120deg,var(--purple),#438cff);border:0;border-radius:12px;padding:15px;font-weight:bold}
+.secondary{border-color:#394866}
+.full{width:100%;margin-top:16px}
+label{display:block;color:#b2bfd9;margin:12px 0 7px}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #405071;background:#0e172b;color:white}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
 .hidden{display:none!important}
-.pill{
-  display:inline-block;background:#273453;color:var(--cyan);
-  border-radius:30px;padding:7px 12px;font-size:13px;margin:3px;
-}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
-.stat{background:#0d1427;border-radius:12px;padding:13px;text-align:center}
-.stat strong{display:block;font-size:24px;color:var(--cyan);margin-top:5px}
-.progress{height:8px;background:#303b56;border-radius:20px;overflow:hidden;margin:15px 0}
-.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--main),var(--cyan));transition:.3s}
-.question{font-size:clamp(19px,4vw,27px);line-height:1.8;margin:22px 0}
-.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.answer{
-  text-align:right;padding:16px;background:var(--panel2);color:white;
-  border:2px solid var(--border);border-radius:13px;min-height:65px;
-}
-.answer:hover:not(:disabled){border-color:var(--cyan)}
-.answer.correct{background:#124633;border-color:var(--green)}
+.pill{display:inline-block;padding:7px 11px;background:#253451;color:var(--cyan);border-radius:25px;margin:3px;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}
+.stat{background:#0e172b;border-radius:12px;padding:12px;text-align:center;color:#b2bfd9}
+.stat strong{display:block;color:var(--cyan);font-size:23px;margin-top:5px}
+.progress{height:8px;background:#303d58;border-radius:20px;overflow:hidden;margin:15px 0}
+.progress div{height:100%;width:0;background:var(--cyan);transition:.25s}
+.question{font-size:clamp(20px,4vw,28px);line-height:1.8;margin:22px 0}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.answer{text-align:right;min-height:58px;border-color:#394866}
+.answer.correct{background:#124733;border-color:var(--green)}
 .answer.wrong{background:#512337;border-color:var(--red)}
-.answer:disabled{cursor:default;opacity:.95}
-.feedback{padding:13px;border-radius:12px;margin-top:15px;line-height:1.8}
-.good{background:#124633;color:#9ff4ca}
+.answer:disabled{cursor:default}
+.feedback{padding:14px;border-radius:12px;margin-top:14px;line-height:1.8}
+.good{background:#124733;color:#a8f7ce}
 .bad{background:#512337;color:#ffc0cb}
-.small{font-size:13px;color:var(--muted)}
 .center{text-align:center}
-.big-score{font-size:54px;font-weight:bold;color:var(--cyan)}
-.player-score{
-  display:flex;justify-content:space-between;gap:10px;
-  padding:12px;background:#0d1427;border-radius:10px;margin:7px 0;
-}
-.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.memory-card{
-  min-height:80px;border:1px solid var(--border);border-radius:12px;
-  background:var(--panel2);color:white;font-size:28px;
-}
-.memory-card.open{background:#173c4c;border-color:var(--cyan)}
-.memory-card.matched{background:#124633;border-color:var(--green)}
-.top-item{
-  display:flex;align-items:center;gap:12px;padding:13px;
-  background:#0d1427;border-radius:12px;margin:9px 0;
-}
-.top-num{font-size:22px;font-weight:bold;color:var(--cyan);min-width:30px}
-footer{text-align:center;color:var(--muted);padding:25px;font-size:13px}
-@media(max-width:560px){
-  .container{padding:12px}.panel{padding:16px}
-  .answers{grid-template-columns:1fr}.memory-grid{grid-template-columns:repeat(4,1fr);gap:6px}
-  .memory-card{min-height:64px;font-size:23px}.stats{gap:6px}
-}
+.big{font-size:48px;color:var(--cyan);font-weight:bold}
+.player{display:flex;justify-content:space-between;gap:10px;background:#0e172b;padding:13px;border-radius:10px;margin:8px 0}
+.memory{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.memory button{height:75px;font-size:27px;border:1px solid #394866;background:var(--tile);color:white;border-radius:12px}
+.memory button.matched{background:#124733;border-color:var(--green)}
+.small{font-size:13px;color:#b2bfd9}
+footer{text-align:center;color:#8e9bb9;padding:20px}
+@media(max-width:520px){.container{padding:10px}.panel{padding:14px}.answers{grid-template-columns:1fr}.memory button{height:65px}}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
-  <div class="logo">🏆</div>
-  <h1>منصة التحدي والمعرفة</h1>
-  <div class="subtitle">اختبر معلوماتك، نافس أصدقاءك، واجمع أكبر عدد من النقاط!</div>
+<div class="logo">🏆</div>
+<h1>منصة التحدي والمعرفة</h1>
+<div class="muted">تحدَّ معلوماتك، نافس أصدقاءك، واثبت منو الأذكى!</div>
 </header>
 
-<section id="homeScreen" class="panel">
-  <h2>🎮 جهّز تحدّيك</h2>
+<section class="panel" id="home">
+<h2>🎮 إعداد التحدي</h2>
 
-  <div class="section-title">1 ـ اختار طريقة اللعب</div>
-  <div class="grid" id="playModes">
-    <button class="choice selected" data-value="solo">👤 فردي</button>
-    <button class="choice" data-value="multi">👥 لاعبين بالتناوب</button>
-    <button class="choice" data-value="teams">🛡️ فرق</button>
-  </div>
+<h3>طريقة اللعب</h3>
+<div class="grid" id="modes">
+<button class="choice selected" data-value="solo">👤 فردي</button>
+<button class="choice" data-value="players">👥 لاعبين</button>
+<button class="choice" data-value="teams">🛡️ فرق</button>
+</div>
 
-  <div id="playersSettings" class="row">
-    <div>
-      <label for="playerCount">عدد اللاعبين (2 إلى 6)</label>
-      <select id="playerCount">
-        <option value="2">2 لاعبين</option><option value="3">3 لاعبين</option>
-        <option value="4">4 لاعبين</option><option value="5">5 لاعبين</option>
-        <option value="6">6 لاعبين</option>
-      </select>
-    </div>
-    <div>
-      <label for="teamCount">عدد الفرق</label>
-      <select id="teamCount">
-        <option value="2">فريقان</option><option value="3">3 فرق</option>
-      </select>
-    </div>
-  </div>
+<div id="multiSettings" class="row hidden">
+<div id="countBox">
+<label>عدد اللاعبين</label>
+<select id="playerCount">
+<option value="2">لاعبان</option><option value="3">3 لاعبين</option>
+<option value="4">4 لاعبين</option><option value="5">5 لاعبين</option><option value="6">6 لاعبين</option>
+</select>
+</div>
+<div id="teamBox" class="hidden">
+<label>عدد الفرق</label>
+<select id="teamCount"><option value="2">فريقان</option><option value="3">3 فرق</option></select>
+</div>
+<div>
+<label>أسماء اللاعبين أو الفرق، افصل بفاصلة</label>
+<input id="names" placeholder="علي، حسن، محمد">
+</div>
+</div>
 
-  <div id="namesSettings" class="hidden">
-    <label>أسماء اللاعبين (افصل بين الأسماء بفاصلة)</label>
-    <input id="playerNames" placeholder="مثال: علي، حسن، محمد">
-    <label>أسماء الفرق (اختياري، افصل بينها بفاصلة)</label>
-    <input id="teamNames" placeholder="مثال: الصقور، الأسود">
-  </div>
+<h3>الفعالية</h3>
+<div class="grid" id="activities">
+<button class="choice selected" data-value="quiz">🧠 سؤال وجواب</button>
+<button class="choice" data-value="top10">🔟 توب 10</button>
+<button class="choice" data-value="memory">🃏 الذاكرة</button>
+<button class="choice" data-value="tf">✅ صح أو خطأ</button>
+<button class="choice" data-value="who">🕵️ منو أني؟</button>
+</div>
 
-  <div class="section-title">2 ـ اختار الفعالية</div>
-  <div class="grid" id="activityModes">
-    <button class="choice selected" data-value="quiz">🧠 سؤال وجواب</button>
-    <button class="choice" data-value="top10">🔟 تحدي TOP 10</button>
-    <button class="choice" data-value="memory">🃏 لعبة الذاكرة</button>
-    <button class="choice" data-value="truefalse">✅ صح أو خطأ</button>
-    <button class="choice" data-value="speed">⚡ تحدي السرعة</button>
-    <button class="choice" data-value="who">🕵️ منو أني؟</button>
-  </div>
+<h3>التصنيف</h3>
+<div class="grid" id="categories">
+<button class="choice selected" data-value="all">🌐 الكل</button>
+<button class="choice" data-value="football">⚽ كرة القدم</button>
+<button class="choice" data-value="history">🏛️ التاريخ</button>
+<button class="choice" data-value="geography">🌍 الجغرافية</button>
+<button class="choice" data-value="science">🔬 العلوم</button>
+<button class="choice" data-value="games">🎮 الألعاب</button>
+<button class="choice" data-value="anime">🍥 الأنمي</button>
+<button class="choice" data-value="general">💡 عامة</button>
+</div>
 
-  <div class="section-title">3 ـ اختار التصنيف</div>
-  <div class="grid" id="categories">
-    <button class="choice selected" data-value="all">🌐 كل التصنيفات</button>
-    <button class="choice" data-value="football">⚽ كرة القدم</button>
-    <button class="choice" data-value="history">🏛️ تاريخ</button>
-    <button class="choice" data-value="geography">🌍 جغرافية</button>
-    <button class="choice" data-value="science">🔬 علوم</button>
-    <button class="choice" data-value="games">🎮 ألعاب</button>
-    <button class="choice" data-value="anime">🍥 أنمي</button>
-    <button class="choice" data-value="general">💡 معلومات عامة</button>
-  </div>
+<h3>الصعوبة</h3>
+<div class="grid" id="difficulties">
+<button class="choice" data-value="easy">🟢 سهل</button>
+<button class="choice selected" data-value="medium">🟡 متوسط</button>
+<button class="choice" data-value="hard">🔴 صعب</button>
+<button class="choice" data-value="mixed">🎲 عشوائي</button>
+</div>
 
-  <div class="section-title">4 ـ مستوى الصعوبة</div>
-  <div class="grid" id="difficulties">
-    <button class="choice" data-value="easy">🟢 سهل</button>
-    <button class="choice selected" data-value="medium">🟡 متوسط</button>
-    <button class="choice" data-value="hard">🔴 صعب</button>
-    <button class="choice" data-value="mixed">🎲 عشوائي</button>
-  </div>
+<div class="row">
+<div><label>عدد الأسئلة</label>
+<select id="questionCount"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
+<div><label>وقت السؤال</label>
+<select id="seconds"><option value="0">بدون مؤقت</option><option value="10">10 ثوانٍ</option><option selected value="15">15 ثانية</option><option value="30">30 ثانية</option></select></div>
+</div>
 
-  <div class="row">
-    <div>
-      <label for="questionCount">عدد الأسئلة</label>
-      <select id="questionCount">
-        <option value="5">5 أسئلة</option><option value="10" selected>10 أسئلة</option>
-        <option value="15">15 سؤالاً</option><option value="20">20 سؤالاً</option>
-      </select>
-    </div>
-    <div>
-      <label for="seconds">وقت الإجابة</label>
-      <select id="seconds">
-        <option value="0">بدون مؤقت</option><option value="10">10 ثوانٍ</option>
-        <option value="15" selected>15 ثانية</option><option value="30">30 ثانية</option>
-      </select>
-    </div>
-  </div>
-
-  <button class="primary full" id="startBtn">🚀 بدء التحدي</button>
-  <p class="small center">النقاط تُحسب داخل الجولة الحالية، وتظهر النتيجة عند انتهاء اللعب.</p>
+<button type="button" class="primary full" id="start">🚀 بدء التحدي</button>
+<div id="error" class="feedback bad hidden"></div>
 </section>
 
-<section id="gameScreen" class="panel hidden">
-  <div class="row">
-    <div><span class="pill" id="activityLabel">الفعالية</span><span class="pill" id="categoryLabel">التصنيف</span></div>
-    <div class="center"><span class="pill" id="turnLabel">دور اللاعب</span></div>
-  </div>
-  <div class="stats">
-    <div class="stat">السؤال<strong id="questionNumber">1/10</strong></div>
-    <div class="stat">النقاط<strong id="scoreValue">0</strong></div>
-    <div class="stat">الوقت<strong id="timerValue">15</strong></div>
-  </div>
-  <div class="progress"><div id="progressBar"></div></div>
-  <div id="gameContent"></div>
-  <div id="feedback" class="feedback hidden"></div>
-  <button id="nextBtn" class="primary full hidden">السؤال التالي ←</button>
-  <button id="quitBtn" class="secondary full">إنهاء الجولة</button>
+<section class="panel hidden" id="game">
+<div><span class="pill" id="activityLabel"></span><span class="pill" id="categoryLabel"></span></div>
+<div class="stats">
+<div class="stat">السؤال<strong id="number">1/10</strong></div>
+<div class="stat">النقاط<strong id="score">0</strong></div>
+<div class="stat">الوقت<strong id="timer">15</strong></div>
+</div>
+<div class="progress"><div id="bar"></div></div>
+<div id="content"></div>
+<div id="feedback" class="feedback hidden"></div>
+<button type="button" class="primary full hidden" id="next">السؤال التالي ←</button>
+<button type="button" class="secondary full" id="quit">إنهاء الجولة</button>
 </section>
 
-<section id="endScreen" class="panel hidden center">
-  <div class="logo">🏆</div>
-  <h2 id="endTitle">انتهى التحدي!</h2>
-  <div class="big-score" id="finalScore">0</div>
-  <p id="endMessage"></p>
-  <div id="leaderboard"></div>
-  <button id="restartBtn" class="primary full">🔄 تحدي جديد</button>
-  <button id="homeBtn" class="secondary full">العودة للإعدادات</button>
+<section class="panel hidden center" id="result">
+<div class="logo">🏆</div><h2 id="resultTitle">انتهى التحدي!</h2>
+<div class="big" id="finalScore">0</div><p class="muted" id="resultMessage"></p>
+<div id="ranking"></div>
+<button type="button" class="primary full" id="again">🔄 إعادة اللعب</button>
+<button type="button" class="secondary full" id="back">الإعدادات</button>
 </section>
-
-<footer>منصة التحدي والمعرفة • العب وتعلّم ونافس أصدقاءك</footer>
+<footer>منصة التحدي والمعرفة</footer>
 </div>
 
 <script>
+(function(){
 "use strict";
+const $=id=>document.getElementById(id);
+const all=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
+const state={mode:"solo",activity:"quiz",category:"all",difficulty:"medium"};
+let players=[],round=[],index=0,turn=0,timerId=null,timeLeft=0,answered=false;
+let memoryDeck=[],memoryOpen=[],memoryPairs=0,memoryMoves=0,topFound=0;
 
-const $ = id => document.getElementById(id);
+const questions=[
+["football","easy","كم لاعباً يبدأ به فريق كرة القدم؟",["9","10","11","12"],2],
+["football","easy","من فاز بكأس العالم 2022؟",["فرنسا","الأرجنتين","البرازيل","ألمانيا"],1],
+["football","easy","كم دقيقة مدة المباراة الأصلية؟",["60","80","90","100"],2],
+["football","medium","من فاز بكأس العالم 2018؟",["كرواتيا","فرنسا","بلجيكا","إسبانيا"],1],
+["football","medium","ما ملعب نادي ليفربول؟",["أنفيلد","ويمبلي","سان سيرو","كامب نو"],0],
+["football","hard","من فاز بأول كأس عالم سنة 1930؟",["الأرجنتين","إيطاليا","أوروغواي","البرازيل"],2],
+["football","hard","أي منتخب فاز بكأس العالم 2010؟",["ألمانيا","إسبانيا","هولندا","الأوروغواي"],1],
+["history","easy","أين تقع أهرامات الجيزة؟",["العراق","مصر","اليونان","الهند"],1],
+["history","easy","أي حضارة قديمة نشأت في جنوب بلاد الرافدين؟",["السومرية","المايا","الإغريقية","الرومانية"],0],
+["history","medium","في أي سنة انتهت الحرب العالمية الثانية؟",["1939","1942","1945","1950"],2],
+["history","medium","من ارتبط اسمه بشريعة بابلية مشهورة؟",["حمورابي","الإسكندر","قيصر","نبوخذ نصر"],0],
+["history","hard","في أي سنة سقطت القسطنطينية بيد العثمانيين؟",["1258","1453","1492","1517"],1],
+["geography","easy","ما عاصمة العراق؟",["البصرة","بغداد","الموصل","النجف"],1],
+["geography","easy","ما أكبر محيط في العالم؟",["الأطلسي","الهندي","الهادئ","المتجمد الشمالي"],2],
+["geography","medium","ما عاصمة أستراليا؟",["سيدني","ملبورن","كانبيرا","بيرث"],2],
+["geography","medium","أي قارة تضم أكبر عدد من الدول؟",["آسيا","أفريقيا","أوروبا","أمريكا الجنوبية"],1],
+["geography","hard","ما عاصمة منغوليا؟",["كاتماندو","أولان باتور","طشقند","بيشكيك"],1],
+["science","easy","ما الكوكب الأحمر؟",["الزهرة","المريخ","المشتري","عطارد"],1],
+["science","easy","ما الغاز الضروري لتنفس الإنسان؟",["الهيليوم","الأكسجين","الهيدروجين","النيون"],1],
+["science","medium","ما الصيغة الكيميائية للماء؟",["CO2","O2","H2O","NaCl"],2],
+["science","medium","أي عضو يضخ الدم؟",["الرئة","الكبد","القلب","المعدة"],2],
+["science","hard","ما وحدة قياس المقاومة الكهربائية؟",["الفولت","الأمبير","الأوم","الواط"],2],
+["science","hard","ما العملية التي تصنع بها النباتات غذاءها؟",["التبخر","البناء الضوئي","التكاثف","التجمد"],1],
+["games","easy","من طور Minecraft؟",["Mojang","Ubisoft","Valve","Nintendo"],0],
+["games","easy","أي سلسلة ألعاب تضم شخصية كريتوس؟",["God of War","FIFA","Minecraft","Forza"],0],
+["games","medium","من الشركة المطورة لسلسلة Zelda؟",["Sony","Nintendo","EA","Rockstar"],1],
+["games","hard","من طور The Witcher 3؟",["CD Projekt Red","Naughty Dog","Mojang","Valve"],0],
+["anime","easy","من بطل One Piece؟",["ناروتو","لوفي","إيتادوري","إيتشيغو"],1],
+["anime","easy","من بطل أنمي Naruto؟",["ساسكي","كاكاشي","ناروتو","غاارا"],2],
+["anime","medium","ما اسم أخت تانجيرو في Demon Slayer؟",["زينيتسو","إينوسكي","نيزوكو","غيو"],2],
+["anime","medium","ما اسم دفتر القتل في Death Note؟",["Black Book","Death Note","Soul Book","Dark File"],1],
+["anime","hard","من مؤلف مانغا Attack on Titan؟",["إييتشيرو أودا","هاجيمي إيساياما","كيشيموتو","فوجيموتو"],1],
+["general","easy","كم يوماً في الأسبوع؟",["5","6","7","8"],2],
+["general","easy","ما اللغة الرسمية في البرازيل؟",["الإسبانية","البرتغالية","الفرنسية","الإنجليزية"],1],
+["general","medium","من رسم لوحة الموناليزا؟",["فان غوخ","ليوناردو دا فينشي","بيكاسو","مونيه"],1],
+["general","medium","كم ضلعاً للمسدس؟",["5","6","7","8"],1],
+["general","hard","كم ضلعاً للمكعب؟",["6","8","12","16"],2]
+].map(x=>({c:x[0],d:x[1],q:x[2],a:x[3],k:x[4]}));
 
-const bank = [
-{c:"football",d:"easy",q:"كم لاعباً يبدأ به فريق كرة القدم داخل الملعب؟",a:["9","10","11","12"],k:2},
-{c:"football",d:"easy",q:"أي دولة فازت بكأس العالم 2022؟",a:["فرنسا","الأرجنتين","البرازيل","ألمانيا"],k:1},
-{c:"football",d:"easy",q:"كم دقيقة هي مدة المباراة الأصلية عادةً دون الوقت بدل الضائع؟",a:["60","80","90","100"],k:2},
-{c:"football",d:"medium",q:"من فاز بكأس العالم 2018؟",a:["كرواتيا","فرنسا","بلجيكا","إسبانيا"],k:1},
-{c:"football",d:"medium",q:"أي نادٍ يلعب مبارياته على ملعب أنفيلد؟",a:["ليفربول","تشيلسي","أرسنال","مانشستر سيتي"],k:0},
-{c:"football",d:"medium",q:"كم لاعباً من الفريق الواحد يكون داخل الملعب في بداية مباراة كرة القدم؟",a:["9","10","11","12"],k:2},
-{c:"football",d:"hard",q:"من فاز بأول نسخة من كأس العالم سنة 1930؟",a:["الأرجنتين","إيطاليا","أوروغواي","البرازيل"],k:2},
-{c:"football",d:"hard",q:"أي منتخب فاز بكأس العالم 2010؟",a:["ألمانيا","إسبانيا","هولندا","الأوروغواي"],k:1},
-{c:"football",d:"hard",q:"أي دولة استضافت كأس العالم 2002 بالاشتراك؟",a:["اليابان وكوريا الجنوبية","الصين واليابان","ألمانيا وفرنسا","البرازيل والأرجنتين"],k:0},
-
-{c:"history",d:"easy",q:"في أي دولة تقع الأهرامات الشهيرة في الجيزة؟",a:["العراق","مصر","اليونان","الهند"],k:1},
-{c:"history",d:"easy",q:"من بنى مدينة بابل القديمة؟",a:["البابليون","الرومان","الفايكنغ","الفرس فقط"],k:0},
-{c:"history",d:"medium",q:"في أي سنة انتهت الحرب العالمية الثانية في أوروبا؟",a:["1939","1942","1945","1950"],k:2},
-{c:"history",d:"medium",q:"أي حضارة قديمة اشتهرت بالكتابة المسمارية في بلاد الرافدين؟",a:["السومرية","المايا","الإغريقية","الإسكندنافية"],k:0},
-{c:"history",d:"medium",q:"من هو أول خليفة في الإسلام؟",a:["عمر بن الخطاب","علي بن أبي طالب","أبو بكر الصديق","عثمان بن عفان"],k:2},
-{c:"history",d:"hard",q:"في أي سنة سقطت القسطنطينية بيد العثمانيين؟",a:["1258","1453","1492","1517"],k:1},
-{c:"history",d:"hard",q:"أي ملك بابلي ارتبط اسمه بشريعة مسجلة على مسلة؟",a:["حمورابي","نبوخذ نصر الثاني","سرجون الأكدي","آشور بانيبال"],k:0},
-{c:"history",d:"hard",q:"ما اسم المعركة التي وقعت سنة 732 بين قوات الفرنجة وقوات أموية؟",a:["بلاط الشهداء","حطين","اليرموك","عين جالوت"],k:0},
-
-{c:"geography",d:"easy",q:"ما أكبر محيط في العالم؟",a:["الأطلسي","الهندي","المتجمد الشمالي","الهادئ"],k:3},
-{c:"geography",d:"easy",q:"ما عاصمة العراق؟",a:["البصرة","بغداد","الموصل","النجف"],k:1},
-{c:"geography",d:"easy",q:"أي نهر يمر بمدينة بغداد؟",a:["النيل","الفرات وحده","دجلة","الأردن"],k:2},
-{c:"geography",d:"medium",q:"ما عاصمة أستراليا؟",a:["سيدني","ملبورن","كانبيرا","بيرث"],k:2},
-{c:"geography",d:"medium",q:"أي قارة تضم أكبر عدد من الدول؟",a:["آسيا","أفريقيا","أوروبا","أمريكا الجنوبية"],k:1},
-{c:"geography",d:"medium",q:"ما أعلى جبل فوق مستوى سطح البحر؟",a:["كي 2","إيفرست","كليمنجارو","مون بلان"],k:1},
-{c:"geography",d:"hard",q:"ما الدولة التي عاصمتها أولان باتور؟",a:["نيبال","منغوليا","بوتان","كازاخستان"],k:1},
-{c:"geography",d:"hard",q:"أي مضيق يفصل آسيا عن أمريكا الشمالية؟",a:["جبل طارق","بيرينغ","هرمز","البوسفور"],k:1},
-
-{c:"science",d:"easy",q:"ما الكوكب المعروف بالكوكب الأحمر؟",a:["الزهرة","المريخ","المشتري","عطارد"],k:1},
-{c:"science",d:"easy",q:"ما الغاز الذي يحتاجه الإنسان للتنفس؟",a:["الهيليوم","الأكسجين","النيتروجين فقط","الهيدروجين"],k:1},
-{c:"science",d:"easy",q:"كم عدد أرجل العنكبوت؟",a:["6","8","10","12"],k:1},
-{c:"science",d:"medium",q:"ما الرمز الكيميائي للماء؟",a:["CO2","O2","H2O","NaCl"],k:2},
-{c:"science",d:"medium",q:"أي عضو يضخ الدم في جسم الإنسان؟",a:["الرئة","الكبد","القلب","المعدة"],k:2},
-{c:"science",d:"medium",q:"ما أقرب نجم إلى الأرض؟",a:["الشمس","سيريوس","الشعرى اليمانية","نجم القطب"],k:0},
-{c:"science",d:"hard",q:"ما وحدة قياس المقاومة الكهربائية؟",a:["الفولت","الأمبير","الأوم","الواط"],k:2},
-{c:"science",d:"hard",q:"ما الجزء من الخلية الذي يحتوي عادةً على معظم المادة الوراثية؟",a:["النواة","الغشاء","الريبوسوم","الجدار الخلوي"],k:0},
-
-{c:"games",d:"easy",q:"أي شركة طورت لعبة Minecraft الأصلية؟",a:["Mojang","Ubisoft","Valve","Nintendo"],k:0},
-{c:"games",d:"easy",q:"أي لعبة مشهورة بعالمها المفتوح وشخصيات GTA؟",a:["Minecraft","Grand Theft Auto","FIFA","Tetris"],k:1},
-{c:"games",d:"medium",q:"ما اسم الشخصية الرئيسية المشهورة في سلسلة God of War الحديثة؟",a:["كريتوس","ليون","ناثان دريك","جيرالت"],k:0},
-{c:"games",d:"medium",q:"أي شركة تطور سلسلة The Legend of Zelda؟",a:["Sony","Nintendo","EA","Rockstar"],k:1},
-{c:"games",d:"hard",q:"أي استوديو طوّر لعبة The Witcher 3؟",a:["CD Projekt Red","Naughty Dog","Rockstar North","Mojang"],k:0},
-{c:"games",d:"hard",q:"في أي عام صدرت لعبة Minecraft رسمياً بنسختها الكاملة؟",a:["2009","2011","2013","2015"],k:1},
-
-{c:"anime",d:"easy",q:"ما اسم بطل أنمي One Piece؟",a:["ناروتو","لوفي","إيتادوري","إيتشيغو"],k:1},
-{c:"anime",d:"easy",q:"ما اسم الشخصية الرئيسية في Naruto؟",a:["ساسكي","كاكاشي","ناروتو","غاارا"],k:2},
-{c:"anime",d:"medium",q:"ما اسم أخ تانجيرو في Demon Slayer؟",a:["زينيتسو","إينوسكي","نيزوكو","غيو"],k:2},
-{c:"anime",d:"medium",q:"ما اسم دفتر القتل في Death Note؟",a:["Black Book","Death Note","Soul Book","Dark File"],k:1},
-{c:"anime",d:"hard",q:"من مؤلف مانغا Attack on Titan؟",a:["إييتشيرو أودا","هاجيمي إيساياما","ماساشي كيشيموتو","تاتسوكي فوجيموتو"],k:1},
-{c:"anime",d:"hard",q:"ما اسم عائلة إدوارد وألفونس في Fullmetal Alchemist؟",a:["إلريك","أكرمان","زولديك","تودوروكي"],k:0},
-
-{c:"general",d:"easy",q:"كم يوماً في الأسبوع؟",a:["5","6","7","8"],k:2},
-{c:"general",d:"easy",q:"ما اللغة الرسمية الأكثر استخداماً في البرازيل؟",a:["الإسبانية","البرتغالية","الفرنسية","الإنجليزية"],k:1},
-{c:"general",d:"medium",q:"من رسم لوحة الموناليزا؟",a:["فان غوخ","ليوناردو دا فينشي","بيكاسو","مونيه"],k:1},
-{c:"general",d:"medium",q:"كم ضلعاً للمسدس؟",a:["5","6","7","8"],k:1},
-{c:"general",d:"medium",q:"أي آلة موسيقية لها مفاتيح بيضاء وسوداء؟",a:["العود","الناي","البيانو","الطبلة"],k:2},
-{c:"general",d:"hard",q:"ما اسم العملية التي تصنع بها النباتات غذاءها باستخدام الضوء؟",a:["التبخر","البناء الضوئي","التكاثف","التخمّر"],k:1},
-{c:"general",d:"hard",q:"كم عدد الأضلاع في المجسم المعروف بالمكعب؟",a:["6","8","12","16"],k:2}
+const tfQuestions=[
+{c:"science",q:"الشمس نجم وليست كوكباً.",k:true},
+{c:"geography",q:"عاصمة أستراليا هي سيدني.",k:false,why:"عاصمة أستراليا هي كانبيرا."},
+{c:"football",q:"يبدأ فريق كرة القدم عادةً بـ11 لاعباً.",k:true},
+{c:"geography",q:"المحيط الأطلسي أكبر من المحيط الهادئ.",k:false,why:"المحيط الهادئ هو الأكبر."},
+{c:"science",q:"الماء يتكون من الهيدروجين والأكسجين.",k:true},
+{c:"football",q:"فازت البرازيل بكأس العالم 2022.",k:false,why:"الفائز كان الأرجنتين."},
+{c:"geography",q:"بغداد عاصمة العراق.",k:true},
+{c:"games",q:"شركة Nintendo هي التي طورت Minecraft.",k:false,why:"طورت اللعبة شركة Mojang."},
+{c:"science",q:"للعنكبوت ثماني أرجل.",k:true},
+{c:"history",q:"انتهت الحرب العالمية الثانية سنة 1945.",k:true}
 ];
 
-const top10Data = [
+const top10=[
 {q:"اذكر كوكباً من كواكب المجموعة الشمسية",a:["عطارد","الزهرة","الأرض","المريخ","المشتري","زحل","أورانوس","نبتون"]},
 {q:"اذكر دولة عربية",a:["العراق","السعودية","مصر","الأردن","سوريا","لبنان","الكويت","قطر","البحرين","عُمان"]},
-{q:"اذكر مركزاً من مراكز كرة القدم",a:["حارس مرمى","قلب دفاع","ظهير","محور","وسط","جناح","صانع ألعاب","مهاجم","رأس حربة","وسط هجومي"]},
+{q:"اذكر مركزاً في كرة القدم",a:["حارس مرمى","قلب دفاع","ظهير","محور","وسط","جناح","صانع ألعاب","مهاجم","رأس حربة","وسط هجومي"]},
 {q:"اذكر حيواناً يعيش في الماء",a:["الدلفين","الحوت","القرش","الأخطبوط","السلحفاة البحرية","قنديل البحر","فرس البحر","الفقمة","الراي","ثعبان البحر"]},
 {q:"اذكر قارة من قارات العالم",a:["آسيا","أفريقيا","أوروبا","أمريكا الشمالية","أمريكا الجنوبية","أستراليا","أنتاركتيكا"]}
 ];
-
-const whoData = [
-{q:"أنا كوكب أحمر، ومن كواكبي المعروفة في النظام الشمسي. من أكون؟",a:["المريخ","الزهرة","زحل","عطارد"],k:0},
-{q:"أنا لاعب أرجنتيني فزت بكأس العالم 2022. من أكون؟",a:["كريستيانو رونالدو","ليونيل ميسي","دي ماريا","أغويرو"],k:1},
-{q:"أنا نهران مشهوران في العراق: أحدهما اسمه دجلة والآخر؟",a:["النيل","الفرات","الأردن","العاصي"],k:1},
-{q:"أنا شخصية أنمي أحلم بأن أصبح ملك القراصنة. من أكون؟",a:["لوفي","ناروتو","غوكو","إيتادوري"],k:0},
-{q:"أنا آلة موسيقية أُعزف عليها بمفاتيح بيضاء وسوداء. من أكون؟",a:["العود","البيانو","الكمان","الناي"],k:1}
+const whoQuestions=[
+{q:"أنا كوكب يُعرف بالكوكب الأحمر. من أكون؟",a:["المريخ","الزهرة","زحل","عطارد"],k:0},
+{q:"أنا لاعب أرجنتيني فاز بكأس العالم 2022. من أكون؟",a:["رونالدو","ميسي","دي ماريا","أغويرو"],k:1},
+{q:"أنا نهر مشهور في العراق، وأجري مع دجلة. من أكون؟",a:["النيل","الفرات","الأردن","العاصي"],k:1},
+{q:"أحلم بأن أصبح ملك القراصنة في الأنمي. من أكون؟",a:["لوفي","ناروتو","غوكو","إيتادوري"],k:0}
 ];
-
-const trueFalseData = [
-{q:"الشمس نجم وليست كوكباً.",k:true,c:"science"},
-{q:"أستراليا عاصمتها سيدني.",k:false,c:"geography",why:"عاصمة أستراليا هي كانبيرا."},
-{q:"الفريق يبدأ مباراة كرة القدم عادةً بـ11 لاعباً داخل الملعب.",k:true,c:"football"},
-{q:"المحيط الأطلسي أكبر من المحيط الهادئ.",k:false,c:"geography",why:"المحيط الهادئ هو الأكبر في العالم."},
-{q:"الماء يتكون من الهيدروجين والأكسجين.",k:true,c:"science"},
-{q:"فازت البرازيل بكأس العالم 2022.",k:false,c:"football",why:"الفائز كان منتخب الأرجنتين."},
-{q:"بغداد هي عاصمة العراق.",k:true,c:"geography"},
-{q:"Minecraft لعبة طورتها شركة Nintendo.",k:false,c:"games",why:"طورتها Mojang."},
-{q:"العنكبوت البالغ له ثماني أرجل.",k:true,c:"science"},
-{q:"انتهت الحرب العالمية الثانية سنة 1945.",k:true,c:"history"}
-];
-
-const $all = (sel,root=document)=>[...root.querySelectorAll(sel)];
-let settings={mode:"solo",activity:"quiz",category:"all",difficulty:"medium"};
-let players=[],turn=0,round=[],index=0,score=0,answered=false,timer=null,timeLeft=0;
-let memoryDeck=[],memoryOpen=[],memoryMatched=0,memoryMoves=0,topFound=0;
-
-function setupChoices(containerId,key){
-  $(containerId).addEventListener("click",e=>{
-    const btn=e.target.closest("button[data-value]");
-    if(!btn)return;
-    $all("button",$(containerId)).forEach(b=>b.classList.remove("selected"));
-    btn.classList.add("selected");
-    settings[key]=btn.dataset.value;
-    updateSetup();
-  });
+function shuffle(a){return a.slice().sort(()=>Math.random()-.5)}
+function esc(s){return String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]))}
+function selectGroup(id,key){
+$(id).addEventListener("click",e=>{
+const b=e.target.closest("[data-value]");if(!b)return;
+all("#"+id+" .choice").forEach(x=>x.classList.remove("selected"));
+b.classList.add("selected");state[key]=b.dataset.value;updateSettings();
+});
 }
-setupChoices("playModes","mode");
-setupChoices("activityModes","activity");
-setupChoices("categories","category");
-setupChoices("difficulties","difficulty");
+selectGroup("modes","mode");selectGroup("activities","activity");
+selectGroup("categories","category");selectGroup("difficulties","difficulty");
 
-function updateSetup(){
-  const multi=settings.mode!=="solo";
-  $("playersSettings").classList.toggle("hidden",!multi);
-  $("namesSettings").classList.toggle("hidden",!multi);
-  $("teamCount").parentElement.classList.toggle("hidden",settings.mode!=="teams");
-  $("playerCount").parentElement.classList.toggle("hidden",settings.mode==="teams");
-  $("questionCount").disabled=settings.activity==="memory";
+function updateSettings(){
+$("multiSettings").classList.toggle("hidden",state.mode==="solo");
+$("countBox").classList.toggle("hidden",state.mode!=="players");
+$("teamBox").classList.toggle("hidden",state.mode!=="teams");
 }
-$("playerCount").addEventListener("change",()=>{});
-$("startBtn").addEventListener("click",startGame);
-$("nextBtn").addEventListener("click",nextQuestion);
-$("quitBtn").addEventListener("click",()=>endGame(true));
-$("restartBtn").addEventListener("click",startGame);
-$("homeBtn").addEventListener("click",showHome);
+updateSettings();
 
 function makePlayers(){
-  const names=$("playerNames").value.split(/[,،]/).map(x=>x.trim()).filter(Boolean);
-  if(settings.mode==="solo")return [{name:names[0]||"اللاعب",score:0}];
-  if(settings.mode==="teams"){
-    const count=Number($("teamCount").value);
-    const teamNames=$("teamNames").value.split(/[,،]/).map(x=>x.trim()).filter(Boolean);
-    return Array.from({length:count},(_,i)=>({name:teamNames[i]||`الفريق ${i+1}`,score:0}));
-  }
-  const count=Number($("playerCount").value);
-  return Array.from({length:count},(_,i)=>({name:names[i]||`اللاعب ${i+1}`,score:0}));
+const names=$("names").value.split(/[,،]/).map(s=>s.trim()).filter(Boolean);
+if(state.mode==="solo")return[{name:names[0]||"اللاعب",score:0}];
+const n=state.mode==="teams"?Number($("teamCount").value):Number($("playerCount").value);
+return Array.from({length:n},(_,i)=>({name:names[i]||(state.mode==="teams"?"الفريق ":"اللاعب ")+(i+1),score:0}));
 }
-function shuffle(arr){return arr.sort(()=>Math.random()-.5)}
 function startGame(){
-  clearInterval(timer);timer=null;
-  players=makePlayers();turn=0;index=0;score=0;answered=false;
-  memoryOpen=[];memoryMatched=0;memoryMoves=0;topFound=0;
-  $("homeScreen").classList.add("hidden");
-  $("endScreen").classList.
+try{
+clearInterval(timerId);timerId=null;
+players=makePlayers();index=0;turn=0;answered=false;
+memoryOpen=[];memoryPairs=0;memoryMoves=0;topFound=0;
+$("error").classList.add("hidden");
+$("home").classList.add("hidden");$("result").classList.add("hidden");$("game").classList.remove("hidden");
+$("activityLabel").textContent=({quiz:"سؤال وجواب",top10:"توب 10",memory:"الذاكرة",tf:"صح أو خطأ",who:"منو أني؟"})[state.activity];
+$("categoryLabel").textContent=state.category==="all"?"كل التصنيفات":state.category;
+if(state.activity==="memory"){startMemory();return}
+if(state.activity==="top10"){round=shuffle(top10).slice(0,Math.min(5,Number($("questionCount").value)));showTop10();return}
+if(state.activity==="tf"){
+let a=tfQuestions.filter(q=>state.category==="all"||q.c===state.category);if(!a.length)a=tfQuestions;
+round=shuffle(a).slice(0,Math.min(Number($("questionCount").value),a.length));
+}else if(state.activity==="who"){
+round=shuffle(whoQuestions).slice(0,Math.min(Number($("questionCount").value),whoQuestions.length));
+}else{
+let a=questions.filter(q=>(state.category==="all"||q.c===state.category)&&(state.difficulty==="mixed"||q.d===state.difficulty));
+if(!a.length)a=questions.filter(q=>state.category==="all"||q.c===state.category);
+if(!a.length)a=questions;
+round=shuffle(a).slice(0,Math.min(Number($("questionCount").value),a.length));
+}
+showQuestion();
+}catch(err){
+$("game").classList.add("hidden");$("home").classList.remove("hidden");
+$("error").textContent="صار خطأ أثناء بدء اللعبة: "+err.message;
+$("error").classList.remove("hidden");console.error(err);
+}
+}
+$("start").addEventListener("click",startGame);
+$("next").addEventListener("click",next);
+$("quit").addEventListener("click",()=>finish(true));
+$("again").addEventListener("click",startGame);
+$("back").addEventListener("click",home);
+
+function showQuestion(){
+clearInterval(timerId);timerId=null;answered=false;
+$("feedback").classList.add("hidden");$("next").classList.add("hidden");
+const q=round[index];if(!q){finish();return}
+$("number").textContent=(index+1)+"/"+round.length;
+$("bar").style.width=(index/round.length*100)+"%";
+$("score").textContent=players.reduce((s,p)=>s+p.score,0);
+$("timer").textContent=$("seconds").value==="0"?"∞":$("seconds").value;
+$("quit").classList.remove("hidden");
+$("content").innerHTML=`<div class="question">${esc(q.q)}</div>`;
+if(state.activity==="tf"){
+$("content").innerHTML+=`<div class="answers"><button class="answer" data-tf="true">✅ صح</button><button class="answer" data-tf="false">❌ خطأ</button></div>`;
+}else{
+let choices=q.a.map((v,i)=>({v,i}));if(state.activity!=="who")choices=shuffle(choices);
+$("content").innerHTML+=`<div class="answers">${choices.map(x=>`<button class="answer" data-answer="${x.i}">${esc(x.v)}</button>`).join("")}</div>`;
+}
+$("turnLabel")?.remove();
+all(".answer",$("content")).forEach(b=>b.addEventListener("click",()=>{
+if(state.activity==="tf")check(b.dataset.tf==="true");
+else check(Number(b.dataset.answer));
+}));
+startTimer();
+}
+function startTimer(){
+clearInterval(timerId);let s=Number($("seconds").value);timeLeft=s;
+if(!s){$("timer").textContent="∞";return}
+$("timer").textContent=timeLeft;
+timerId=setInterval(()=>{timeLeft--;$("timer").textContent=timeLeft;if(timeLeft<=0){clearInterval(timerId);timerId=null;if(!answered)timeoutAnswer()}},1000);
+}
+function timeoutAnswer(){
+answered=true;all(".answer",$("content")).forEach(b=>b.disabled=true);
+$("feedback").textContent="⏰ انتهى الوقت!";$("feedback").className="feedback bad";$("feedback").classList.remove("hidden");showNext();
+}
+function check(value){
+if(answered)return;answered=true;clearInterval(timerId);
+const q=round[index];let ok=false,answerText="";
+if(state.activity==="tf"){
+ok=value===q.k;answerText=q.k?"صح":"خطأ";
+all(".answer",$("content")).forEach(b=>{b.disabled=true;if(b.dataset.tf===String(q.k))b.classList.add("correct");else if(b.dataset.tf===String(value))b.classList.add("wrong")});
+}else{
+ok=value===q.k;answerText=q.a[q.k];
+all(".answer",$("content")).forEach(b=>{b.disabled=true;if(Number(b.dataset.answer)===q.k)b.classList.add("correct");else if(Number(b.dataset.answer)===value)b.classList.add("wrong")});
+}
+if(ok){
+let points=state.difficulty==="easy"?10:state.difficulty==="hard"?30:20;
+if(Number($("seconds").value)>0)points+=Math.max(0,Math.floor(timeLeft/3));
+players[turn].score+=points;
+$("feedback").textContent="🎉 إجابة صحيحة! +"+points+" نقطة";
+$("feedback").className="feedback good";
+}else{
+$("feedback").textContent="❌ الإجابة الصحيحة: "+answerText+(q.why?" — "+q.why:"");
+$("feedback").className="feedback bad";
+}
+$("feedback").classList.remove("hidden");$("score").textContent=players.reduce((s,p)=>s+p.score,0);showNext();
+}
+function showNext(){
+$("next").classList.remove("hidden");$("next").textContent=index===round.length-1?"عرض النتائج 🏆":"السؤال التالي ←";
+}
+function next(){
+if(state.activity==="memory"){if(memoryPairs===8)finish();return}
+if(!answered&&state.activity!=="top10")return;
+if(index>=round.length-1){finish();return}
+index++;if(players.length>1)turn=(turn+1)%players.length;
+if(state.activity==="top10")showTop10();else showQuestion();
+}
+function showTop10(){
+answered=false;clearInterval(timerId);const q=round[index];
+$("number").textContent=(index+1)+"/"+round.length;
+$("bar").style.width=(index/round.length*100)+"%";
+$("score").textContent=players.reduce((s,p)=>s+p.score,0);
+$("timer").textContent="∞";$("feedback").classList.add("hidden");$("next").classList.add("hidden");
+$("content").innerHTML=`<div class="question">🔟 ${esc(q.q)}</div>
+<p class="muted">اكتب إجابة من الإجابات المقبولة. كل إجابة جديدة صحيحة = 10 نقاط.</p>
+<div class="row"><input id="topInput" placeholder="اكتب إجابتك"><button type="button" class="primary" id="topSubmit">تأكيد ا
