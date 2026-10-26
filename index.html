@@ -21,7 +21,7 @@ input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;bor
   
   <section id="home" class="card hero">
     <div style="font-size:48px">🏆</div><h1>منو يسيطر على القمة؟</h1>
-    <p>اختر التصنيف، ثم حدد مستوى الصعوبة ونمط اللعب (بما فيها تحدي TOP 10 لكل الفعاليات)! لكل لاعب محاولة واحدة لكل سؤال.</p>
+    <p>اختر التصنيف، ثم حدد مستوى الصعوبة ونمط اللعب. أسئلة حقيقية ومثيرة لكل الفعاليات!</p>
     
     <h3>1. اختر التصنيف</h3>
     <div class="grid" id="categories"></div>
@@ -70,30 +70,94 @@ input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;bor
 </div>
 
 <script>
-// مولد قاعدة بيانات ضخمة (محاكاة لآلاف الأسئلة الموزعة حسب الطلب)
-function generateQuestions(category) {
-  let list = [];
-  let count = (category === 'football') ? 1000 : 300;
-  
-  for(let i = 1; i <= count; i++) {
-    let diff = i <= count / 3 ? 'easy' : (i <= (count * 2) / 3 ? 'medium' : 'hard');
-    list.push({
-      q: `[${category.toUpperCase()} - ${diff.toUpperCase()}] سؤال رقم ${i}: ما هي التفاصيل أو الحقيقة المرتبطة بهذا الحدث؟`,
-      a: [`الإجابة الصحيحة ${i}`, `خيار خاطئ 1`, `خيار خاطئ 2`, `خيار خاطئ 3`],
-      c: 0,
-      t: `التوضيح التفصيلي للسؤال رقم ${i} ضمن تصنيف ${category}.`
-    });
+const db = {
+  football: {
+    name: "كرة القدم", emoji: "⚽",
+    easy: [
+      {q: "من هو المنتخب الفائز بكأس العالم 2022؟", a: ["الأرجنتين", "فرنسا", "البرازيل", "البرتغال"], c: 0, t: "فازت الأرجنتين بقيادة ميسي بركلات الترجيح."},
+      {q: "كم عدد لاعبي الفريق الواحد داخل الملعب؟", a: ["11 لاعباً", "10 لاعبين", "9 لاعبين", "12 لاعباً"], c: 0, t: "يبدأ كل فريق بـ 11 لاعباً أساسياً."},
+      {q: "أي نادٍ يُطلق عليه لقب الميرنغي أو الملكي؟", a: ["ريال مدريد", "برشلونة", "بايرن ميونخ", "مانشستر يونايتد"], c: 0, t: "ريال مدريد الإسباني يُعرف بالملكي."}
+    ],
+    medium: [
+      {q: "من هو الهداف التاريخي لدوري أبطال أوروبا؟", a: ["كريستيانو رونالدو", "ليونيل ميسي", "روبرت ليفاندوفسكي", "بنزيما"], c: 0, t: "رونالدو يتصدر قائمة هدافي الأبطال التاريخيين."},
+      {q: "أي منتخب فاز بكأس أمم إفريقيا لأكثر عدد من المرات؟", a: ["مصر", "الكاميرون", "غانا", "السنغال"], c: 0, t: "منتخب مصر حصد اللقب الإفريقي 7 مرات."},
+      {q: "من هو اللاعب الأكثر تتويجاً بالكرة الذهبية (Ballon d'Or)؟", a: ["ليونيل ميسي", "كريستيانو رونالدو", "كروس", "زيدان"], c: 0, t: "ميسي حقق الكرة الذهبية 8 مرات."}
+    ],
+    hard: [
+      {q: "من هو المدرب الوحيد الذي فاز بدوري أبطال أوروبا 4 مرات؟", a: ["كارلو أنشيلوتي", "بيب جوارديولا", "زين الدين زيدان", "سر أليكس فيرغسون"], c: 0, t: "أنشيلوتي حقق المجد بـ 4 ألقاب دوري أبطال."},
+      {q: "في أي عام أقيمت أول بطولة كأس العالم لكرة القدم؟", a: ["1930", "1950", "1924", "1938"], c: 0, t: "أقيمت في الأوروغواي عام 1930 وفازت بها."}
+    ]
+  },
+  anime: {
+    name: "أنمي", emoji: "🍥",
+    easy: [
+      {q: "من هو بطل أنمي ون بيس (One Piece)؟", a: ["مونكي دي لوفي", "رورونوا زورو", "سانجي", "شانكس"], c: 0, t: "لوفي طموحه أن يصبح ملك القراصنة."},
+      {q: "ما اسم القرية التي ينتمي إليها ناروتو؟", a: ["قرية الورق (كونوها)", "قرية الرمل", "قرية الضباب", "قرية السحاب"], c: 0, t: "ناروتو نشأ في قرية الورق المخفية."}
+    ],
+    medium: [
+      {q: "ما اسم شيطان الابتسامة أو البطل في أنمي قاتل الشياطين؟", a: ["تانجيرو كامادو", "نِزوكو", "زينيتسو", "إينوسكي"], c: 0, t: "تانجيرو ينضم لفيلق قتلة الشياطين."},
+      {q: "في أنمي هجوم العمالقة، ما اسم السوار أو الجدار الرئيسي الأول؟", a: ["جدار ماريا", "جدار روز", "جدار سينا", "جدار تينا"], c: 0, t: "جدار ماريا هو الجدار الخارجي."}
+    ],
+    hard: [
+      {q: "ما اسم القناص الأبرز في أنمي هنتر × هنتر (مع والدته المفقودة أو خاله؟)؟", a: ["كيلوا زولديك (أو غون كبطل)", "كورابيكا", "ليوريو", "هيسوكا"], c: 0, t: "غون فريكس هو البطل الرئيسي للبحث عن أبيه جين."}
+    ]
+  },
+  movies: {
+    name: "أفلام ومسلسلات", emoji: "🎬",
+    easy: [
+      {q: "ما اسم مدرسة السحر في سلسلة أفلام هاري بوتر؟", a: ["هوجورتس", "نارنيا", "كاميلوت", "أكسفورد"], c: 0, t: "هوجورتس هي مدرسة السحر الشهيرة."},
+      {q: "من هو بطل سلسلة أفلام آيرون مان (Iron Man)؟", a: ["توني ستارك", "بروس واين", "بيتر باركر", "كلارك كنت"], c: 0, t: "توني ستارك هو الشخصية العبقرية خلف الدرع."}
+    ],
+    medium: [
+      {q: "أي فيلم للمخرج كريستوفر نولان يتحدث عن الأحلام المتداخلة؟", a: ["Inception", "Interstellar", "Tenet", "Memento"], c: 0, t: "فيلم إنسبشن يعتمد على سرقة الأفكار عبر الأحلام."},
+      {q: "ما اسم المحقق الأثري والذكي في مسلسل شيرلوك (Sherlock)؟", a: ["شيرلوك هولمز", "جون واتسون", "جيم موريارتي", "مايكروفت"], c: 0, t: "شيرلوك هولمز يؤديه بندكت كامبرباتش."}
+    ],
+    hard: [
+      {q: "أي فيلم فاز بأكبر عدد من جوائز الأوسكار بالتساوي (11 جائزة)؟", a: ["تايتانيك وملك الأفرقة وبن هور", "أفاتار", "المصارع", "العراب"], c: 0, t: "بن هور وتاتيانيك وسيد الأقطاب حققوا 11 أوسكار."}
+    ]
+  },
+  games: {
+    name: "ألعاب فيديو", emoji: "🎮",
+    easy: [
+      {q: "أي شركة طوّرت لعبة ماينكرافت (Minecraft) الشهيرة؟", a: ["Mojang", "Valve", "Nintendo", "Ubisoft"], c: 0, t: "موجانغ هي المطور الأساسي لماينكرافت."},
+      {q: "ما اسم بطل ألعاب ماريو من نينتندو؟", a: ["ماريو", "سونيك", "لويجي", "كراش"], c: 0, t: "ماريو هو أشهر سباك وأيقونة ألعاب."}
+    ],
+    medium: [
+      {q: "ما اسم إله الحرب وبطل سلسلة God of War؟", a: ["كريتوس", "زهاوس", "أثينا", "أرس"], c: 0, t: "كريتوس المحارب الإسبرطي الشهير."},
+      {q: "أي لعبة باتل رويال تشتهر بالبناء وحافلة الطيران؟", a: ["فورتنايت (Fortnite)", "بับجي (PUBG)", "آبيكس", "كول آف ديوتي"], c: 0, t: "فورتنايت تتميز بميكانيكية البناء السريع."}
+    ],
+    hard: [
+      {q: "ما اسم الفطريات المسؤولة عن تحول البشر لزومبي في The Last of Us؟", a: ["كوردايسبس (Cordyceps)", "تيدروس", "فيروس إكس", "المتحورة ب"], c: 0, t: "فطر كوردايسبس الحقيقي المتحكم بالحشرات تم تطبيقه بالقصة."}
+    ]
+  },
+  music: {
+    name: "فن وموسيقى", emoji: "🎨",
+    easy: [
+      {q: "ما هي الآلة الموسيقية التي تحتوي على مفاتيح سوداء وبيضاء وتُعزف جلوساً؟", a: ["البيانو", "الجيتار", "الكمان", "الناي"], c: 0, t: "البيانو هو ملك الآلات الموسيقية ذات المفاتيح."},
+      {q: "من هو الرسام الشهير الذي رسم لوحة الموناليزا؟", a: ["ليوناردو دافنشي", "فان جوخ", "بيكاسو", "ميكل أنجلو"], c: 0, t: "دافنشي رسم الموناليزا الخالدة."}
+    ],
+    medium: [
+      {q: "أي فنان تشكيلي عالمي اشتهر بقطع أذنه وأسلوبه التعبيري (مثل ليلة مرصعة بالنجوم)؟", a: ["فينسنت فان جوخ", "بابلو بيكاسو", "مونيه", "سيزان"], c: 0, t: "فان جوخ من أعظم الرسامين بتاريخ الفن."},
+      {q: "ما هي الآلة الوترية التي تُعزف بالقوس وتحتوي على 4 أوتار رئيسية وتُعتبر الأهم بالأوركسترا؟", a: ["الكمان (Violin)", "الجيتار", "العود", "القانون"], c: 0, t: "الكمان يعلو طبقات العزف بالأوركسترا."}
+    ],
+    hard: [
+      {q: "أي مؤلف موسيقي كلاسيكي عالمي استمر بتأليف الألحان العظيمة رغم فقدانه لحاسة السمع كلياً؟", a: ["بتهوفن", "موتسارت", "باخ", "ففالدي"], c: 0, t: "لودفيغ فان بتهوفن أبدع معاناته موسيقياً."}
+    ]
+  },
+  general: {
+    name: "معلومات عامة", emoji: "🌍",
+    easy: [
+      {q: "ما هو أكبر كوكب في مجموعة الشمسية؟", a: ["المشتري", "زحل", "المريخ", "الأرض"], c: 0, t: "المشتري أكبر كواكب مجموعتنا الشمسية."},
+      {q: "ما هي عاصمة جمهورية العراق؟", a: ["بغداد", "البصرة", "أربيل", "الموصل"], c: 0, t: "بغداد العاصمة التاريخية والحبيبة."}
+    ],
+    medium: [
+      {q: "ما هو أعمق محيط على وجه الأرض؟", a: ["المحيط الهادئ", "المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"], c: 0, t: "المحيط الهادئ يحوي خندق ماريانا العميق."},
+      {q: "في أي قارة تقع أهرامات الجيزة التاريخية؟", a: ["أفريقيا", "آسيا", "أوروبا", "أمريكا الشمالية"], c: 0, t: "مصر تقع في قارة أفريقيا."}
+    ],
+    hard: [
+      {q: "ما هو العنصر الكيميائي الذي يمتلك أعلى درجة انصهار بين جميع العناصر الحرة؟", a: ["التنجستن (الولفرام)", "الحديد", "الكربون", "الذهب"], c: 0, t: "التنجستن يمتلك أعلى نقطة انصهار (3422 درجة مئوية)."}
+    ]
   }
-  return list;
-}
-
-const data = {
-  football: { name: "كرة القدم", emoji: "⚽", q: generateQuestions('football') },
-  anime: { name: "أنمي", emoji: "🍥", q: generateQuestions('anime') },
-  movies: { name: "أفلام ومسلسلات", emoji: "🎬", q: generateQuestions('movies') },
-  games: { name: "ألعاب فيديو", emoji: "🎮", q: generateQuestions('games') },
-  music: { name: "فن وموسيقى", emoji: "🎨", q: generateQuestions('music') },
-  general: { name: "معلومات عامة", emoji: "🌍", q: generateQuestions('general') }
 };
 
 let state = {category:null, difficulty:null, mode:null, playersCount:1, currentPlayer:0, currentQuestion:0, scores:[0,0,0,0], questions:[]};
@@ -101,11 +165,11 @@ let state = {category:null, difficulty:null, mode:null, playersCount:1, currentP
 function initHome(){
   let catEl = document.getElementById('categories');
   catEl.innerHTML = '';
-  for(let k in data){
-    let item = data[k];
+  for(let k in db){
+    let item = db[k];
     let btn = document.createElement('button');
     btn.className = 'tile' + (state.category === k ? ' green' : '');
-    btn.innerHTML = `<span class="emoji">${item.emoji}</span>${item.name}<small>+${item.q.length} سؤال</small>`;
+    btn.innerHTML = `<span class="emoji">${item.emoji}</span>${item.name}<small>أسئلة متاحـة</small>`;
     btn.onclick = () => { 
       state.category = k; 
       initHome(); 
@@ -152,14 +216,12 @@ function startGame(){
   state.currentQuestion = 0;
   state.scores = [0,0,0,0];
   
-  let baseQuestions = data[state.category].q.filter(q => {
-    if(state.difficulty === 'easy') return q.q.includes('EASY');
-    if(state.difficulty === 'medium') return q.q.includes('MEDIUM');
-    return q.q.includes('HARD');
-  });
-
+  let catObj = db[state.category];
+  let pool = catObj[state.difficulty] || catObj['easy'];
+  
+  let baseQuestions = [...pool];
   baseQuestions.sort(() => Math.random() - 0.5);
-  state.questions = baseQuestions.slice(0, 10); // 10 أسئلة لكل جلسة تحدي
+  state.questions = baseQuestions.slice(0, Math.min(baseQuestions.length, 5));
 
   document.getElementById('home').classList.add('hidden');
   document.getElementById('game').classList.remove('hidden');
@@ -194,7 +256,7 @@ function loadQuestion(){
   if(state.mode === 'tf'){
     let isTrue = Math.random() > 0.5;
     let correctAns = isTrue ? 0 : 1;
-    qBox.innerHTML = `${qData.q}<br><small class="muted" style="font-size:16px;display:block;margin-top:10px">هل هذه العبارة صحيحة؟</small>`;
+    qBox.innerHTML = `${qData.q}<br><small class="muted" style="font-size:16px;display:block;margin-top:10px">هل هذه المعلومة صحيحة؟</small>`;
     
     let btnT = document.createElement('button');
     btnT.className = 'answer'; btnT.innerText = "صح ✓";
@@ -205,12 +267,12 @@ function loadQuestion(){
     aBox.appendChild(btnT); aBox.appendChild(btnF);
 
   } else if(state.mode === 'top10' || state.mode === 'whoami'){
-    qBox.innerText = state.mode === 'top10' ? `[تحدي TOP 10] رتب العناصر التالية بالتسلسل الصحيح:` : `[منو أني؟] احزر الوصف بدقة: "${qData.q}"`;
+    qBox.innerText = state.mode === 'top10' ? `[تحدي TOP 10] رتب الخيارات التالية بالتسلسل الصحيح:` : `[منو أني؟] احزر الإجابة الصحيحة للعبارة: "${qData.q}"`;
     aBox.classList.add('hidden');
     rankArea.classList.remove('hidden');
     
     let shuffledOpts = [...qData.a].sort(() => Math.random() - 0.5);
-    let html = `<div class="muted tiny" style="margin-bottom:8px">اختر الترتيب الصحيح ثم اضغط تأكيد:</div><div class="ranklist">`;
+    let html = `<div class="muted tiny" style="margin-bottom:8px">رتب العناصر واضغط تأكيد:</div><div class="ranklist">`;
     shuffledOpts.forEach((opt, idx) => {
       html += `<div class="rankitem"><b>${idx+1}</b><span>${opt}</span></div>`;
     });
@@ -267,36 +329,11 @@ function showResults(){
   
   if(state.playersCount === 1){
     resText.innerText = `حصدت ${state.scores[0]} نقطة من أصل ${state.questions.length} أسئلة!`;
-    lb.innerHTML = `أداء رائع ومميز!`;
+    lb.innerHTML = `أداء أسطوري ورائع!`;
   } else {
     let maxScore = Math.max(...state.scores.slice(0, state.playersCount));
     let winners = [];
     for(let i=0; i<state.playersCount; i++){
       if(state.scores[i] === maxScore) winners.push(`لاعب ${i+1}`);
     }
-    resText.innerText = `انتهى التحدي! الفائزون: ${winners.join(' و ')}`;
-    
-    let html = `<b>لوحة النتائج النهائية:</b><div style="margin-top:8px">`;
-    for(let i=0; i<state.playersCount; i++){
-      html += `<div>اللاعب ${i+1}: ${state.scores[i]} نقطة</div>`;
-    }
-    html += `</div>`;
-    lb.innerHTML = html;
-  }
-}
-
-function goHome(){
-  document.getElementById('game').classList.add('hidden');
-  document.getElementById('result').classList.add('hidden');
-  document.getElementById('home').classList.remove('hidden');
-  state.category = null; state.difficulty = null; state.mode = null;
-  document.getElementById('difficulty-box').classList.add('hidden');
-  document.getElementById('modes-box').classList.add('hidden');
-  initHome();
-  checkReady();
-}
-
-initHome();
-</script>
-</body>
-</html>
+    resText.innerText = `انتهى التحدي! الفائزون: ${winners.joi
