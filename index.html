@@ -89,12 +89,9 @@
             font-weight: 600;
             user-select: none;
         }
-        .option-card:hover {
-            border-color: var(--text-muted);
-        }
         .option-card.selected {
             border-color: var(--accent-color);
-            background: rgba(245, 158, 11, 0.15);
+            background: rgba(245, 158, 11, 0.2);
             color: var(--accent-color);
         }
         .btn {
@@ -102,13 +99,14 @@
             background: var(--accent-color);
             color: #0f172a;
             border: none;
-            padding: 14px;
-            font-size: 1rem;
+            padding: 16px;
+            font-size: 1.1rem;
             font-weight: bold;
             border-radius: 10px;
             cursor: pointer;
             transition: background 0.2s;
-            margin-top: 20px;
+            margin-top: 25px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
         }
         .btn:hover {
             background: var(--accent-hover);
@@ -118,10 +116,7 @@
             color: var(--text-muted);
             border: 1px solid var(--border-color);
             margin-top: 10px;
-        }
-        .btn-secondary:hover {
-            background: var(--border-color);
-            color: var(--text-color);
+            box-shadow: none;
         }
         .quiz-header {
             display: flex;
@@ -131,7 +126,7 @@
             color: var(--text-muted);
         }
         .question-text {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 20px;
             line-height: 1.5;
         }
@@ -151,9 +146,6 @@
             cursor: pointer;
             transition: all 0.2s;
             font-size: 0.95rem;
-        }
-        .choice-btn:hover {
-            background: var(--border-color);
         }
         .choice-btn.correct {
             background: var(--success) !important;
@@ -189,7 +181,6 @@
             font-size: 1.15rem;
             margin-bottom: 20px;
             cursor: pointer;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
         }
         .stats-box {
             text-align: center;
@@ -206,39 +197,39 @@
 
     <header>
         <h1>منصة التحدي والمعرفة</h1>
-        <p>اختر تصنيفاً واحداً، نمط اللعب، والصعوبة ثم انطلق!</p>
+        <p>اختر فئة واحدة، نمط اللعب، والصعوبة ثم انطلق!</p>
     </header>
 
     <div class="container">
-        <!-- الشاشة الأولى: إعدادات اللعبة -->
+        <!-- الشاشة الأولى -->
         <div id="screen-setup" class="screen active">
-            <h2>1. اختر التصنيف (فئة واحدة)</h2>
-            <div class="grid-options" id="category-grid">
-                <div class="option-card selected" data-group="cat" data-val="football">⚽ كرة القدم</div>
-                <div class="option-card" data-group="cat" data-val="anime">🍥 أنمي</div>
-                <div class="option-card" data-group="cat" data-val="history">📜 التاريخ</div>
-                <div class="option-card" data-group="cat" data-val="geography">🌍 الجغرافيا</div>
-                <div class="option-card" data-group="cat" data-val="games">🎮 ألعاب فيديو</div>
-                <div class="option-card" data-group="cat" data-val="movies">🎬 أفلام ومسلسلات</div>
-                <div class="option-card" data-group="cat" data-val="art">🎨 فن وموسيقى</div>
-                <div class="option-card" data-group="cat" data-val="general">💡 معلومات عامة</div>
+            <h2>1. اختر التصنيف</h2>
+            <div class="grid-options" id="cat-grid">
+                <div class="option-card selected" onclick="selectOption(this, 'cat', 'football')">⚽ كرة القدم</div>
+                <div class="option-card" onclick="selectOption(this, 'cat', 'anime')">🍥 أنمي</div>
+                <div class="option-card" onclick="selectOption(this, 'cat', 'history')">📜 التاريخ</div>
+                <div class="option-card" onclick="selectOption(this, 'cat', 'geography')">🌍 الجغرافيا</div>
+                <div class="option-card" onclick="selectOption(this, 'cat', 'games')">🎮 ألعاب فيديو</div>
+                <div class="option-card" onclick="selectOption(this, 'cat', 'movies')">🎬 أفلام ومسلسلات</div>
+                <div class="option-card" onclick="selectOption(this, 'cat', 'art')">🎨 فن وموسيقى</div>
+                <div class="option-card" onclick="selectOption(this, 'cat', 'general')">💡 معلومات عامة</div>
             </div>
 
             <h2>2. اختر نمط اللعب</h2>
             <div class="grid-options" id="mode-grid">
-                <div class="option-card selected" data-group="mode" data-val="quiz">🎯 مسابقة كلاسيكية</div>
-                <div class="option-card" data-group="mode" data-val="top10">🏆 ترتيب TOP 10</div>
-                <div class="option-card" data-group="mode" data-val="memory">🧠 اختبار الذاكرة</div>
+                <div class="option-card selected" onclick="selectOption(this, 'mode', 'quiz')">🎯 مسابقة كلاسيكية</div>
+                <div class="option-card" onclick="selectOption(this, 'mode', 'top10')">🏆 ترتيب TOP 10</div>
+                <div class="option-card" onclick="selectOption(this, 'mode', 'memory')">🧠 اختبار الذاكرة</div>
             </div>
 
             <h2>3. مستوى الصعوبة</h2>
             <div class="grid-options" id="diff-grid">
-                <div class="option-card selected" data-group="diff" data-val="easy">سهل</div>
-                <div class="option-card" data-group="diff" data-val="medium">متوسط</div>
-                <div class="option-card" data-group="diff" data-val="hard">صعب</div>
+                <div class="option-card selected" onclick="selectOption(this, 'diff', 'easy')">سهل</div>
+                <div class="option-card" onclick="selectOption(this, 'diff', 'medium')">متوسط</div>
+                <div class="option-card" onclick="selectOption(this, 'diff', 'hard')">صعب</div>
             </div>
 
-            <button class="btn" id="start-btn">بدء التحدي</button>
+            <button class="btn" onclick="startChallenge()">بدء التحدي الآن</button>
         </div>
 
         <!-- الشاشة الثانية: المسابقة -->
@@ -249,7 +240,7 @@
             </div>
             <div class="question-text" id="quiz-question">جارِ التحميل...</div>
             <div class="choices-list" id="quiz-choices"></div>
-            <button class="btn btn-secondary" id="quiz-back-btn">العودة للقائمة</button>
+            <button class="btn btn-secondary" onclick="goHome()">العودة للقائمة</button>
         </div>
 
         <!-- الشاشة الثالثة: TOP 10 -->
@@ -257,8 +248,8 @@
             <h2>ترتيب العناصر (TOP 5)</h2>
             <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">رتب العناصر حسب الأصح تاريخياً أو شعبيةً:</p>
             <div id="top10-container"></div>
-            <button class="btn" id="check-top10-btn">تحقق من الترتيب</button>
-            <button class="btn btn-secondary" id="top10-back-btn">العودة للقائمة</button>
+            <button class="btn" onclick="finishTop10()">تحقق من الترتيب</button>
+            <button class="btn btn-secondary" onclick="goHome()">العودة للقائمة</button>
         </div>
 
         <!-- الشاشة الرابعة: الذاكرة -->
@@ -266,9 +257,9 @@
             <div class="quiz-header">
                 <span id="memory-progress">بطاقة 1 / 3</span>
             </div>
-            <div class="flashcard" id="flashcard-box">اضغط لعرض الإجابة</div>
-            <button class="btn" id="next-flashcard-btn" style="margin-top:0;">البطاقة التالية</button>
-            <button class="btn btn-secondary" id="memory-back-btn">العودة للقائمة</button>
+            <div class="flashcard" id="flashcard-box" onclick="flipCard()">اضغط لعرض الإجابة</div>
+            <button class="btn" onclick="nextMemoryCard()">البطاقة التالية</button>
+            <button class="btn btn-secondary" onclick="goHome()">العودة للقائمة</button>
         </div>
 
         <!-- شاشة النتائج -->
@@ -276,7 +267,7 @@
             <div class="stats-box">
                 <h3>انتهى التحدي!</h3>
                 <p id="final-score-text" style="font-size: 1.1rem; margin-bottom: 20px;"></p>
-                <button class="btn" id="restart-btn">العب مرة أخرى</button>
+                <button class="btn" onclick="goHome()">العب مرة أخرى</button>
             </div>
         </div>
     </div>
@@ -405,14 +396,16 @@
             }
         };
 
-        let state = {
-            category: 'football',
-            mode: 'quiz',
-            difficulty: 'easy',
-            currentIndex: 0,
-            score: 0,
-            questions: []
-        };
+        let selectedCat = 'football';
+        let selectedMode = 'quiz';
+        let selectedDiff = 'easy';
 
-        // تفعيل اختيار خيار واحد فقط لكل مجموعة (تصنيف، نمط، صعوبة)
-        document.querySelectorAll('.grid-options').forEach(gri
+        let currentIndex = 0;
+        let score = 0;
+        let currentQuestions = [];
+        let isFlipped = false;
+
+        // دالة اختيار العناصر (تضمن اختيار خيار واحد فقط بكل قسم)
+        function selectOption(element, type, value) {
+            const container = element.parentElement;
+            container.querySelectorAll('.option-c
