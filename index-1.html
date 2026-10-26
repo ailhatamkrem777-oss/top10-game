@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOP 10 | تحدّي المعلومات</title>
+<style>
+:root{--bg:#0b1020;--panel:#151d32;--panel2:#1d2943;--gold:#ffd166;--cyan:#55d6be;--text:#f4f7ff;--muted:#aab6d3;--red:#ff6b7a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1d3154,var(--bg) 58%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+.wrap{max-width:900px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-size:28px;font-weight:900;letter-spacing:1px}.brand span{color:var(--gold)}.tag{border:1px solid #ffffff22;padding:7px 12px;border-radius:999px;color:var(--muted);font-size:13px}
+.card{background:#151d32eF;border:1px solid #ffffff16;border-radius:22px;padding:22px;margin-top:18px;box-shadow:0 14px 40px #0003}.hero{text-align:center;padding:30px 20px}.hero h1{font-size:clamp(27px,6vw,42px);margin:5px 0 12px}.hero p{color:var(--muted);line-height:1.8;margin:0 auto 20px;max-width:620px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}.tile,button,select,input{font:inherit}.tile{background:var(--panel2);border:1px solid #ffffff18;color:var(--text);border-radius:15px;padding:15px 10px;cursor:pointer;text-align:center;transition:.15s}.tile:hover,button:hover{transform:translateY(-1px);filter:brightness(1.1)}.tile .emoji{font-size:25px;display:block;margin-bottom:8px}.tile small{color:var(--muted);display:block;margin-top:5px}
+button{border:0;border-radius:13px;padding:12px 17px;background:var(--gold);color:#171b28;font-weight:800;cursor:pointer}.secondary{background:var(--panel2);color:var(--text);border:1px solid #ffffff20}.green{background:var(--cyan)}.hidden{display:none!important}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.between{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.muted{color:var(--muted)}.question{font-size:clamp(21px,4vw,29px);line-height:1.6;margin:18px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{background:var(--panel2);color:var(--text);border:1px solid #ffffff20;text-align:right;min-height:58px}.answer.correct{background:#145c4e;border-color:var(--cyan)}.answer.wrong{background:#662a3a;border-color:var(--red)}.pill{background:#0b1223;padding:7px 11px;border-radius:10px;color:var(--gold);font-weight:bold}.bar{height:8px;background:#ffffff15;border-radius:10px;overflow:hidden;margin-top:12px}.bar div{height:100%;background:var(--cyan);width:0;transition:.2s}.note{background:#0b1223;border-radius:12px;padding:12px;color:var(--muted);line-height:1.7}.footer{text-align:center;color:#7f8ba8;font-size:12px;padding:22px}
+input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;min-width:0;width:100%}.field{display:grid;gap:7px;margin:12px 0}.ranklist{display:grid;gap:8px}.rankitem{display:flex;align-items:center;gap:10px;background:var(--panel2);padding:12px;border-radius:12px}.rankitem b{color:var(--gold);min-width:24px}.rankitem select{width:auto;flex:1}.tiny{font-size:13px}
+@media(max-width:520px){.wrap{padding:12px}.card{padding:16px}.answers{grid-template-columns:1fr}.brand{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand">TOP <span>10</span></div><div class="tag">🎮 تحدّى معلوماتك ويا الأصدقاء</div></header>
+  <section id="home" class="card hero">
+    <div style="font-size:48px">🏆</div><h1>منو يعرف أكثر؟</h1>
+    <p>اختار تصنيفك ونمط اللعب، جاوب صح واجمع النقاط. اللعبة تشتغل على الموبايل والكمبيوتر، وتكدر تلعبون بالتناوب على نفس الجهاز.</p>
+    <h3>اختار التصنيف</h3>
+    <div class="grid" id="categories"></div>
+    <h3 style="margin-top:24px">نمط اللعب</h3>
+    <div class="grid" id="modes">
+      <button class="tile" onclick="pickMode('quiz')"><span class="emoji">🧠</span>اختيارات متعددة<small>جاوب من 4 خيارات</small></button>
+      <button class="tile" onclick="pickMode('tf')"><span class="emoji">⚖️</span>صح لو خطأ<small>اختبر معلوماتك بسرعة</small></button>
+      <button class="tile" onclick="pickMode('top10')"><span class="emoji">🔟</span>تحدّي TOP 10<small>رتّب الإجابات</small></button>
+      <button class="tile" onclick="pickMode('speed')"><span class="emoji">⚡</span>جولة سريعة<small>5 أسئلة متتالية</small></button>
+    </div>
+    <div class="field" style="max-width:320px;margin:20px auto 0"><label for="players">عدد اللاعبين</label><select id="players"><option value="1">لاعب واحد</option><option value="2">لاعبان</option><option value="3">3 لاعبين</option><option value="4">4 لاعبين</option></select></div>
+    <div id="selectionHint" class="note hidden" style="margin-top:14px"></div>
+    <div class="row" style="justify-content:center;margin-top:15px"><button id="startBtn" onclick="startGame()" disabled>ابدأ اللعب</button></div>
+  </section>
+  <section id="game" class="card hidden">
+    <div class="between"><span class="pill" id="roundLabel">السؤال 1</span><span class="pill" id="scoreLabel">النقاط: 0</span><button class="secondary tiny" onclick="goHome()">رجوع للقائمة</button></div>
+    <div class="bar"><div id="progress"></div></div>
+    <div class="muted tiny" id="playerLabel" style="margin-top:13px"></div>
+    <div class="question" id="question"></div>
+    <div id="answers" class="answers"></div>
+    <div id="rankArea" class="hidden"></div>
+    <div id="feedback" class="note hidden" style="margin-top:14px"></div>
+    <div class="row" style="justify-content:flex-start;margin-top:16px"><button id="nextBtn" class="hidden" onclick="nextQuestion()">السؤال التالي ←</button></div>
+  </section>
+  <section id="result" class="card hidden hero">
+    <div style="font-size:48px">🏆</div><h1>خلص التحدّي!</h1><p id="resultText"></p><div id="leaderboard" class="note"></div>
+    <div class="row" style="justify-content:center;margin-top:18px"><button onclick="goHome()">العب مرة ثانية</button></div>
+  </section>
+  <div class="footer">TOP 10 · لعبة معلومات وترفيه عربية</div>
+</div>
+<script>
+const data = {
+ football:{name:"كرة القدم",emoji:"⚽",q:[
+ {q:"منو فاز بكأس العالم 2022؟",a:["الأرجنتين","فرنسا","البرازيل","كرواتيا"],c:0,t:"الأرجنتين فازت بالنهائي على فرنسا بركلات الترجيح."},
+ {q:"كم لاعب من كل فريق يكون داخل الملعب ببداية مباراة كرة القدم؟",a:["9","10","11","12"],c:2,t:"الفريق يبدأ المباراة بـ11 لاعباً."},
+ {q:"أي منتخب يُلقّب بالسامبا؟",a:["إيطاليا","البرازيل","ألمانيا","المكسيك"],c:1,t:"منتخب البرازيل معروف بمنتخب السامبا."},
+ {q:"شنو اسم البطولة الأوروبية للأندية الأشهر؟",a:["كوبا أمريكا","دوري أبطال أوروبا","كأس آسيا","اليورو"],c:1,t:"دوري أبطال أوروبا بطولة أندية أوروبية."},
+ {q:"كم دقيقة وقت المباراة الأصلي عادةً؟",a:["60","80","90","100"],c:2,t:"90 دقيقة، مقسمة على شوطين."},
+ {q:"أي لاعب اشتهر بلقب البرغوث؟",a:["كريستيانو رونالدو","ليونيل ميسي","نيمار","لوكا مودريتش"],c:1,t:"ليونيل ميسي يُعرف بلقب البرغوث."},
+ {q:"أي دولة استضافت كأس العالم 2018؟",a:["قطر","روسيا","ألمانيا","جنوب أفريقيا"],c:1,t:"أقيمت بطولة 2018 في روسيا."},
+ {q:"شنو لون البطاقة اللي تعني الطرد؟",a:["الصفراء","الخضراء","الحمراء","الزرقاء"],c:2,t:"البطاقة الحمراء تعني الطرد."}]},
+ anime:{name:"أنمي",emoji:"🍥",q:[
+ {q:"منو بطل أنمي ون بيس؟",a:["لوفي","زورو","سانجي","لاو"],c:0,t:"مونكي دي لوفي هو بطل ون بيس."},
+ {q:"شنو اسم القرية اللي ينتمي إلها ناروتو؟",a:["قرية الورق","قرية الرمل","قرية الضباب","قرية الصوت"],c:0,t:"ناروتو من قرية الورق المخفية."},
+ {q:"منو صديق غوكو المعروف بشعره الأصلع؟",a:["غوهان","كريلين","فيجيتا","بيكولو"],c:1,t:"كريلين صديق غوكو منذ الطفولة."},
+ {q:"أي أنمي بيه دفتر يقتل من يُكتب اسمه؟",a:["Death Note","Bleach","Haikyuu!!","One Piece"],c:0,t:"هذا هو دفتر الموت Death Note."}]},
+ movies:{name:"أفلام ومسلسلات",emoji:"🎬",q:[
+ {q:"بأي عالم سينمائي تظهر شخصية آيرون مان؟",a:["دي سي","مارفل","ستار وورز","بيكسار"],c:1,t:"آيرون مان من عالم مارفل."},
+ {q:"شنو اسم مدرسة السحر في هاري بوتر؟",a:["هوجورتس","نارنيا","كاميلوت","أوليمبوس"],c:0,t:"اسمها هوجورتس."},
+ {q:"سلسلة أفلام Jurassic Park تتمحور حول شنو؟",a:["الديناصورات","الفضاء","القراصنة","الروبوتات"],c:0,t:"السلسلة معروفة بالديناصورات."}]},
+ games:{name:"ألعاب فيديو",emoji:"🎮",q:[
+ {q:"منو الشخصية الرئيسية بسلسلة GTA غالباً؟",a:["شخصية قابلة للعب تختلف حسب الجزء","ماريو","سونيك","باك مان"],c:0,t:"تختلف الشخصية الرئيسية حسب جزء GTA."},
+ {q:"أي شركة طوّرت لعبة Minecraft؟",a:["Mojang","Valve","Nintendo","Ubisoft"],c:0,t:"طورتها Mojang."},
+ {q:"شنو اسم بطل سلسلة The Legend of Zelda؟",a:["Zelda","Link","Mario","Kirby"],c:1,t:"البطل القابل للعب غالباً هو Link."}]},
+ general:{name:"معلومات عامة",emoji:"🌍",q:[
+ {q:"شنو أكبر كوكب بالمجموعة الشمسية؟",a:["الأرض","المريخ","المشتري","الزهرة"],c:2,t:"المشتري هو الأكبر."},
+ {q:"كم عدد قارات العالم وفق التقسيم الشائع؟",a:["5","6","7","8"],c:2,t:"التقسيم الشائع يضم سبع قارات."},
+ {q:"شنو عاصمة اليابان؟",a:["كيوتو","طوكيو","أوساكا","هيروشيما"],c:1,t:"عاصمة اليابان هي طوكيو."},
+ {q:"أي غاز تمتصه النباتات من الهواء؟",a:["الأوكسجين","النيتروجين","ثاني أكسيد الكربون","الهيدروجين"],c:2,t:"تستخدم النباتات ثاني أكسيد الكربون في البناء الضوئي."}]},
+ music:{name:"فن وموسيقى",emoji:"🎨",q:[
+ {q:"آلة البيانو تُصنّف أساساً ضمن أي نوع؟",a:["آلات مفاتيح","آلات نفخ","آلات إيقاع فقط","آلات وترية بالقوس"],c:0,t:"البيانو من آلات المفاتيح."},
+ {q:"من يرسم اللوحات الفنية؟",a:["الرسام","المخرج فقط","المذيع","المهندس الصوتي"],c:0,t:"الرسام هو من يرسم اللوحات."}]}
+};
+let cat=null,mode=null,questions=[],idx=0,scores=[],players=1,answered=false,turn=0;
+const $=id=>document.getElementById(id);
+function init(){ $('categories').innerHTML=Object.entries(data).map(([k,v])=>`<button class="tile" onclick="pickCat('${k}')"><span class="emoji">${v.emoji}</span>${v.name}<small>${v.q.length} أسئلة حالياً</small></button>`).join(''); }
+function pickCat(k){cat=k;updateHint()}
+function pickMode(m){mode=m;updateHint()}
+function updateHint(){if(cat&&mode){$('selectionHint').classList.remove('hidden');$('selectionHint').textContent=`اختيارك: ${data[cat].name} · ${modeName(mode)}. اضغط «ابدأ اللعب» حتى نبدأ.`;$('startBtn').disabled=false}else{$('startBtn').disabled=true}}
+function modeName(m){return {quiz:"اختيارات متعددة",tf:"صح لو خطأ",top10:"تحدّي TOP 10",speed:"جولة سريعة"}[m]}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function startGame(){players=+$('players').value;scores=Array(players).fill(0);turn=0;idx=0;let pool=shuffle(data[cat].q);questions=pool.slice(0,Math.min(mode==='speed'?5:6,pool.length));if(mode==='tf')questions=questions.map(q=>({...q,tf:Math.random()<.5}));$('home').classList.add('hidden');$('result').classList.add('hidden');$('game').classList.remove('hidden');renderQ()}
+function renderQ(){answered=false;const q=questions[idx];$('roundLabel').textContent=`السؤال ${idx+1} من ${questions.length}`;$('scoreLabel').textContent=`مجموع النقاط: ${scores.reduce((a,b)=>a+b,0)}`;$('playerLabel').textContent=players>1?`دور اللاعب ${turn+1}`:'دورك هسه';$('progress').style.width=(idx/questions.length*100)+'%';$('question').textContent=q.q;$('feedback').classList.add('hidden');$('nextBtn').classList.add('hidden');$('answers').classList.remove('hidden');$('rankArea').classList.add('hidden');
+if(mode==='top10'){renderRank(q);return}
+let opts=q.a.map((a,i)=>({a,i}));if(mode==='tf'){let correct=q.tf?q.c:((q.c+1)%q.a.length);opts=[{a:"صح",i:q.tf?q.c:-1},{a:"خطأ",i:q.tf?-1:q.c}];}
+$('answers').innerHTML=opts.map(o=>`<button class="answer" onclick="answer(${o.i})">${o.a}</button>`).join('')}
+function answer(i){if(answered)return;answered=true;const q=questions[idx];const ok=i===q.c;$('answers').querySelectorAll('button').forEach((b,j)=>{b.disabled=true;if(mode==='tf'){if((j===0&&q.tf)||(j===1&&!q.tf))b.classList.add('correct')}else if(j===q.c)b.classList.add('correct')});if(!ok){const bs=$('answers').querySelectorAll('button');if(mode==='tf')bs[i===q.c?0:1]?.classList.add('wrong');else bs[i]?.classList.add('wrong')}else scores[turn]+=10;$('feedback').textContent=(ok?'✅ إجابة صحيحة! +10 نقاط. ':'❌ مو صحيح. ')+q.t;$('feedback').classList.remove('hidden');afterAnswer()}
+function renderRank(q){$('answers').classList.add('hidden');$('rankArea').classList.remove('hidden');let items=shuffle(q.a.map((a,i)=>({a,i})));$('rankArea').innerHTML='<p class="muted">رتّب الخيارات من الأصح إلى الأقل صلة، حسب معرفتك. (هذا نمط تجريبي ويحسب نقاطاً إذا طابقت ترتيب السؤال الأصلي.)</p><div class="ranklist">'+items.map((o,j)=>`<div class="rankitem"><b>${j+1}</b><span style="flex:1">${o.a}</span><select id="rank${o.i}"><option value="">اختار المركز</option>${q.a.map((_,n)=>`<option value="${n}">${n+1}</option>`).join('')}</select></div>`).join('')+'</div><button style="margin-top:12px" onclick="submitRank()">تأكيد الترتيب</button>'}
+function submitRank(){if(answered)return;answered=true;let q=questions[idx],vals=q.a.map((_,i)=>+$('rank'+i).value-1);if(vals.some(v=>v<0)||new Set(vals).size!==vals.length){answered=false;alert('اختار مركز مختلف لكل خيار.');return}let points=vals.filter((v,i)=>v===i).length*2;scores[turn]+=points;$('feedback').textContent=`حصلت ${points} نقاط من 8. هذا نمط ترتيب تجريبي؛ الترتيب الصحيح هنا حسب ترتيب الخيارات بالسؤال.`;$('feedback').classList.remove('hidden');afterAnswer()}
+function afterAnswer(){$('nextBtn').classList.remove('hidden');$('nextBtn').textContent=idx===questions.length-1?'عرض النتيجة':'السؤال التالي ←';$('scoreLabel').textContent=`مجموع النقاط: ${scores.reduce((a,b)=>a+b,0)}`}
+function nextQuestion(){if(!answered)return;turn=(turn+1)%players;idx++;if(idx>=questions.length){showResult();return}renderQ()}
+function showResult(){$('game').classList.add('hidden');$('result').classList.remove('hidden');let max=Math.max(...scores);$('resultText').textContent=players===1?`نتيجتك: ${scores[0]} نقطة من ${questions.length*10} تقريباً. جرّب تصنيف ثاني!`:`أعلى نتيجة: ${max} نقطة.`;$('leaderboard').innerHTML=scores.map((s,i)=>`اللاعب ${i+1}: <b>${s}</b> نقطة`).join('<br>')}
+function goHome(){$('game').classList.add('hidden');$('result').classList.add('hidden');$('home').classList.remove('hidden')}
+init();
+</script>
+</body>
+</html>
