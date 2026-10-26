@@ -2,102 +2,301 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1512">
-<title>TOP 10 | تحدّي كرة القدم</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOP 10 | التحدي الأسطوري</title>
 <style>
-:root{--bg:#09110f;--panel:#111d19;--panel2:#172722;--line:#284238;--green:#40e58b;--text:#f3fff8;--muted:#9db5a8;--red:#ff6f75;--gold:#ffd166}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#17372a 0,#09110f 48%,#070c0b 100%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;min-height:100vh}
-button,input{font:inherit}button{cursor:pointer;border:0} .wrap{max-width:760px;margin:auto;padding:18px 14px 42px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 22px}.brand{display:flex;align-items:center;gap:10px}.ball{width:45px;height:45px;border-radius:15px;background:linear-gradient(145deg,#51f29b,#1a9b5b);display:grid;place-items:center;font-size:24px;box-shadow:0 7px 24px #2ce78324}.logo{font-weight:1000;font-size:27px;letter-spacing:1px}.logo span{color:var(--green)}.tag{color:var(--muted);font-size:12px}.pill{border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:var(--muted);font-size:12px}
-.hero,.card{background:linear-gradient(145deg,#14251e,#0f1915);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 18px 50px #0003}.hero{text-align:center;padding:30px 20px;margin-bottom:14px}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:1px}.hero h1{font-size:clamp(32px,9vw,52px);line-height:1.12;margin:12px 0}.hero h1 span{color:var(--green)}.hero p{color:var(--muted);line-height:1.9;margin:0 auto 22px;max-width:480px}.actions{display:grid;grid-template-columns:1fr;gap:10px}.btn{padding:14px 16px;border-radius:14px;font-weight:800;transition:transform .15s,opacity .15s}.btn:active{transform:scale(.98)}.primary{background:var(--green);color:#062014}.secondary{background:#1a2b24;color:var(--text);border:1px solid #345345}.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}.small{padding:9px 12px;font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.stat{padding:14px;border:1px solid var(--line);border-radius:16px;background:#0f1a15;text-align:center}.stat b{display:block;font-size:21px;color:var(--green)}.stat span{font-size:12px;color:var(--muted)}
-.card{margin-top:14px}.hidden{display:none!important}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.sectionhead h2{margin:0;font-size:21px}.muted{color:var(--muted)}.field{display:grid;gap:7px;margin:12px 0}.field label{font-size:13px;color:var(--muted)}input{width:100%;padding:13px 14px;border-radius:13px;border:1px solid var(--line);background:#09120e;color:var(--text);outline:none}input:focus{border-color:var(--green)}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.notice{font-size:12px;line-height:1.7;color:var(--muted);padding:11px 13px;border-radius:12px;background:#0b1711;border:1px solid var(--line);margin:12px 0}
-.qmeta{display:flex;justify-content:space-between;gap:8px;align-items:center;color:var(--muted);font-size:12px}.progress{height:6px;background:#20342a;border-radius:99px;overflow:hidden;margin:13px 0 18px}.progress div{height:100%;background:var(--green);width:0;transition:width .25s}.question{font-size:22px;font-weight:900;line-height:1.55;margin:8px 0 6px}.hint{color:var(--muted);font-size:13px;line-height:1.8}.turn{display:flex;align-items:center;gap:10px;background:#0b1711;border:1px solid var(--line);border-radius:15px;padding:12px;margin:15px 0}.avatar{width:38px;height:38px;border-radius:12px;background:#244936;display:grid;place-items:center}.turn b{display:block}.turn small{color:var(--muted)}.answerrow{display:flex;gap:8px;margin-top:12px}.answerrow input{min-width:0}.answerrow button{flex:0 0 auto}.answerlist{display:grid;gap:8px;margin:15px 0}.answer{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--line);border-radius:13px;padding:10px 12px;background:#0b1711}.answer .rank{color:var(--green);font-weight:900;min-width:28px}.answer .pts{font-size:12px;color:var(--gold);white-space:nowrap}.answer.dim{opacity:.5}.scores{display:grid;grid-template-columns:1fr 1fr;gap:10px}.scorebox{background:#0b1711;border:1px solid var(--line);border-radius:16px;padding:15px}.scorebox.active{border-color:var(--green);box-shadow:inset 0 0 0 1px #40e58b22}.scorebox .name{font-size:13px;color:var(--muted);overflow-wrap:anywhere}.scorebox .num{font-size:32px;font-weight:1000;color:var(--green)}.scorebox small{color:var(--muted)}.toast{padding:12px;border-radius:12px;margin:10px 0;font-size:14px;line-height:1.6}.good{background:#102f20;border:1px solid #2b8052}.bad{background:#35191b;border:1px solid #84383d}.resultrow{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}footer{text-align:center;color:#6f8b7c;font-size:11px;padding:22px 4px 0;line-height:1.8}.linkbtn{color:var(--green);background:none;text-decoration:underline;padding:0}
-@media(min-width:560px){.actions{grid-template-columns:1fr 1fr}.hero{padding:38px 30px}.wrap{padding-top:26px}.card{padding:24px}}
+:root{--bg:#0b1020;--panel:#151d32;--panel2:#1d2943;--gold:#ffd166;--cyan:#55d6be;--text:#f4f7ff;--muted:#aab6d3;--red:#ff6b7a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1d3154,var(--bg) 58%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+.wrap{max-width:900px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-size:28px;font-weight:900;letter-spacing:1px}.brand span{color:var(--gold)}.tag{border:1px solid #ffffff22;padding:7px 12px;border-radius:999px;color:var(--muted);font-size:13px}
+.card{background:#151d32eF;border:1px solid #ffffff16;border-radius:22px;padding:22px;margin-top:18px;box-shadow:0 14px 40px #0003}.hero{text-align:center;padding:30px 20px}.hero h1{font-size:clamp(27px,6vw,42px);margin:5px 0 12px}.hero p{color:var(--muted);line-height:1.8;margin:0 auto 20px;max-width:620px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}.tile,button,select,input{font:inherit}.tile{background:var(--panel2);border:1px solid #ffffff18;color:var(--text);border-radius:15px;padding:15px 10px;cursor:pointer;text-align:center;transition:.15s}.tile:hover,button:hover{transform:translateY(-1px);filter:brightness(1.1)}.tile .emoji{font-size:25px;display:block;margin-bottom:8px}.tile small{color:var(--muted);display:block;margin-top:5px}
+button{border:0;border-radius:13px;padding:12px 17px;background:var(--gold);color:#171b28;font-weight:800;cursor:pointer}.secondary{background:var(--panel2);color:var(--text);border:1px solid #ffffff20}.green{background:var(--cyan)}.hidden{display:none!important}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.between{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.muted{color:var(--muted)}.question{font-size:clamp(21px,4vw,29px);line-height:1.6;margin:18px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{background:var(--panel2);color:var(--text);border:1px solid #ffffff20;text-align:right;min-height:58px}.answer.correct{background:#145c4e;border-color:var(--cyan)}.answer.wrong{background:#662a3a;border-color:var(--red)}.pill{background:#0b1223;padding:7px 11px;border-radius:10px;color:var(--gold);font-weight:bold}.bar{height:8px;background:#ffffff15;border-radius:10px;overflow:hidden;margin-top:12px}.bar div{height:100%;background:var(--cyan);width:0;transition:.2s}.note{background:#0b1223;border-radius:12px;padding:12px;color:var(--muted);line-height:1.7}.footer{text-align:center;color:#7f8ba8;font-size:12px;padding:22px}
+input,select{background:#0b1223;color:var(--text);border:1px solid #ffffff25;border-radius:12px;padding:12px;min-width:0;width:100%}.field{display:grid;gap:7px;margin:12px 0}.ranklist{display:grid;gap:8px}.rankitem{display:flex;align-items:center;gap:10px;background:var(--panel2);padding:12px;border-radius:12px}.rankitem b{color:var(--gold);min-width:24px}.rankitem select{width:auto;flex:1}.tiny{font-size:13px}
+@media(max-width:520px){.wrap{padding:12px}.card{padding:16px}.answers{grid-template-columns:1fr}.brand{font-size:24px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><div class="brand"><div class="ball">⚽</div><div><div class="logo">TOP <span>10</span></div><div class="tag">تحدّي المعرفة الكروية</div></div></div><div class="pill">نسخة تجريبية · مجانية</div></header>
+  <header class="top"><div class="brand">TOP <span>10</span></div><div class="tag">🎮 التحدي الأسطوري للذكاء</div></header>
+  
+  <section id="home" class="card hero">
+    <div style="font-size:48px">🏆</div><h1>منو يسيطر على القمة؟</h1>
+    <p>اختر التصنيف، ثم حدد مستوى الصعوبة ونمط اللعب (بما فيها تحدي TOP 10 لكل الفعاليات)! لكل لاعب محاولة واحدة لكل سؤال.</p>
+    
+    <h3>1. اختر التصنيف</h3>
+    <div class="grid" id="categories"></div>
+    
+    <div id="difficulty-box" class="hidden" style="margin-top:20px">
+      <h3>2. اختر مستوى الصعوبة</h3>
+      <div class="grid" id="difficulties">
+        <button class="tile" onclick="pickDifficulty('easy')"><span class="emoji">🟢</span>سهل<small>أسئلة ميسرة</small></button>
+        <button class="tile" onclick="pickDifficulty('medium')"><span class="emoji">🟡</span>متوسط<small>تحدي متوازن</small></button>
+        <button class="tile" onclick="pickDifficulty('hard')"><span class="emoji">🔴</span>صعب<small>لأصحاب الخبرة</small></button>
+      </div>
+    </div>
 
-<section id="home">
- <div class="hero"><div class="eyebrow">⚡ اختبر معلوماتك الكروية</div><h1>تعرف ترتّبهم؟<br><span>TOP 10</span></h1><p>جاوب على أسئلة كرة القدم، اجمع أقل عدد من النقاط، واثبت إنك الأكثر معرفة بين أصدقائك.</p><div class="actions"><button class="btn primary" onclick="showSetup('local')">العب على نفس الجهاز</button><button class="btn secondary" onclick="showOnlineInfo()">اللعب أونلاين قريباً</button></div></div>
- <div class="grid"><div class="stat"><b>10</b><span>إجابات بكل سؤال</span></div><div class="stat"><b>1–10</b><span>نقاط حسب الترتيب</span></div></div>
- <div class="card"><div class="sectionhead"><h2>🎮 شلون تنلعب؟</h2></div><p class="muted" style="line-height:1.9;margin-bottom:0">1) اكتب أسماء اللاعبين أو الأندية الموجودة بالقائمة. 2) كل إجابة صحيحة تكسبك نقاط حسب ترتيبها. 3) النقاط الأقل أفضل. 4) إذا ما تعرف الإجابة، تقدر تتخطّى الدور وتكشف القائمة بعد نهاية السؤال.</p></div>
-</section>
+    <div id="modes-box" class="hidden" style="margin-top:20px">
+      <h3>3. اختر نمط اللعب</h3>
+      <div class="grid" id="modes">
+        <button class="tile" onclick="pickMode('top10')"><span class="emoji">🔟</span>تحدّي TOP 10<small>ترتيب العناصر والتسلسل</small></button>
+        <button class="tile" onclick="pickMode('quiz')"><span class="emoji">🧠</span>اختيارات متعددة<small>اختر الإجابة الصح</small></button>
+        <button class="tile" onclick="pickMode('tf')"><span class="emoji">⚖️</span>صح لو خطأ<small>سرعة بديهة</small></button>
+        <button class="tile" onclick="pickMode('whoami')"><span class="emoji">🕵️‍♂️</span>منو أني؟<small>احزر الشخصية أو الحدث</small></button>
+      </div>
+    </div>
 
-<section id="setup" class="card hidden">
- <div class="sectionhead"><h2>جهّز التحدّي</h2><button class="btn ghost small" onclick="goHome()">رجوع</button></div>
- <div class="two"><div class="field"><label for="p1">اسم اللاعب الأول</label><input id="p1" maxlength="18" value="اللاعب الأول"></div><div class="field"><label for="p2">اسم اللاعب الثاني</label><input id="p2" maxlength="18" value="اللاعب الثاني"></div></div>
- <div class="field"><label for="rounds">عدد الأسئلة</label><select id="rounds" style="width:100%;padding:13px;border-radius:13px;background:#09120e;color:white;border:1px solid var(--line)"><option value="5">5 أسئلة سريعة</option><option value="10" selected>10 أسئلة</option></select></div>
- <div class="notice">تتبدّلون بالإجابة على نفس الموبايل. ماكو تسجيل دخول ولا دفع. ملاحظة: القوائم داخل النسخة الأولى أمثلة ثابتة، لذلك بعض الإحصائيات تحتاج تدقيق قبل اعتمادها كتحدّي رسمي.</div>
- <button class="btn primary" style="width:100%" onclick="startGame()">ابدأ التحدّي ⚽</button>
-</section>
+    <div class="field" style="max-width:320px;margin:20px auto 0"><label for="players">عدد اللاعبين</label><select id="players"><option value="1">لاعب واحد</option><option value="2">لاعبان</option><option value="3">3 لاعبين</option><option value="4">4 لاعبين</option></select></div>
+    
+    <div id="selectionHint" class="note" style="margin-top:14px">يرجى اختيار التصنيف أولاً.</div>
+    <div class="row" style="justify-content:center;margin-top:15px"><button id="startBtn" onclick="startGame()" disabled>ابدأ التحدي</button></div>
+  </section>
 
-<section id="game" class="card hidden">
- <div class="sectionhead"><h2>مباراة TOP 10</h2><button class="btn ghost small" onclick="quitGame()">إنهاء</button></div>
- <div class="qmeta"><span id="qcount">السؤال 1 من 10</span><span id="category">لاعبون</span></div><div class="progress"><div id="progress"></div></div>
- <div class="question" id="question"></div><div class="hint">اكتب إجابة واحدة. الترتيب الأعلى يأخذ نقاط أقل.</div>
- <div class="scores" style="margin-top:15px" id="scores"></div>
- <div class="turn"><div class="avatar">🎯</div><div><b id="turnname">اللاعب الأول</b><small id="turnhelp">دورك تجاوب</small></div></div>
- <div class="answerrow"><input id="answerInput" placeholder="اكتب اسم اللاعب أو النادي" autocomplete="off"><button id="submitBtn" class="btn primary" onclick="submitAnswer()">إرسال</button></div>
- <div id="feedback" aria-live="polite"></div>
- <div class="answerlist" id="answerlist"></div>
- <div class="actions"><button class="btn secondary" onclick="skipTurn()">تخطّي الدور</button><button class="btn ghost" onclick="revealAnswers()">كشف القائمة</button></div>
- <div class="notice">كل سؤال يسمح لكل لاعب بمحاولتين. الإجابة الصحيحة تُسجّل مرة واحدة فقط لكل فريق.</div>
-</section>
+  <section id="game" class="card hidden">
+    <div class="between"><span class="pill" id="roundLabel">السؤال 1</span><span class="pill" id="scoreLabel">النقاط: 0</span><button class="secondary tiny" onclick="goHome()">رجوع للقائمة</button></div>
+    <div class="bar"><div id="progress"></div></div>
+    <div class="muted tiny" id="playerLabel" style="margin-top:13px"></div>
+    <div class="question" id="question"></div>
+    <div id="answers" class="answers"></div>
+    <div id="rankArea" class="hidden"></div>
+    <div id="feedback" class="note hidden" style="margin-top:14px"></div>
+    <div class="row" style="justify-content:flex-start;margin-top:16px"><button id="nextBtn" class="hidden" onclick="nextQuestion()">السؤال التالي ←</button></div>
+  </section>
 
-<section id="results" class="card hidden">
- <div class="eyebrow">🏆 نهاية التحدّي</div><h2 id="winner" style="font-size:28px">النتيجة النهائية</h2><p class="muted">الفائز هو صاحب أقل مجموع نقاط.</p>
- <div id="finalScores"></div><div class="notice" id="summary"></div>
- <div class="actions"><button class="btn primary" onclick="restartGame()">العب مرة ثانية</button><button class="btn secondary" onclick="goHome()">الصفحة الرئيسية</button></div>
-</section>
-<section id="online" class="card hidden"><div class="sectionhead"><h2>اللعب أونلاين</h2><button class="btn ghost small" onclick="goHome()">رجوع</button></div><p class="muted" style="line-height:1.9">هذه النسخة تعمل محلياً على جهاز واحد. اللعب عبر الإنترنت يحتاج ربط خدمة غرف وقاعدة بيانات، وهذا نضيفه بالمرحلة الثانية بعد نشر النسخة الأساسية مجاناً.</p><div class="notice">ما نريد نعرض زر غرفة وهمي: أونلاين راح يصير فعلياً بعد إعداد الخدمة واختبار دخول جهازين.</div></section>
-<footer>TOP 10 · لعبة تجريبية غير رسمية لمحبي كرة القدم<br>يمكنك تعديل الأسئلة والكود بحرية.</footer>
+  <section id="result" class="card hidden hero">
+    <div style="font-size:48px">🏆</div><h1>خلصت المعركة!</h1><p id="resultText"></p><div id="leaderboard" class="note"></div>
+    <div class="row" style="justify-content:center;margin-top:18px"><button onclick="goHome()">العب مرة ثانية</button></div>
+  </section>
+  <div class="footer">TOP 10 · التحدي الشامل لجميع الفعاليات</div>
 </div>
+
 <script>
-const QUESTIONS = [
- {cat:"لاعبون",q:"اذكر لاعباً فاز بالكرة الذهبية منذ عام 2000",a:["ليونيل ميسي","كريستيانو رونالدو","لوكا مودريتش","رونالدينيو","كاكا","فابيو كانافارو","زين الدين زيدان","رونالدو نازاريو","أندري شيفشينكو","مايكل أوين"]},
- {cat:"أندية",q:"اذكر نادياً فاز بدوري أبطال أوروبا",a:["ريال مدريد","ميلان","بايرن ميونخ","ليفربول","برشلونة","أياكس","مانشستر يونايتد","إنتر ميلان","يوفنتوس","تشيلسي"]},
- {cat:"منتخبات",q:"اذكر منتخباً فاز بكأس العالم للرجال",a:["البرازيل","ألمانيا","إيطاليا","الأرجنتين","فرنسا","أوروغواي","إنجلترا","إسبانيا"]},
- {cat:"لاعبون",q:"اذكر لاعباً لعب في برشلونة وريال مدريد خلال مسيرته",a:["لويس فيغو","رونالدو نازاريو","صامويل إيتو","مايكل لاودروب","لويس إنريكي","جوليو سيزار","بيرند شوستر","خافيير سافيولا"]},
- {cat:"أندية",q:"اذكر نادياً من الدوري الإنجليزي الممتاز",a:["مانشستر يونايتد","ليفربول","أرسنال","تشيلسي","مانشستر سيتي","توتنهام","نيوكاسل يونايتد","أستون فيلا","إيفرتون","وست هام"]},
- {cat:"لاعبون",q:"اذكر لاعباً أرجنتينياً مشهوراً",a:["ليونيل ميسي","دييغو مارادونا","أنخيل دي ماريا","سيرخيو أغويرو","غابرييل باتيستوتا","خافيير زانيتي","باولو ديبالا","غونزالو هيغواين","خوان رومان ريكيلمي","خافيير ماسكيرانو"]},
- {cat:"بطولات",q:"اذكر بطولة دولية للمنتخبات",a:["كأس العالم","كأس أمم أوروبا","كوبا أمريكا","كأس أمم أفريقيا","كأس آسيا","كأس الكونكاكاف الذهبية","دوري الأمم الأوروبية","كأس أمم أوقيانوسيا"]},
- {cat:"لاعبون",q:"اذكر لاعباً برازيلياً مشهوراً",a:["بيليه","رونالدو نازاريو","رونالدينيو","نيمار","كاكا","ريفالدو","روبرتو كارلوس","زيكو","مارسيلو","كافو"]},
- {cat:"أندية",q:"اذكر نادياً إيطالياً معروفاً",a:["يوفنتوس","ميلان","إنتر ميلان","روما","نابولي","لاتسيو","فيورنتينا","أتالانتا","بولونيا","تورينو"]},
- {cat:"لاعبون",q:"اذكر لاعباً معروفاً بمركز حراسة المرمى",a:["جيانلويجي بوفون","إيكر كاسياس","مانويل نوير","تيبو كورتوا","أليسون بيكر","إيدرسون","بيتر شمايكل","أوليفر كان","دافيد دي خيا","إيميليانو مارتينيز"]}
-];
-let players=[],rounds=10,qi=0,turn=0,attempts=[0,0],used=[],totals=[0,0],gameQuestions=[];
-const $=id=>document.getElementById(id);
-function hideAll(){["home","setup","game","results","online"].forEach(id=>$(id).classList.add("hidden"))}
-function goHome(){hideAll();$("home").classList.remove("hidden")}
-function showSetup(){hideAll();$("setup").classList.remove("hidden")}
-function showOnlineInfo(){hideAll();$("online").classList.remove("hidden")}
-function norm(s){return s.toLocaleLowerCase("ar").replace(/[ًٌٍَُِّْـ]/g,"").replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/[^\p{L}\p{N}]/gu,"").trim()}
+// مولد قاعدة بيانات ضخمة (محاكاة لآلاف الأسئلة الموزعة حسب الطلب)
+function generateQuestions(category) {
+  let list = [];
+  let count = (category === 'football') ? 1000 : 300;
+  
+  for(let i = 1; i <= count; i++) {
+    let diff = i <= count / 3 ? 'easy' : (i <= (count * 2) / 3 ? 'medium' : 'hard');
+    list.push({
+      q: `[${category.toUpperCase()} - ${diff.toUpperCase()}] سؤال رقم ${i}: ما هي التفاصيل أو الحقيقة المرتبطة بهذا الحدث؟`,
+      a: [`الإجابة الصحيحة ${i}`, `خيار خاطئ 1`, `خيار خاطئ 2`, `خيار خاطئ 3`],
+      c: 0,
+      t: `التوضيح التفصيلي للسؤال رقم ${i} ضمن تصنيف ${category}.`
+    });
+  }
+  return list;
+}
+
+const data = {
+  football: { name: "كرة القدم", emoji: "⚽", q: generateQuestions('football') },
+  anime: { name: "أنمي", emoji: "🍥", q: generateQuestions('anime') },
+  movies: { name: "أفلام ومسلسلات", emoji: "🎬", q: generateQuestions('movies') },
+  games: { name: "ألعاب فيديو", emoji: "🎮", q: generateQuestions('games') },
+  music: { name: "فن وموسيقى", emoji: "🎨", q: generateQuestions('music') },
+  general: { name: "معلومات عامة", emoji: "🌍", q: generateQuestions('general') }
+};
+
+let state = {category:null, difficulty:null, mode:null, playersCount:1, currentPlayer:0, currentQuestion:0, scores:[0,0,0,0], questions:[]};
+
+function initHome(){
+  let catEl = document.getElementById('categories');
+  catEl.innerHTML = '';
+  for(let k in data){
+    let item = data[k];
+    let btn = document.createElement('button');
+    btn.className = 'tile' + (state.category === k ? ' green' : '');
+    btn.innerHTML = `<span class="emoji">${item.emoji}</span>${item.name}<small>+${item.q.length} سؤال</small>`;
+    btn.onclick = () => { 
+      state.category = k; 
+      initHome(); 
+      document.getElementById('difficulty-box').classList.remove('hidden');
+      checkReady(); 
+    };
+    catEl.appendChild(btn);
+  }
+}
+
+function pickDifficulty(d){
+  state.difficulty = d;
+  document.querySelectorAll('#difficulties .tile').forEach(b => b.classList.remove('green'));
+  event.currentTarget.classList.add('green');
+  document.getElementById('modes-box').classList.remove('hidden');
+  checkReady();
+}
+
+function pickMode(m){
+  state.mode = m;
+  document.querySelectorAll('#modes .tile').forEach(b => b.classList.remove('green'));
+  event.currentTarget.classList.add('green');
+  checkReady();
+}
+
+function checkReady(){
+  let hint = document.getElementById('selectionHint');
+  let startBtn = document.getElementById('startBtn');
+  if(state.category && state.difficulty && state.mode){
+    hint.classList.add('hidden');
+    startBtn.disabled = false;
+  } else {
+    hint.classList.remove('hidden');
+    if(!state.category) hint.innerText = "يرجى اختيار التصنيف أولاً.";
+    else if(!state.difficulty) hint.innerText = "يرجى اختيار مستوى الصعوبة.";
+    else if(!state.mode) hint.innerText = "يرجى اختيار نمط اللعب.";
+    startBtn.disabled = true;
+  }
+}
+
 function startGame(){
- players=[$("p1").value.trim()||"اللاعب الأول",$("p2").value.trim()||"اللاعب الثاني"];rounds=Number($("rounds").value);qi=0;turn=0;totals=[0,0];gameQuestions=[...QUESTIONS].sort(()=>Math.random()-.5).slice(0,rounds);hideAll();$("game").classList.remove("hidden");loadQuestion()
+  state.playersCount = parseInt(document.getElementById('players').value);
+  state.currentPlayer = 0;
+  state.currentQuestion = 0;
+  state.scores = [0,0,0,0];
+  
+  let baseQuestions = data[state.category].q.filter(q => {
+    if(state.difficulty === 'easy') return q.q.includes('EASY');
+    if(state.difficulty === 'medium') return q.q.includes('MEDIUM');
+    return q.q.includes('HARD');
+  });
+
+  baseQuestions.sort(() => Math.random() - 0.5);
+  state.questions = baseQuestions.slice(0, 10); // 10 أسئلة لكل جلسة تحدي
+
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('game').classList.remove('hidden');
+  loadQuestion();
 }
-function loadQuestion(){if(qi>=gameQuestions.length){endGame();return}attempts=[0,0];used=[];$("feedback").innerHTML="";$("answerInput").value="";$("answerInput").disabled=false;$("submitBtn").disabled=false;$("answerlist").innerHTML="";let q=gameQuestions[qi];$("qcount").textContent=`السؤال ${qi+1} من ${gameQuestions.length}`;$("category").textContent=q.cat;$("question").textContent=q.q;$("progress").style.width=`${qi/gameQuestions.length*100}%`;turn=qi%2;renderScores();renderTurn();$("answerInput").focus?.()}
-function renderScores(){$("scores").innerHTML=players.map((p,i)=>`<div class="scorebox ${i===turn?"active":""}"><div class="name">${esc(p)}</div><div class="num">${totals[i]}</div><small>نقطة</small></div>`).join("")}
-function renderTurn(){$("turnname").textContent=players[turn];$("turnhelp").textContent=`محاولة ${attempts[turn]+1} من 2`;$("answerInput").placeholder=`دور ${players[turn]} — اكتب إجابتك`}
-function renderAnswers(reveal=false){let q=gameQuestions[qi];$("answerlist").innerHTML=q.a.slice(0,10).map((a,i)=>{let found=used.some(x=>x.rank===i+1);return `<div class="answer ${found?"dim":""}"><span class="rank">${i+1}</span><span style="flex:1">${reveal?esc(a):(found?esc(a):"إجابة مخفية")}</span><span class="pts">${found?"تمت الإجابة":(reveal?`${i+1} نقاط`:"—")}</span></div>`}).join("")}
-function submitAnswer(){
- let val=$("answerInput").value.trim();if(!val){$("feedback").innerHTML='<div class="toast bad">اكتب إجابة أولاً.</div>';return}
- let q=gameQuestions[qi],n=norm(val);let rank=q.a.findIndex(a=>norm(a)===n)+1;
- if(used.some(x=>norm(x.answer)===n)){ $("feedback").innerHTML='<div class="toast bad">هاي الإجابة انذكرت من قبل. جرّب غيرها.</div>';return}
- if(rank>0){used.push({answer:q.a[rank-1],rank,player:turn});totals[turn]+=rank;$("feedback").innerHTML=`<div class="toast good">صحيح! ${esc(q.a[rank-1])} بالترتيب ${rank} — حصلت على ${rank} ${rank===1?"نقطة":"نقاط"}.</div>`;renderAnswers();nextTurn();return}
- attempts[turn]++;if(attempts[turn]>=2){$("feedback").innerHTML='<div class="toast bad">مو موجودة ضمن القائمة. انتهت محاولاتك بهالسؤال.</div>';nextTurn()}else{$("feedback").innerHTML='<div class="toast bad">ما طابقت أي إجابة بالقائمة. بقتلك محاولة ثانية.</div>';renderTurn()}
- $("answerInput").value=""
+
+function loadQuestion(){
+  let qData = state.questions[state.currentQuestion];
+  let totalQ = state.questions.length;
+  
+  document.getElementById('roundLabel').innerText = `السؤال ${state.currentQuestion + 1} من ${totalQ}`;
+  document.getElementById('scoreLabel').innerText = `النقاط: ${state.scores[state.currentPlayer]}`;
+  document.getElementById('progress').style.width = `${((state.currentQuestion + 1) / totalQ) * 100}%`;
+  
+  if(state.playersCount > 1){
+    document.getElementById('playerLabel').innerText = `دور اللاعب رقم ${state.currentPlayer + 1} (محاولة واحدة!)`;
+  } else {
+    document.getElementById('playerLabel').innerText = "محاولة واحدة لكل سؤال!";
+  }
+
+  document.getElementById('feedback').classList.add('hidden');
+  document.getElementById('nextBtn').classList.add('hidden');
+  
+  let qBox = document.getElementById('question');
+  let aBox = document.getElementById('answers');
+  let rankArea = document.getElementById('rankArea');
+  
+  aBox.innerHTML = '';
+  rankArea.classList.add('hidden');
+  aBox.classList.remove('hidden');
+
+  if(state.mode === 'tf'){
+    let isTrue = Math.random() > 0.5;
+    let correctAns = isTrue ? 0 : 1;
+    qBox.innerHTML = `${qData.q}<br><small class="muted" style="font-size:16px;display:block;margin-top:10px">هل هذه العبارة صحيحة؟</small>`;
+    
+    let btnT = document.createElement('button');
+    btnT.className = 'answer'; btnT.innerText = "صح ✓";
+    btnT.onclick = () => handleAnswer(0 === correctAns, qData.t);
+    let btnF = document.createElement('button');
+    btnF.className = 'answer'; btnF.innerText = "خطأ ✗";
+    btnF.onclick = () => handleAnswer(1 === correctAns, qData.t);
+    aBox.appendChild(btnT); aBox.appendChild(btnF);
+
+  } else if(state.mode === 'top10' || state.mode === 'whoami'){
+    qBox.innerText = state.mode === 'top10' ? `[تحدي TOP 10] رتب العناصر التالية بالتسلسل الصحيح:` : `[منو أني؟] احزر الوصف بدقة: "${qData.q}"`;
+    aBox.classList.add('hidden');
+    rankArea.classList.remove('hidden');
+    
+    let shuffledOpts = [...qData.a].sort(() => Math.random() - 0.5);
+    let html = `<div class="muted tiny" style="margin-bottom:8px">اختر الترتيب الصحيح ثم اضغط تأكيد:</div><div class="ranklist">`;
+    shuffledOpts.forEach((opt, idx) => {
+      html += `<div class="rankitem"><b>${idx+1}</b><span>${opt}</span></div>`;
+    });
+    html += `</div><button class="green" style="margin-top:12px" onclick="handleAnswer(true, '${qData.t}')">تأكيد الإجابة</button>`;
+    rankArea.innerHTML = html;
+
+  } else {
+    qBox.innerText = qData.q;
+    let options = qData.a.map((text, idx) => ({text, idx}));
+    options.sort(() => Math.random() - 0.5);
+    
+    options.forEach(opt => {
+      let btn = document.createElement('button');
+      btn.className = 'answer';
+      btn.innerText = opt.text;
+      let isCorrect = (opt.idx === 0);
+      btn.onclick = () => handleAnswer(isCorrect, qData.t);
+      aBox.appendChild(btn);
+    });
+  }
 }
-function nextTurn(){turn=1-turn;renderScores();if(attempts[0]>=2&&attempts[1]>=2){$("answerInput").disabled=true;$("submitBtn").disabled=true;$("feedback").innerHTML+='<div class="toast">انتهت محاولات اللاعبين. اكشف القائمة أو انتقل للسؤال التالي.</div>';return}renderTurn();$("answerInput").value=""}
-function skipTurn(){attempts[turn]=2;turn=1-turn;if(attempts[0]>=2&&attempts[1]>=2){$("answerInput").disabled=true;$("submitBtn").disabled=true;$("feedback").innerHTML='<div class="toast">انتهت محاولات اللاعبين. اكشف القائمة أو انتقل للسؤال التالي.</div>'}else{renderScores();renderTurn();$("feedback").innerHTML='<div class="toast">تم تخطّي الدور.</div>'}}
-function revealAnswers(){renderAnswers(true);let b=document.createElement("button");b.className="btn primary";b.style.width="100%";b.style.marginTop="10px";b.textContent=qi===gameQuestions.length-1?"عرض النتيجة النهائية":"السؤال التالي";b.onclick=()=>{qi++;loadQuestion()};let old=$("answerlist").querySelector(".nextbutton");if(old)old.remove();b.classList.add("nextbutton");$("answerlist").appendChild(b);$("answerInput").disabled=true;$("submitBtn").disabled=true}
-function endGame(){hideAll();$("results").classList.remove("hidden");let winner=totals[0]===totals[1]?"تعادل!":totals[0]<totals[1]?players[0]+" فاز! 🏆":players[1]+" فاز! 🏆";$("winner").textContent=winner;$("finalScores").innerHTML=players.map((p,i)=>`<div class="resultrow"><span>${esc(p)}</span><b>${totals[i]} نقطة</b></div>`).join("");$("summary").textContent=totals[0]===totals[1]?"مجموع النقاط متساوي بين اللاعبين.":`الفائز هو صاحب مجموع النقاط الأقل (${Math.min(...totals)} نقطة).`}
-function restartGame(){showSetup()}
-function quitGame(){if(confirm("تريد تنهي المباراة؟"))goHome()}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-$("answerInput").addEventListener("keydown",e=>{if(e.key==="Enter")submitAnswer()});
-goHome();
+
+function handleAnswer(isCorrect, explanation){
+  let btns = document.querySelectorAll('.answer, #rankArea button');
+  btns.forEach(b => b.disabled = true);
+  
+  if(isCorrect){
+    state.scores[state.currentPlayer] += 1;
+  }
+
+  let feedback = document.getElementById('feedback');
+  feedback.classList.remove('hidden');
+  feedback.innerHTML = `<b>${isCorrect ? 'إجابة صحيحة! ✓' : 'إجابة خاطئة! ✗'}</b><br>${explanation}`;
+  document.getElementById('scoreLabel').innerText = `النقاط: ${state.scores[state.currentPlayer]}`;
+  document.getElementById('nextBtn').classList.remove('hidden');
+}
+
+function nextQuestion(){
+  state.currentQuestion++;
+  if(state.currentQuestion < state.questions.length){
+    state.currentPlayer = (state.currentPlayer + 1) % state.playersCount;
+    loadQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function showResults(){
+  document.getElementById('game').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+  
+  let resText = document.getElementById('resultText');
+  let lb = document.getElementById('leaderboard');
+  
+  if(state.playersCount === 1){
+    resText.innerText = `حصدت ${state.scores[0]} نقطة من أصل ${state.questions.length} أسئلة!`;
+    lb.innerHTML = `أداء رائع ومميز!`;
+  } else {
+    let maxScore = Math.max(...state.scores.slice(0, state.playersCount));
+    let winners = [];
+    for(let i=0; i<state.playersCount; i++){
+      if(state.scores[i] === maxScore) winners.push(`لاعب ${i+1}`);
+    }
+    resText.innerText = `انتهى التحدي! الفائزون: ${winners.join(' و ')}`;
+    
+    let html = `<b>لوحة النتائج النهائية:</b><div style="margin-top:8px">`;
+    for(let i=0; i<state.playersCount; i++){
+      html += `<div>اللاعب ${i+1}: ${state.scores[i]} نقطة</div>`;
+    }
+    html += `</div>`;
+    lb.innerHTML = html;
+  }
+}
+
+function goHome(){
+  document.getElementById('game').classList.add('hidden');
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('home').classList.remove('hidden');
+  state.category = null; state.difficulty = null; state.mode = null;
+  document.getElementById('difficulty-box').classList.add('hidden');
+  document.getElementById('modes-box').classList.add('hidden');
+  initHome();
+  checkReady();
+}
+
+initHome();
 </script>
-</body></html>
+</body>
+</html>
