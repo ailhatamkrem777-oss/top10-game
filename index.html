@@ -5,55 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة التحدي والمعرفة الشاملة</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #f59e0b;
-            --accent-hover: #d97706;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --success: #10b981;
-            --error: #ef4444;
-        }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Tahoma, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #0f172a;
+            color: #f8fafc;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        header h1 {
-            font-size: 1.8rem;
-            color: var(--accent-color);
+        h1 {
+            color: #f59e0b;
+            font-size: 1.5rem;
             margin-bottom: 5px;
+            text-align: center;
         }
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            text-align: center;
         }
-        .container {
+        .box {
             width: 100%;
-            max-width: 600px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            margin-bottom: 40px;
+            max-width: 500px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
         .screen {
             display: none;
@@ -61,252 +48,214 @@
         .screen.active {
             display: block;
         }
-        h2 {
-            font-size: 1.15rem;
-            margin-bottom: 12px;
-            margin-top: 18px;
-            color: var(--text-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 6px;
+        h3 {
+            font-size: 1rem;
+            margin: 15px 0 8px 0;
+            color: #cbd5e1;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 4px;
         }
-        h2:first-of-type {
-            margin-top: 0;
-        }
-        .grid-options {
+        .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 8px;
         }
-        .option-card {
+        .btn-opt {
             background: #0f172a;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 14px;
+            border: 2px solid #334155;
+            color: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
             text-align: center;
             cursor: pointer;
-            transition: all 0.15s ease;
-            font-size: 0.9rem;
-            font-weight: 600;
-            user-select: none;
-            position: relative;
-            z-index: 5;
         }
-        .option-card:active {
-            transform: scale(0.97);
-        }
-        .option-card.selected {
-            border-color: var(--accent-color);
+        .btn-opt.active {
+            border-color: #f59e0b;
             background: rgba(245, 158, 11, 0.2);
-            color: var(--accent-color);
+            color: #f59e0b;
         }
-        .btn {
+        .btn-main {
             width: 100%;
-            background: var(--accent-color);
+            background: #f59e0b;
             color: #0f172a;
             border: none;
-            padding: 16px;
-            font-size: 1.1rem;
+            padding: 14px;
+            font-size: 1rem;
             font-weight: bold;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 25px;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-            position: relative;
-            z-index: 5;
+            margin-top: 20px;
         }
-        .btn:active {
-            transform: scale(0.98);
+        .btn-main:active {
+            background: #d97706;
         }
-        .btn:hover {
-            background: var(--accent-hover);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-            margin-top: 10px;
-            box-shadow: none;
-        }
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
+        .quiz-q {
+            font-size: 1.1rem;
             margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+            line-height: 1.4;
         }
-        .question-text {
-            font-size: 1.15rem;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        .choices-list {
+        .choices {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
         }
-        .choice-btn {
+        .choice {
             background: #0f172a;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 12px 16px;
+            border: 1px solid #334155;
+            color: #f8fafc;
+            padding: 12px;
             border-radius: 8px;
             text-align: right;
-            cursor: pointer;
-            transition: all 0.2s;
             font-size: 0.95rem;
+            cursor: pointer;
         }
-        .choice-btn.correct {
-            background: var(--success) !important;
-            color: white;
-            border-color: var(--success);
+        .choice.right {
+            background: #10b981 !important;
+            border-color: #10b981;
         }
-        .choice-btn.wrong {
-            background: var(--error) !important;
-            color: white;
-            border-color: var(--error);
+        .choice.wrong {
+            background: #ef4444 !important;
+            border-color: #ef4444;
         }
-        .top10-slot {
-            background: #0f172a;
-            border: 1px dashed var(--border-color);
-            padding: 10px 14px;
-            margin-bottom: 8px;
-            border-radius: 8px;
+        .info-bar {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 0.95rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
         }
         .flashcard {
             background: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px 20px;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 30px;
             text-align: center;
-            min-height: 180px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+            min-height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-        .stats-box {
-            text-align: center;
-            padding: 20px 0;
-        }
-        .stats-box h3 {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>منصة التحدي والمعرفة</h1>
-        <p>اختر تصنيفاً واحداً، نمط اللعب، والصعوبة ثم انطلق!</p>
-    </header>
+    <h1>منصة التحدي والمعرفة</h1>
+    <p class="subtitle">اختر الفئة، النمط، ومستوى الصعوبة وانطلق!</p>
 
-    <div class="container">
-        <!-- الشاشة الأولى -->
-        <div id="screen-setup" class="screen active">
-            <h2>1. اختر التصنيف</h2>
-            <div class="grid-options" id="cat-grid">
-                <div class="option-card selected" data-type="cat" data-value="football">⚽ كرة القدم</div>
-                <div class="option-card" data-type="cat" data-value="anime">🍥 أنمي</div>
-                <div class="option-card" data-type="cat" data-value="history">📜 التاريخ</div>
-                <div class="option-card" data-type="cat" data-value="geography">🌍 الجغرافيا</div>
-                <div class="option-card" data-type="cat" data-value="games">🎮 ألعاب فيديو</div>
-                <div class="option-card" data-type="cat" data-value="movies">🎬 أفلام ومسلسلات</div>
-                <div class="option-card" data-type="cat" data-value="art">🎨 فن وموسيقى</div>
-                <div class="option-card" data-type="cat" data-value="general">💡 معلومات عامة</div>
+    <div class="box">
+        <!-- شاشة القائمة الرئيسية -->
+        <div id="s-home" class="screen active">
+            <h3>1. التصنيف</h3>
+            <div class="grid" id="g-cat">
+                <div class="btn-opt active" data-v="football">⚽ كرة القدم</div>
+                <div class="btn-opt" data-v="anime">🍥 أنمي</div>
+                <div class="btn-opt" data-v="history">📜 التاريخ</div>
+                <div class="btn-opt" data-v="geography">🌍 الجغرافيا</div>
+                <div class="btn-opt" data-v="games">🎮 ألعاب فيديو</div>
+                <div class="btn-opt" data-v="movies">🎬 أفلام ومسلسلات</div>
+                <div class="btn-opt" data-v="art">🎨 فن وموسيقى</div>
+                <div class="btn-opt" data-v="general">💡 معلومات عامة</div>
             </div>
 
-            <h2>2. اختر نمط اللعب</h2>
-            <div class="grid-options" id="mode-grid">
-                <div class="option-card selected" data-type="mode" data-value="quiz">🎯 مسابقة كلاسيكية</div>
-                <div class="option-card" data-type="mode" data-value="top10">🏆 ترتيب TOP 10</div>
-                <div class="option-card" data-type="mode" data-value="memory">🧠 اختبار الذاكرة</div>
+            <h3>2. نمط اللعب</h3>
+            <div class="grid" id="g-mode">
+                <div class="btn-opt active" data-v="quiz">🎯 مسابقة كلاسيكية</div>
+                <div class="btn-opt" data-v="top10">🏆 ترتيب TOP 10</div>
+                <div class="btn-opt" data-v="memory">🧠 ذاكرة</div>
             </div>
 
-            <h2>3. مستوى الصعوبة</h2>
-            <div class="grid-options" id="diff-grid">
-                <div class="option-card selected" data-type="diff" data-value="easy">سهل</div>
-                <div class="option-card" data-type="diff" data-value="medium">متوسط</div>
-                <div class="option-card" data-type="diff" data-value="hard">صعب</div>
+            <h3>3. مستوى الصعوبة</h3>
+            <div class="grid" id="g-diff">
+                <div class="btn-opt active" data-v="easy">سهل</div>
+                <div class="btn-opt" data-v="medium">متوسط</div>
+                <div class="btn-opt" data-v="hard">صعب</div>
             </div>
 
-            <button class="btn" id="start-btn">بدء التحدي الآن</button>
+            <button class="btn-main" id="btn-start">بدء التحدي</button>
         </div>
 
-        <!-- الشاشة الثانية: المسابقة -->
-        <div id="screen-quiz" class="screen">
-            <div class="quiz-header">
-                <span id="quiz-progress">السؤال 1 / 5</span>
-                <span id="quiz-score">النقاط: 0</span>
+        <!-- شاشة الأسئلة -->
+        <div id="s-quiz" class="screen">
+            <div class="info-bar">
+                <span id="q-num">السؤال 1</span>
+                <span id="q-score">النقاط: 0</span>
             </div>
-            <div class="question-text" id="quiz-question">جارِ التحميل...</div>
-            <div class="choices-list" id="quiz-choices"></div>
-            <button class="btn btn-secondary" id="home-btn-1">العودة للقائمة</button>
+            <div class="quiz-q" id="q-text">جارِ التحميل...</div>
+            <div class="choices" id="q-choices"></div>
+            <button class="btn-main" id="q-back" style="background:#334155; color:#fff; margin-top:15px;">العودة للقائمة</button>
         </div>
 
-        <!-- الشاشة الثالثة: TOP 10 -->
-        <div id="screen-top10" class="screen">
-            <h2>ترتيب العناصر (TOP 5)</h2>
-            <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">رتب العناصر حسب الأصح تاريخياً أو شعبيةً:</p>
-            <div id="top10-container"></div>
-            <button class="btn" id="check-top10-btn">تحقق من الترتيب</button>
-            <button class="btn btn-secondary" id="home-btn-2">العودة للقائمة</button>
+        <!-- شاشة الـ TOP 10 -->
+        <div id="s-top10" class="screen">
+            <h3 style="margin-top:0;">قائمة الترتيب (TOP 5)</h3>
+            <div id="top10-list" style="display:flex; flex-direction:column; gap:6px; margin-bottom:15px;"></div>
+            <button class="btn-main" id="t10-done">إنهاء التحقق</button>
+            <button class="btn-main" id="t10-back" style="background:#334155; color:#fff; margin-top:10px;">العودة للقائمة</button>
         </div>
 
-        <!-- الشاشة الرابعة: الذاكرة -->
-        <div id="screen-memory" class="screen">
-            <div class="quiz-header">
-                <span id="memory-progress">بطاقة 1 / 3</span>
+        <!-- شاشة الذاكرة -->
+        <div id="s-memory" class="screen">
+            <div class="info-bar">
+                <span id="m-num">بطاقة 1</span>
             </div>
-            <div class="flashcard" id="flashcard-box">اضغط لعرض الإجابة</div>
-            <button class="btn" id="next-flashcard-btn">البطاقة التالية</button>
-            <button class="btn btn-secondary" id="home-btn-3">العودة للقائمة</button>
+            <div class="flashcard" id="m-card">اضغط لعرض الإجابة</div>
+            <button class="btn-main" id="m-next">البطاقة التالية</button>
+            <button class="btn-main" id="m-back" style="background:#334155; color:#fff; margin-top:10px;">العودة للقائمة</button>
         </div>
 
-        <!-- شاشة النتائج -->
-        <div id="screen-result" class="screen">
-            <div class="stats-box">
-                <h3>انتهى التحدي!</h3>
-                <p id="final-score-text" style="font-size: 1.1rem; margin-bottom: 20px;"></p>
-                <button class="btn" id="home-btn-4">العب مرة أخرى</button>
-            </div>
+        <!-- شاشة النتيجة -->
+        <div id="s-end" class="screen" style="text-align:center; padding: 20px 0;">
+            <h2 style="color:#f59e0b; margin-bottom:10px;">انتهى التحدي!</h2>
+            <p id="end-text" style="font-size:1.1rem; margin-bottom:20px;"></p>
+            <button class="btn-main" id="btn-restart">العب مرة أخرى</button>
         </div>
     </div>
 
     <script>
         const db = {
             football: {
-                quiz: [
-                    { q: "من هو الهداف التاريخي لدوري أبطال أوروبا؟", choices: ["كريستيانو رونالدو", "ليونيل ميسي", "روبرت ليفاندوفسكي", "كريم بنزيما"], answer: 0 },
-                    { q: "في أي عام فاز المنتخب العراقي ببطولة كأس آسيا لأول مرة؟", choices: ["2004", "2007", "1996", "2011"], answer: 1 },
-                    { q: "أي نادي فاز بدوري أبطال أوروبا موسم 2022-2023؟", choices: ["ريال مدريد", "مانشستر سيتي", "إنتر ميلان", "بايرن ميونخ"], answer: 1 },
-                    { q: "من هو اللاعب الحاصل على أكبر عدد من كرات بالون دور؟", choices: ["كريستيانو رونالدو", "ليونيل ميسي", "يوهان كرويف", "ميشيل بلاتيني"], answer: 1 },
-                    { q: "كم عدد لاعبي الفريق الواحد على أرضية الملعب؟", choices: ["9", "10", "11", "12"], answer: 2 }
+                easy: [
+                    { q: "من هو الهداف التاريخي لدوري أبطال أوروبا؟", c: ["كريستيانو رونالدو", "ليونيل ميسي", "روبرت ليفاندوفسكي", "كريم بنزيما"], a: 0 },
+                    { q: "كم عدد لاعبي الفريق الواحد على أرضية الملعب؟", c: ["9", "10", "11", "12"], a: 2 },
+                    { q: "أي نادي فاز بدوري أبطال أوروبا موسم 2022-2023؟", c: ["ريال مدريد", "مانشستر سيتي", "إنتر ميلان", "بايرن ميونخ"], a: 1 }
+                ],
+                medium: [
+                    { q: "في أي عام فاز المنتخب العراقي ببطولة كأس آسيا لأول مرة؟", c: ["2004", "2007", "1996", "2011"], a: 1 },
+                    { q: "من هو اللاعب الحاصل على أكبر عدد من كرات بالون دور؟", c: ["كريستيانو رونالدو", "ليونيل ميسي", "يوهان كرويف", "ميشيل بلاتيني"], a: 1 },
+                    { q: "أين أقيمت بطولة كأس العالم 2022؟", c: ["روسيا", "قطر", "البرازيل", "جنوب إفريقيا"], a: 1 }
+                ],
+                hard: [
+                    { q: "من هو اللاعب الذي سجل أسرع هدف في تاريخ نهائيات كأس العالم؟", c: ["هاكان شوكور", "بيلي", "رونالدو", "ميرسلاف كلوزه"], a: 0 },
+                    { q: "أي نادي حقق الرقم القياسي بالفوز بالدوري الإنجليزي الممتاز متواصلاً (3 مرات متتالية حديثاً)؟", c: ["مانشستر يونايتد", "مانشستر سيتي", "آرسنال", "تشيلسي"], a: 1 },
+                    { q: "من هو المدرب الوحيد الذي فاز بدوري أبطال أوروبا 4 مرات؟", c: ["كارلو أنشيلوتي", "بيب جواديولا", "زين الدين زيدان", "السير أليكس فيرغسون"], a: 0 }
                 ],
                 top10: ["كريستيانو رونالدو", "ليونيل ميسي", "بيليه", "دييغو مارادونا", "زين الدين زيدان"],
                 memory: [
                     { f: "النادي الأكثر تتويجاً بدوري أبطال أوروبا؟", b: "ريال مدريد الإسباني" },
-                    { f: "أسرع هدف في تاريخ كأس العالم سجله لاعب من...؟", b: "تركيا (هاكان شوكور)" },
-                    { f: "الملعب التاريخي لمانشستر يونايتد؟", b: "أولد ترافورد (مسرح الأحلام)" }
+                    { f: "أسرع هدف في تاريخ كأس العالم؟", b: "تركيا (هاكان شوكور)" },
+                    { f: "الملعب التاريخي لمانشستر يونايتد؟", b: "أولد ترافورد" }
                 ]
             },
             anime: {
-                quiz: [
-                    { q: "ما اسم البطل الرئيسي في قصة ون بيس؟", choices: ["ناروتو", "لوفي", "غوكو", "إيتاتشي"], answer: 1 },
-                    { q: "ما هي القرية التي ينتمي إليها ناروتو أوزوماكي؟", choices: ["قرية الضباب", "قرية الرمال", "قرية الورق (كونوها)", "قرية الصخر"], answer: 2 },
-                    { q: "في أنمي هجوم العمالقة، ماذا يسمى السور الخارجي الأول؟", choices: ["ماريا", "روز", "سينا", "وان"], answer: 0 },
-                    { q: "من هو صانع مانغا ون بيس الشهير؟", choices: ["ماساشي كيشيموتو", "إيتشيرو أودا", "أكيرا تورياما", "تاتسوكي فوجيموتو"], answer: 1 },
-                    { q: "ما اسم السيف الأسطوري الأول لزورو في ون بيس؟", choices: ["وادو إيتشيمونجي", "ساندائي كيتيتسو", "يوباشيري", "إيما"], answer: 0 }
+                easy: [
+                    { q: "ما اسم البطل الرئيسي في قصة ون بيس؟", c: ["ناروتو", "لوفي", "غوكو", "إيتاتشي"], a: 1 },
+                    { q: "ما هي القرية التي ينتمي إليها ناروتو أوزوماكي؟", c: ["قرية الضباب", "قرية الرمال", "قرية الورق (كونوها)", "قرية الصخر"], a: 2 },
+                    { q: "ما اسم تقنية غوكو الشهيرة في دراغون بول؟", c: ["راسينغان", "كاميهاميها", "غاتس", "تشيدوري"], a: 1 }
+                ],
+                medium: [
+                    { q: "في أنمي هجوم العمالقة، ماذا يسمى السور الخارجي الأول؟", c: ["ماريا", "روز", "سينا", "وان"], a: 0 },
+                    { q: "في أنمي قاتل الشياطين، ما اسم أخت تانجيرو التي تحولت لشيطانة؟", c: ["ميتسوري", "شينوبو", "نيزوكو", "كاناو"], a: 2 },
+                    { q: "من هو صانع مانغا ون بيس الشهير؟", c: ["ماساشي كيشيموتو", "إيتشيرو أودا", "أكيرا تورياما", "تاتسوكي فوجيموتو"], a: 1 }
+                ],
+                hard: [
+                    { q: "ما اسم السيف الأسطوري الأول لزورو في ون بيس؟", c: ["وادو إيتشيمونجي", "ساندائي كيتيتسو", "يوباشيري", "إيما"], a: 0 },
+                    { q: "ما هو اسم الملك الحقيقي لعالم الشينوبي في أواخر ناروتو (مؤسس النينجا)؟", c: ["هاشوراما سنجو", "مادارا أوتشيها", "أوتسوتسوكي هاجورومو (حكيم المسارات الستة)", "أشورا"], a: 2 },
+                    { q: "في أنمي هنتر x هنتر، ما اسم القائد الفعلي لعصابة العناكب (الرائد سبايدر)؟", c: ["كيلوا", "هيسوكا", "كوروورو لوسيلفر", "فايتن"], a: 2 }
                 ],
                 top10: ["ون بيس", "ناروتو", "هجوم العمالقة", "قاتل الشياطين", "دراجون بول"],
                 memory: [
@@ -316,27 +265,43 @@
                 ]
             },
             history: {
-                quiz: [
-                    { q: "في أي عام وقعت معركة القادسية التاريخية؟", choices: ["14 هجري", "15 هجري", "16 هجري", "12 هجري"], answer: 0 },
-                    { q: "من هو باني مدينة بغداد وعاصمتها العباسية؟", choices: ["هارون الرشيد", "أبو جعفر المنصور", "المأمون", "المهدي"], answer: 1 },
-                    { q: "ما هي الحضارة التي قامت على ضفاف دجلة والفرات؟", choices: ["الفراعنة", "بلاد ما بين النهرين", "الإغريق", "الرومان"], answer: 1 },
-                    { q: "في أي سنة سقطت الخلافة العباسية في بغداد على يد المغول؟", choices: ["1258 م", "1312 م", "1187 م", "1453 م"], answer: 0 },
-                    { q: "من هو القائد الإسلامي الذي فتح القسطنطينية عام 1453؟", choices: ["صلاح الدين الأيوبي", "محمد الفاتح", "قطز", "البيبرس"], answer: 1 }
+                easy: [
+                    { q: "من هو أول الخلفاء الراشدين؟", c: ["عمر بن الخطاب", "علي بن أبي طالب", "أبو بكر الصديق", "عثمان بن عفان"], a: 2 },
+                    { q: "متى قامت الحرب العالمية الأولى؟", c: ["1914", "1939", "1945", "1918"], a: 0 },
+                    { q: "في أي دولة تقع مدينة بابل التاريخية الأثرية؟", c: ["مصر", "العراق", "سوريا", "إيران"], a: 1 }
+                ],
+                medium: [
+                    { q: "في أي عام وقعت معركة القادسية التاريخية؟", c: ["14 هجري", "15 هجري", "16 هجري", "12 هجري"], a: 0 },
+                    { q: "من هو باني مدينة بغداد وعاصمتها العباسية؟", c: ["هارون الرشيد", "أبو جعفر المنصور", "المأمون", "المهدي"], a: 1 },
+                    { q: "من هو القائد الإسلامي الذي فتح القسطنطينية عام 1453؟", c: ["صلاح الدين الأيوبي", "محمد الفاتح", "قطز", "البيبرس"], a: 1 }
+                ],
+                hard: [
+                    { q: "في أي سنة سقطت الخلافة العباسية في بغداد على يد المغول؟", c: ["1258 م", "1312 م", "1187 م", "1453 م"], a: 0 },
+                    { q: "من هو القائد المسلم الذي انتصر في معركة عين جالوت ضد المغول؟", c: ["بيبرس", "قطز", "سيف الدين قطز وبايبرس معاً", "صلاح الدين"], a: 2 },
+                    { q: "ما هي المعركة التي أنهت نفوذ الإمبراطورية الساسانية الفارسية بشكل نهائي؟", c: ["القادسية", "نهاوند", "اليمامة", "ذو قار"], a: 1 }
                 ],
                 top10: ["العصر العباسي", "العصر الأموي", "الخلافة الراشدة", "العصر العثماني", "الدولة الأيوبية"],
                 memory: [
                     { f: "متى قامت الثورة الفرنسية؟", b: "عام 1789" },
-                    { f: "أقدم مدينة سكنية مأهولة باستمرار في العراق والعالم؟", b: "أربيل وبابل التاريخية" },
+                    { f: "أقدم مدينة سكنية مأهولة باستمرار في العراق؟", b: "أربيل وبابل" },
                     { f: "معركة حطين كانت بقيادة...؟", b: "صلاح الدين الأيوبي" }
                 ]
             },
             geography: {
-                quiz: [
-                    { q: "ما هي عاصمة دولة استراليا؟", choices: ["سيدني", "ملبورن", "كانبرا", "بريسبان"], answer: 2 },
-                    { q: "ما هو أكبر بحر مغلق في العالم؟", choices: ["البحر الأحمر", "بحر قزوين", "البحر الأسود", "البحر الميت"], answer: 1 },
-                    { q: "أي من هذه الدول تقع في قارتين (آسيا وأوروبا)؟", choices: ["مصر", "تركيا", "المغرب", "السعودية"], answer: 1 },
-                    { q: "ما هو أطول نهر في العالم؟", choices: ["نهر النيل", "نهر الأمازون", "نهر المسيسيبي", "نهر اليانغتسي"], answer: 0 },
-                    { q: "ما هي أصغر دولة في العالم مساحةً؟", choices: ["موناكو", "ليختنشتاين", "فاتيكان", "سان مارينو"], answer: 2 }
+                easy: [
+                    { q: "ما هي عاصمة العراق؟", c: ["البصرة", "الموصل", "بغداد", "أربيل"], a: 2 },
+                    { q: "ما هي عاصمة اليابان؟", c: ["طوكيو", "كيوتو", "أوسكا", "هيروشيما"], a: 0 },
+                    { q: "ما هو أطول نهر في العالم؟", c: ["نهر النيل", "نهر الأمازون", "نهر المسيسيبي", "نهر اليانغتسي"], a: 0 }
+                ],
+                medium: [
+                    { q: "ما هي عاصمة دولة استراليا؟", c: ["سيدني", "ملبورن", "كانبرا", "بريسبان"], a: 2 },
+                    { q: "ما هو أكبر بحر مغلق في العالم؟", c: ["البحر الأحمر", "بحر قزوين", "البحر الأسود", "البحر الميت"], a: 1 },
+                    { q: "ما هي أكبر دولة في العالم من حيث المساحة؟", c: ["كندا", "الصين", "روسيا", "الولايات المتحدة"], a: 2 }
+                ],
+                hard: [
+                    { q: "ما هو اسم أعمق خندق مائي في العالم وأين يقع؟", c: ["خندق ماريانا في المحيط الهادئ", "خندق بورتوريكو في الأطلسي", "خندق سوندا في الهندي", "خندق جاوا"], a: 0 },
+                    { q: "ما هي الدولة التي تمتلك أكبر عدد من الجزر في العالم؟", c: ["إندونيسيا", "السويد", "كندا", "الفلبين"], a: 1 },
+                    { q: "ما هي أصغر دولة في العالم من حيث المساحة؟", c: ["موناكو", "الفاتيكان", "سان مارينو", "ليختنشتاين"], a: 1 }
                 ],
                 top10: ["روسيا", "كندا", "الصين", "الولايات المتحدة", "البرازيل"],
                 memory: [
@@ -346,12 +311,20 @@
                 ]
             },
             games: {
-                quiz: [
-                    { q: "في لعبة GTA V، كم شخصية رئيسية يمكنك التحكم بها؟", choices: ["شخصية واحدة", "شخصيتان", "ثلاث شخصيات", "أربع شخصيات"], answer: 2 },
-                    { q: "أي شركة طورت لعبة ماينكرافت (Minecraft)؟", choices: ["Mojang", "Rockstar", "EA Sports", "Ubisoft"], answer: 0 },
-                    { q: "ما اسم مدينة الألعاب في لعبة جراند سان آندرياس؟", choices: ["لوس سانتوس", "ليبرتي سيتي", "فايس سيتي", "باسادينا"], answer: 0 },
-                    { q: "ما هي أشهر لعبة باتل رويال طورتها شركة Epic Games؟", choices: ["ببجي موبايل", "فورتنايت", "كول أوف ديوتي", "فري فاير"], answer: 1 },
-                    { q: "ما اسم الشخصية الأساسية في سلسلة ألعاب God of War؟", choices: ["دانتو", "كريتوس", "نيتان دريك", "ماستر شيف"], answer: 1 }
+                easy: [
+                    { q: "في لعبة GTA V، كم شخصية رئيسية يمكنك التحكم بها؟", c: ["شخصية واحدة", "شخصيتان", "ثلاث شخصيات", "أربع شخصيات"], a: 2 },
+                    { q: "أي شركة طورت لعبة ماينكرافت (Minecraft)؟", c: ["Mojang", "Rockstar", "EA Sports", "Ubisoft"], a: 0 },
+                    { q: "ما هي أشهر لعبة باتل رويال طورتها شركة Epic Games؟", c: ["ببجي موبايل", "فورتنايت", "كول أوف ديوتي", "فري فاير"], a: 1 }
+                ],
+                medium: [
+                    { q: "ما اسم مدينة الألعاب في لعبة جراند سان آندرياس؟", c: ["لوس سانتوس", "ليبرتي سيتي", "فايس سيتي", "باسادينا"], a: 0 },
+                    { q: "ما اسم الشخصية الأساسية في سلسلة ألعاب God of War؟", c: ["دانتو", "كريتوس", "نيتان دريك", "ماستر شيف"], a: 1 },
+                    { q: "في أي عام صدرت لعبة GTA V لأول مرة؟", c: ["2011", "2013", "2015", "2018"], a: 1 }
+                ],
+                hard: [
+                    { q: "ما هو المحرك البرمجية الذي استخدمته شركة CD Projekt Red لتطوير The Witcher 3؟", c: ["Unreal Engine", "REDengine 3", "Unity", "Frostbite"], a: 1 },
+                    { q: "من هو المبتكر الأساسي لسلسلة ألعاب Dark Souls و Elden Ring؟", c: ["هيديو كوجيما", "هيديتากا ميازاكي", "شيجيرو مياموتو", "تود هوارد"], a: 1 },
+                    { q: "ما هي اللعبة الأولى التي ابتكرت نمط الباتل رويال بشكل تجاري واسع قبل PUBG؟", c: ["H1Z1 / DayZ (Mod)", "Fortnite", "Apex Legends", "CS:GO"], a: 0 }
                 ],
                 top10: ["GTA V", "Minecraft", "Fortnite", "PUBG", "God of War"],
                 memory: [
@@ -361,61 +334,40 @@
                 ]
             },
             movies: {
-                quiz: [
-                    { q: "من هو مخرج ثلاثية فيلم الأبو الروحي (The Godfather)؟", choices: ["كريستوفر نولان", "فرانسيس فورد كوبولا", "ستيفن سبيلبرغ", "مارتن سكورسيزي"], answer: 1 },
-                    { q: "ما اسم الساحر بطل سلسلة أفلام هاري بوتر؟", choices: ["رون ويزلي", "هاري بوتر", "دريكو مالفوي", "سيريش بلاك"], answer: 1 },
-                    { q: "أي فيلم فاز بأكبر عدد من جوائز الأوسكار (11 جائزة)؟", choices: ["تايتانيك", "سيد الخواتم: عودة الملك", "بن هور", "الكل عملوا معاً"], answer: 1 },
-                    { q: "من هو بطل سلسلة أفلام جون ويك (John Wick)؟", choices: ["براد بيت", "كيانو ريفز", "توم كروز", "ليوناردو دي كابريو"], answer: 1 },
-                    { q: "في أي عالم تدور أحداث أفلام مارفل السينمائية؟", choices: ["DC Universe", "MCU", "Star Wars", "Middle Earth"], answer: 1 }
+                easy: [
+                    { q: "ما اسم الساحر بطل سلسلة أفلام هاري بوتر؟", c: ["رون ويزلي", "هاري بوتر", "دريكو مالفوي", "سيريش بلاك"], a: 1 },
+                    { q: "من هو بطل سلسلة أفلام جون ويك (John Wick)؟", c: ["براد بيت", "كيانو ريفز", "توم كروز", "ليوناردو دي كابريو"], a: 1 },
+                    { q: "أي فيلم يروي قصة السفينة الغارقة عام 1912 بطولة ليوناردو دي كابريو؟", c: ["Avatar", "Titanic", "Inception", "The Revenant"], a: 1 }
+                ],
+                medium: [
+                    { q: "من هو مخرج ثلاثية فيلم الأبو الروحي (The Godfather)؟", c: ["كريستوفر نولان", "فرانسيس فورد كوبولا", "ستيفن سبيلبرغ", "مارتن سكورسيزي"], a: 1 },
+                    { q: "في أي عالم تدور أحداث أفلام مارفل السينمائية؟", c: ["DC Universe", "MCU", "Star Wars", "Middle Earth"], a: 1 },
+                    { q: "من هو الممثل الذي أدى دور باتمان في ثلاثية The Dark Knight للمخرج نولان؟", c: ["كريستيان بيل", "بن أفليك", "روبرت باتينسون", "مايكل كيتون"], a: 0 }
+                ],
+                hard: [
+                    { q: "ما هو الفيلم الوحيد الفائز بـ 11 جائزة أوسكار (رقم قياسي) مع تايتانيك وسيد الخواتم؟", c: ["بن هور (Ben-Hur) وعودة الملك", "جلادياتور", "فارست غامب", "لا شيء"], a: 0 },
+                    { q: "من هو المخرج السينمائي الشهير المعروف بأسلوبه الفريد في الحوارات الدموية والعنف مثل Pulp Fiction؟", c: ["كوينتين تارانتينو", "مارتن سكورسيزي", "ديفيد فينشر", "ستيفن سبيلبرغ"], a: 0 },
+                    { q: "ما هو أول فيلم روائي طويل يتم إنتاجه بالكامل باستخدام الحاسوب (CGI) بواسطة بيكسار؟", c: ["Toy Story (1995)", "Shrek", "A Bug's Life", "Monsters Inc"], a: 0 }
                 ],
                 top10: ["الأبو الروحي", "سيد الخواتم", "تايتانيك", "فارس الظلام", "إنستيلار"],
                 memory: [
-                    { f: "فيلم خيال علمي لنولان يدور حول السفر عبر الثقوب الدودية؟", b: "Interstellar" },
-                    { f: "شخصية الجوكر في The Dark Knight أداها الممثل؟", b: "هيث ليدجر" },
+                    { f: "فيلم خيال علمي لنولان يدور حول الثقوب الدودية؟", b: "Interstellar" },
+                    { f: "شخصية الجوكر في The Dark Knight أداها؟", b: "هيث ليدجر" },
                     { f: "سلسلة أفلام حرب الفضاء الشهيرة؟", b: "Star Wars" }
                 ]
             },
             art: {
-                quiz: [
-                    { q: "من رسم لوحة الموناليزا الشهيرة؟", choices: ["ليوناردو دافنشي", "فان غوخ", "بابلو بيكاسو", "ميكيلانجيلو"], answer: 0 },
-                    { q: "ما اسم الرسام الهولندي الذي رسم 'ليلة مرصعة بالنجوم'؟", choices: ["كلود مونيه", "فنسنت فان غوخ", "سلفادور دالي", "رامبرانت"], answer: 1 },
-                    { q: "ما هي الآلة الموسيقية الوترية التي تعزف بالقوس؟", choices: ["الجيتار", "الكمان", "البيانو", "العود"], answer: 1 },
-                    { q: "من مؤلف سيمفونية القدر (السيمفونية الخامسة)؟", choices: ["موتسارت", "بيتهوفن", "باخ", "شوبان"], answer: 1 },
-                    { q: "ما هي المدرسة الفنية التي اشتهر بها بابلو بيكاسو؟", choices: ["الكلاسيكية", "التكعيبية", "الانطباعية", "السريالية"], answer: 1 }
+                easy: [
+                    { q: "من رسم لوحة الموناليزا الشهيرة؟", c: ["ليوناردو دافنشي", "فان غوخ", "بابلو بيكاسو", "ميكيلانجيلو"], a: 0 },
+                    { q: "ما هي الآلة الموسيقية الوترية التي تعزف بالقوس؟", c: ["الجيتار", "الكمان", "البيانو", "العود"], a: 1 },
+                    { q: "ما هي الآلة الموسيقية التي تتكون من مفاتيح سوداء وبيضاء وتعد ملكة الآلات؟", c: ["البيانو", "الأورغن", "الأكورديون", "الهارب"], a: 0 }
                 ],
-                top10: ["ليوناردو دافنشي", "فنسنت فان غوخ", "بابلو بيكاسو", "ميكل أنجيلو", "كلود مونيه"],
-                memory: [
-                    { f: "موسيقي كلاسيكي أصم ألف أعظم الألحان؟", b: "بيتهوفن" },
-                    { f: "لوحة جدارية لميكل أنجيلو في كنيسة سيستين؟", b: "خلق آدم" },
-                    { f: "أسلوب فني يركز على الأشكال الهندسية؟", b: "المدرسة التكعيبية" }
-                ]
-            },
-            general: {
-                quiz: [
-                    { q: "ما هو العنصر الكيميائي الأكثر وفرة في قشرة الأرض؟", choices: ["الأكسجين", "السيليكون", "الحديد", "الكربون"], answer: 0 },
-                    { q: "كم عدد عظام الإنسان البالغ؟", choices: ["206", "208", "210", "198"], answer: 0 },
-                    { q: "ما هي السرعة القصوى للضوء تقريباً في الفراغ؟", choices: ["300 ألف كم/ثا", "150 ألف كم/ثا", "3 مليون كم/ثا", "30 ألف كم/ثا"], answer: 0 },
-                    { q: "أي كوكب يعرف بالكوكب الأحمر؟", choices: ["المشتري", "المريخ", "زحل", "عطارد"], answer: 1 },
-                    { q: "من مخترع المصباح الكهربائي؟", choices: ["نيكولا تسلا", "توماس إديسون", "ألبرت أينشتاين", "ألكسندر غراهام بيل"], answer: 1 }
+                medium: [
+                    { q: "ما اسم الرسام الهولندي لوحة 'ليلة مرصعة بالنجوم'؟", c: ["كلود مونيه", "فنسنت فان غوخ", "سلفادور دالي", "رامبرانت"], a: 1 },
+                    { q: "من مؤلف سيمفونية القدر (السيمفونية الخامسة)؟", c: ["موتسارت", "بيتهوفن", "باخ", "شوبان"], a: 1 },
+                    { q: "ما هي المدرسة الفنية التي اشتهر بها بابلو بيكاسو؟", c: ["الكلاسيكية", "التكعيبية", "الانطباعية", "السريالية"], a: 1 }
                 ],
-                top10: ["الأكسجين", "الهيدروجين", "الحديد", "النيتروجين", "الكربون"],
-                memory: [
-                    { f: "ما هي وحدة قياس التيار الكهربائي؟", b: "الأمبير" },
-                    { f: "ما هو الكوكب الأقرب إلى الشمس؟", b: "عطارد" },
-                    { f: "أكبر كوكب في مجموعتنا الشمسية؟", b: "المشتري" }
-                ]
-            }
-        };
-
-        let state = {
-            cat: 'football',
-            mode: 'quiz',
-            diff: 'easy',
-            index: 0,
-            score: 0,
-            questions: [],
-            isFlipped: false
-        };
-
-        // تفعيل الضغط لكل الكاردات بشكل برمجي سليم 100%
-        document.querySelectorAll('.option-card').forEa
+                hard: [
+                    { q: "من هو الرسام النرويجي الذي رسم لوحة الصرخة (The Scream) الشهيرة؟", c: ["إدفارت مونك", "فنسنت فان غوخ", "بول غوغان", "سلفادور دالي"], a: 0 },
+                    { q: "ما هو اسم المعركة الفنية أو الأسلوب الذي تزعمه سالفادور دالي ويعبر عن اللاوعي والأحلام؟", c: ["السريالية (Surrealism)", "التكعيبية", "الدادائية", "الوحشية"], a: 0 },
+                    { q: "في أي عام تم رسم لوحة الموناليزا بواسطة ليوناردو 
