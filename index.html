@@ -1,366 +1,76 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>منصة التحدي والمعرفة</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXORA | نكسورا</title>
 <style>
-:root{--bg:#0b1020;--card:#151f36;--tile:#253451;--purple:#7959ff;--cyan:#23ddd0;--green:#24c987;--red:#ff627d}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,#202d55,#0b1020 65%);color:#f5f7ff;font-family:Tahoma,Arial,sans-serif;min-height:100vh}
-.container{max-width:950px;margin:auto;padding:16px}
-header{text-align:center;padding:20px 0}
-header .logo{font-size:45px}
-h1{font-size:clamp(25px,5vw,38px);margin:8px 0}
-.muted{color:#b2bfd9;line-height:1.8}
-.panel{background:var(--card);border:1px solid #354361;border-radius:18px;padding:20px;margin-bottom:16px}
-h2{margin-top:0}
-h3{margin:24px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px}
-button,input,select{font:inherit}
-button{cursor:pointer}
-.choice,.answer,.secondary{color:white;background:var(--tile);border:2px solid transparent;border-radius:12px;padding:13px}
-.choice.selected{border-color:var(--cyan);background:#16404b}
-.choice:hover,.answer:hover{border-color:var(--cyan)}
-.primary{color:white;background:linear-gradient(120deg,var(--purple),#438cff);border:0;border-radius:12px;padding:15px;font-weight:bold}
-.secondary{border-color:#394866}
-.full{width:100%;margin-top:16px}
-label{display:block;color:#b2bfd9;margin:12px 0 7px}
-input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #405071;background:#0e172b;color:white}
-.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
-.hidden{display:none!important}
-.pill{display:inline-block;padding:7px 11px;background:#253451;color:var(--cyan);border-radius:25px;margin:3px;font-size:13px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}
-.stat{background:#0e172b;border-radius:12px;padding:12px;text-align:center;color:#b2bfd9}
-.stat strong{display:block;color:var(--cyan);font-size:23px;margin-top:5px}
-.progress{height:8px;background:#303d58;border-radius:20px;overflow:hidden;margin:15px 0}
-.progress div{height:100%;width:0;background:var(--cyan);transition:.25s}
-.question{font-size:clamp(20px,4vw,28px);line-height:1.8;margin:22px 0}
-.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.answer{text-align:right;min-height:58px;border-color:#394866}
-.answer.correct{background:#124733;border-color:var(--green)}
-.answer.wrong{background:#512337;border-color:var(--red)}
-.answer:disabled{cursor:default}
-.feedback{padding:14px;border-radius:12px;margin-top:14px;line-height:1.8}
-.good{background:#124733;color:#a8f7ce}
-.bad{background:#512337;color:#ffc0cb}
-.center{text-align:center}
-.big{font-size:48px;color:var(--cyan);font-weight:bold}
-.player{display:flex;justify-content:space-between;gap:10px;background:#0e172b;padding:13px;border-radius:10px;margin:8px 0}
-.memory{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.memory button{height:75px;font-size:27px;border:1px solid #394866;background:var(--tile);color:white;border-radius:12px}
-.memory button.matched{background:#124733;border-color:var(--green)}
-.small{font-size:13px;color:#b2bfd9}
-footer{text-align:center;color:#8e9bb9;padding:20px}
-@media(max-width:520px){.container{padding:10px}.panel{padding:14px}.answers{grid-template-columns:1fr}.memory button{height:65px}}
+:root{--bg:#080b14;--panel:#111827;--line:#26334c;--text:#f4f7ff;--muted:#9aa8c2;--purple:#8b5cf6;--cyan:#35e0d0;--green:#39d98a;--red:#ff647c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#21164a 0,transparent 35%),radial-gradient(ellipse at 10% 20%,#0d3440 0,transparent 25%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:10px 0 22px;border-bottom:1px solid #ffffff12}.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:22px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--cyan));color:#07101a;font-size:23px}.brand small{display:block;color:var(--muted);font-size:10px;font-weight:normal;letter-spacing:2px}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav button,.secondary{background:#ffffff0a;border:1px solid var(--line);color:var(--text);padding:10px 14px;border-radius:12px}.nav button:hover,.secondary:hover{border-color:var(--cyan)}.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:center;padding:40px 0 25px}.eyebrow{color:var(--cyan);font-size:13px;font-weight:bold}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.25;margin:14px 0}.grad{background:linear-gradient(90deg,var(--cyan),#b9a4ff);color:transparent;background-clip:text}.hero p{color:var(--muted);line-height:1.9;max-width:650px}.primary{background:linear-gradient(110deg,var(--purple),#5d78ff);color:white;font-weight:bold;padding:12px 17px;border-radius:13px;box-shadow:0 8px 26px #7257ed33;border:0}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.hero-card,.panel{background:linear-gradient(145deg,#192640,#111827);border:1px solid #394762;border-radius:22px;padding:22px}.muted{color:var(--muted)}.big-score{font-size:42px;font-weight:900;margin:10px 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:18px}.stat{padding:12px;background:#ffffff08;border:1px solid #ffffff0d;border-radius:13px}.stat strong{display:block;font-size:20px}.stat span{color:var(--muted);font-size:12px}.head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:25px 0 15px}.head h2{margin:0;font-size:24px}.head p{color:var(--muted);font-size:13px;margin:7px 0 0}.games{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.game{background:linear-gradient(150deg,#151f33,#0e1422);border:1px solid var(--line);border-radius:19px;padding:19px;transition:.2s}.game:hover{transform:translateY(-3px);border-color:#8b5cf688}.game-icon{height:53px;width:53px;display:grid;place-items:center;border-radius:16px;background:#8b5cf622;font-size:26px;margin-bottom:13px}.game h3{margin:0 0 8px}.game p{color:var(--muted);font-size:13px;line-height:1.8;min-height:42px}.game-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin:14px 0}.game .primary{width:100%}.bottom{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}.rank{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #ffffff0c}.rank:last-child{border:0}.ranknum{width:32px;height:32px;border-radius:10px;background:#ffffff0b;display:grid;place-items:center;color:var(--cyan);font-weight:bold}.rank .who{flex:1}.rank small{display:block;color:var(--muted);margin-top:4px}.footer{text-align:center;color:#7f8ba3;font-size:12px;padding:28px 0 10px}.overlay{position:fixed;inset:0;background:#02040be8;display:none;align-items:center;justify-content:center;padding:15px;z-index:5;overflow:auto}.modal{width:min(700px,100%);background:#111827;border:1px solid #394762;border-radius:22px;padding:23px;margin:auto;max-height:95vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.close{background:#ffffff12;color:white;border:1px solid var(--line);width:38px;height:38px;border-radius:12px}.progress{height:7px;background:#26334c;border-radius:99px;overflow:hidden;margin:17px 0}.progress div{height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));width:0;transition:.2s}.question{font-size:21px;line-height:1.8;margin:20px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{padding:13px;border-radius:13px;border:1px solid var(--line);background:#172238;color:white;text-align:right}.answer:hover{border-color:var(--cyan)}.answer.correct{border-color:var(--green);background:#39d98a20}.answer.wrong{border-color:var(--red);background:#ff647c20}.feedback{min-height:28px;color:var(--muted);margin:13px 0;line-height:1.7}.modal-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.field{background:#0a1020;border:1px solid var(--line);color:white;padding:12px;border-radius:11px;width:100%;margin:6px 0}.difficulty{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.difficulty button{background:#172238;border:1px solid var(--line);color:white;padding:9px 12px;border-radius:10px}.difficulty button.active{border-color:var(--cyan);background:#35e0d018}.pill{font-size:12px;color:var(--cyan);background:#35e0d015;border:1px solid #35e0d033;padding:6px 9px;border-radius:20px}.hide{display:none!important}.scoreboard{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}.scorecard{background:#0a1020;border:1px solid var(--line);border-radius:13px;padding:12px}.scorecard.active{border-color:var(--cyan);box-shadow:0 0 0 1px #35e0d033}.scorecard strong{display:block;font-size:20px;margin-top:5px;color:var(--cyan)}.toplist{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.topitem{background:#0a1020;border:1px solid var(--line);border-radius:10px;padding:10px}.topitem.revealed{border-color:var(--green);background:#39d98a15}@media(max-width:520px){.toplist{grid-template-columns:1fr}}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:25px}.games{grid-template-columns:1fr 1fr}.bottom{grid-template-columns:1fr}.top{align-items:flex-start}.brand{font-size:18px}}@media(max-width:520px){.wrap{padding:14px}.games{grid-template-columns:1fr}.nav button{padding:8px;font-size:12px}.answers{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.question{font-size:18px}}
 </style>
 </head>
 <body>
-<div class="container">
-<header>
-<div class="logo">🏆</div>
-<h1>منصة التحدي والمعرفة</h1>
-<div class="muted">تحدَّ معلوماتك، نافس أصدقاءك، واثبت منو الأذكى!</div>
-</header>
-
-<section class="panel" id="home">
-<h2>🎮 إعداد التحدي</h2>
-
-<h3>طريقة اللعب</h3>
-<div class="grid" id="modes">
-<button class="choice selected" data-value="solo">👤 فردي</button>
-<button class="choice" data-value="players">👥 لاعبين</button>
-<button class="choice" data-value="teams">🛡️ فرق</button>
-</div>
-
-<div id="multiSettings" class="row hidden">
-<div id="countBox">
-<label>عدد اللاعبين</label>
-<select id="playerCount">
-<option value="2">لاعبان</option><option value="3">3 لاعبين</option>
-<option value="4">4 لاعبين</option><option value="5">5 لاعبين</option><option value="6">6 لاعبين</option>
-</select>
-</div>
-<div id="teamBox" class="hidden">
-<label>عدد الفرق</label>
-<select id="teamCount"><option value="2">فريقان</option><option value="3">3 فرق</option></select>
-</div>
-<div>
-<label>أسماء اللاعبين أو الفرق، افصل بفاصلة</label>
-<input id="names" placeholder="علي، حسن، محمد">
-</div>
-</div>
-
-<h3>الفعالية</h3>
-<div class="grid" id="activities">
-<button class="choice selected" data-value="quiz">🧠 سؤال وجواب</button>
-<button class="choice" data-value="top10">🔟 توب 10</button>
-<button class="choice" data-value="memory">🃏 الذاكرة</button>
-<button class="choice" data-value="tf">✅ صح أو خطأ</button>
-<button class="choice" data-value="who">🕵️ منو أني؟</button>
-</div>
-
-<h3>التصنيف</h3>
-<div class="grid" id="categories">
-<button class="choice selected" data-value="all">🌐 الكل</button>
-<button class="choice" data-value="football">⚽ كرة القدم</button>
-<button class="choice" data-value="history">🏛️ التاريخ</button>
-<button class="choice" data-value="geography">🌍 الجغرافية</button>
-<button class="choice" data-value="science">🔬 العلوم</button>
-<button class="choice" data-value="games">🎮 الألعاب</button>
-<button class="choice" data-value="anime">🍥 الأنمي</button>
-<button class="choice" data-value="general">💡 عامة</button>
-</div>
-
-<h3>الصعوبة</h3>
-<div class="grid" id="difficulties">
-<button class="choice" data-value="easy">🟢 سهل</button>
-<button class="choice selected" data-value="medium">🟡 متوسط</button>
-<button class="choice" data-value="hard">🔴 صعب</button>
-<button class="choice" data-value="mixed">🎲 عشوائي</button>
-</div>
-
-<div class="row">
-<div><label>عدد الأسئلة</label>
-<select id="questionCount"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
-<div><label>وقت السؤال</label>
-<select id="seconds"><option value="0">بدون مؤقت</option><option value="10">10 ثوانٍ</option><option selected value="15">15 ثانية</option><option value="30">30 ثانية</option></select></div>
-</div>
-
-<button type="button" class="primary full" id="start">🚀 بدء التحدي</button>
-<div id="error" class="feedback bad hidden"></div>
-</section>
-
-<section class="panel hidden" id="game">
-<div><span class="pill" id="activityLabel"></span><span class="pill" id="categoryLabel"></span></div>
-<div class="stats">
-<div class="stat">السؤال<strong id="number">1/10</strong></div>
-<div class="stat">النقاط<strong id="score">0</strong></div>
-<div class="stat">الوقت<strong id="timer">15</strong></div>
-</div>
-<div class="progress"><div id="bar"></div></div>
-<div id="content"></div>
-<div id="feedback" class="feedback hidden"></div>
-<button type="button" class="primary full hidden" id="next">السؤال التالي ←</button>
-<button type="button" class="secondary full" id="quit">إنهاء الجولة</button>
-</section>
-
-<section class="panel hidden center" id="result">
-<div class="logo">🏆</div><h2 id="resultTitle">انتهى التحدي!</h2>
-<div class="big" id="finalScore">0</div><p class="muted" id="resultMessage"></p>
-<div id="ranking"></div>
-<button type="button" class="primary full" id="again">🔄 إعادة اللعب</button>
-<button type="button" class="secondary full" id="back">الإعدادات</button>
-</section>
-<footer>منصة التحدي والمعرفة</footer>
-</div>
-
+<div class="wrap">
+<header class="top"><div class="brand"><div class="logo">N</div><div>NEXORA<small>PLAY • THINK • WIN</small></div></div><nav class="nav"><button onclick="scrollToId('games')">الألعاب</button><button onclick="scrollToId('leaderboard')">المتصدرون</button><button onclick="openAuth()">حسابي</button><button onclick="openAdmin()">الإدارة</button></nav></header>
+<section class="hero"><div><div class="eyebrow">✦ ساحة التحدّي تبدأ من هنا</div><h1>فكّر أسرع.<br><span class="grad">نافس أقوى.</span></h1><p>اختبر معلوماتك، حل الألغاز، نافس أصدقاءك، واجمع النقاط. اختر مستوى الصعوبة الذي يناسبك وابدأ رحلتك نحو الصدارة.</p><div class="hero-actions"><button class="primary" onclick="scrollToId('games')">ابدأ التحدي ←</button><button class="secondary" onclick="showHelp()">كيف ألعب؟</button></div></div><div class="hero-card"><div class="muted">نقاطك على هذا الجهاز</div><div class="big-score"><span id="totalPoints">0</span> <span style="font-size:17px;color:var(--cyan)">XP</span></div><div class="muted">كل جولة فرصة جديدة للصعود.</div><div class="stats"><div class="stat"><strong id="playedCount">0</strong><span>جولات</span></div><div class="stat"><strong id="bestScore">0</strong><span>أفضل نتيجة</span></div><div class="stat"><strong id="rankLevel">1</strong><span>المستوى</span></div></div><p class="muted" style="font-size:11px">نسخة تجريبية: الحفظ محلي حتى إعداد قاعدة بيانات.</p></div></section>
+<section id="games"><div class="head"><div><h2>اختر تحدّيك</h2><p>حدد اللعبة ومستوى الصعوبة قبل البداية.</p></div><span class="pill">11 لعبة وفئة</span></div><div class="games" id="gameCards"></div></section>
+<div class="bottom"><section class="panel" id="leaderboard"><h3>🏆 لوحة المتصدرين</h3><p class="muted" style="font-size:13px">ترتيب محلي تجريبي في هذه النسخة.</p><div id="leaderRows"></div></section><section class="panel"><h3>⚡ كيف تصعد؟</h3><p class="muted" style="line-height:2">١. اختر لعبتك ومستوى الصعوبة.<br>٢. أجب عن الأسئلة واجمع النقاط.<br>٣. كرر اللعب لتحطيم أفضل نتيجة.<br>٤. الحسابات والغرف الجماعية تحتاج ربط قاعدة بيانات وخادماً قبل النشر العام.</p></section></div>
+<footer class="footer">NEXORA © 2026 — تحدّاك عقلك، والباقي عليك.</footer></div>
+<div class="overlay" id="overlay"><div class="modal"><div class="modal-head"><div><div class="eyebrow" id="gameLabel">التحدي</div><h2 id="modalTitle" style="margin:7px 0">جاهز؟</h2></div><button class="close" onclick="closeGame()">✕</button></div><div id="difficultyArea"></div><div class="progress"><div id="progressBar"></div></div><div id="gameContent"></div></div></div>
 <script>
-(function(){
-"use strict";
-const $=id=>document.getElementById(id);
-const all=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
-const state={mode:"solo",activity:"quiz",category:"all",difficulty:"medium"};
-let players=[],round=[],index=0,turn=0,timerId=null,timeLeft=0,answered=false;
-let memoryDeck=[],memoryOpen=[],memoryPairs=0,memoryMoves=0,topFound=0;
-
-const questions=[
-["football","easy","كم لاعباً يبدأ به فريق كرة القدم؟",["9","10","11","12"],2],
-["football","easy","من فاز بكأس العالم 2022؟",["فرنسا","الأرجنتين","البرازيل","ألمانيا"],1],
-["football","easy","كم دقيقة مدة المباراة الأصلية؟",["60","80","90","100"],2],
-["football","medium","من فاز بكأس العالم 2018؟",["كرواتيا","فرنسا","بلجيكا","إسبانيا"],1],
-["football","medium","ما ملعب نادي ليفربول؟",["أنفيلد","ويمبلي","سان سيرو","كامب نو"],0],
-["football","hard","من فاز بأول كأس عالم سنة 1930؟",["الأرجنتين","إيطاليا","أوروغواي","البرازيل"],2],
-["football","hard","أي منتخب فاز بكأس العالم 2010؟",["ألمانيا","إسبانيا","هولندا","الأوروغواي"],1],
-["history","easy","أين تقع أهرامات الجيزة؟",["العراق","مصر","اليونان","الهند"],1],
-["history","easy","أي حضارة قديمة نشأت في جنوب بلاد الرافدين؟",["السومرية","المايا","الإغريقية","الرومانية"],0],
-["history","medium","في أي سنة انتهت الحرب العالمية الثانية؟",["1939","1942","1945","1950"],2],
-["history","medium","من ارتبط اسمه بشريعة بابلية مشهورة؟",["حمورابي","الإسكندر","قيصر","نبوخذ نصر"],0],
-["history","hard","في أي سنة سقطت القسطنطينية بيد العثمانيين؟",["1258","1453","1492","1517"],1],
-["geography","easy","ما عاصمة العراق؟",["البصرة","بغداد","الموصل","النجف"],1],
-["geography","easy","ما أكبر محيط في العالم؟",["الأطلسي","الهندي","الهادئ","المتجمد الشمالي"],2],
-["geography","medium","ما عاصمة أستراليا؟",["سيدني","ملبورن","كانبيرا","بيرث"],2],
-["geography","medium","أي قارة تضم أكبر عدد من الدول؟",["آسيا","أفريقيا","أوروبا","أمريكا الجنوبية"],1],
-["geography","hard","ما عاصمة منغوليا؟",["كاتماندو","أولان باتور","طشقند","بيشكيك"],1],
-["science","easy","ما الكوكب الأحمر؟",["الزهرة","المريخ","المشتري","عطارد"],1],
-["science","easy","ما الغاز الضروري لتنفس الإنسان؟",["الهيليوم","الأكسجين","الهيدروجين","النيون"],1],
-["science","medium","ما الصيغة الكيميائية للماء؟",["CO2","O2","H2O","NaCl"],2],
-["science","medium","أي عضو يضخ الدم؟",["الرئة","الكبد","القلب","المعدة"],2],
-["science","hard","ما وحدة قياس المقاومة الكهربائية؟",["الفولت","الأمبير","الأوم","الواط"],2],
-["science","hard","ما العملية التي تصنع بها النباتات غذاءها؟",["التبخر","البناء الضوئي","التكاثف","التجمد"],1],
-["games","easy","من طور Minecraft؟",["Mojang","Ubisoft","Valve","Nintendo"],0],
-["games","easy","أي سلسلة ألعاب تضم شخصية كريتوس؟",["God of War","FIFA","Minecraft","Forza"],0],
-["games","medium","من الشركة المطورة لسلسلة Zelda؟",["Sony","Nintendo","EA","Rockstar"],1],
-["games","hard","من طور The Witcher 3؟",["CD Projekt Red","Naughty Dog","Mojang","Valve"],0],
-["anime","easy","من بطل One Piece؟",["ناروتو","لوفي","إيتادوري","إيتشيغو"],1],
-["anime","easy","من بطل أنمي Naruto؟",["ساسكي","كاكاشي","ناروتو","غاارا"],2],
-["anime","medium","ما اسم أخت تانجيرو في Demon Slayer؟",["زينيتسو","إينوسكي","نيزوكو","غيو"],2],
-["anime","medium","ما اسم دفتر القتل في Death Note؟",["Black Book","Death Note","Soul Book","Dark File"],1],
-["anime","hard","من مؤلف مانغا Attack on Titan؟",["إييتشيرو أودا","هاجيمي إيساياما","كيشيموتو","فوجيموتو"],1],
-["general","easy","كم يوماً في الأسبوع؟",["5","6","7","8"],2],
-["general","easy","ما اللغة الرسمية في البرازيل؟",["الإسبانية","البرتغالية","الفرنسية","الإنجليزية"],1],
-["general","medium","من رسم لوحة الموناليزا؟",["فان غوخ","ليوناردو دا فينشي","بيكاسو","مونيه"],1],
-["general","medium","كم ضلعاً للمسدس؟",["5","6","7","8"],1],
-["general","hard","كم ضلعاً للمكعب؟",["6","8","12","16"],2]
-].map(x=>({c:x[0],d:x[1],q:x[2],a:x[3],k:x[4]}));
-
-const tfQuestions=[
-{c:"science",q:"الشمس نجم وليست كوكباً.",k:true},
-{c:"geography",q:"عاصمة أستراليا هي سيدني.",k:false,why:"عاصمة أستراليا هي كانبيرا."},
-{c:"football",q:"يبدأ فريق كرة القدم عادةً بـ11 لاعباً.",k:true},
-{c:"geography",q:"المحيط الأطلسي أكبر من المحيط الهادئ.",k:false,why:"المحيط الهادئ هو الأكبر."},
-{c:"science",q:"الماء يتكون من الهيدروجين والأكسجين.",k:true},
-{c:"football",q:"فازت البرازيل بكأس العالم 2022.",k:false,why:"الفائز كان الأرجنتين."},
-{c:"geography",q:"بغداد عاصمة العراق.",k:true},
-{c:"games",q:"شركة Nintendo هي التي طورت Minecraft.",k:false,why:"طورت اللعبة شركة Mojang."},
-{c:"science",q:"للعنكبوت ثماني أرجل.",k:true},
-{c:"history",q:"انتهت الحرب العالمية الثانية سنة 1945.",k:true}
-];
-
-const top10=[
-{q:"اذكر كوكباً من كواكب المجموعة الشمسية",a:["عطارد","الزهرة","الأرض","المريخ","المشتري","زحل","أورانوس","نبتون"]},
-{q:"اذكر دولة عربية",a:["العراق","السعودية","مصر","الأردن","سوريا","لبنان","الكويت","قطر","البحرين","عُمان"]},
-{q:"اذكر مركزاً في كرة القدم",a:["حارس مرمى","قلب دفاع","ظهير","محور","وسط","جناح","صانع ألعاب","مهاجم","رأس حربة","وسط هجومي"]},
-{q:"اذكر حيواناً يعيش في الماء",a:["الدلفين","الحوت","القرش","الأخطبوط","السلحفاة البحرية","قنديل البحر","فرس البحر","الفقمة","الراي","ثعبان البحر"]},
-{q:"اذكر قارة من قارات العالم",a:["آسيا","أفريقيا","أوروبا","أمريكا الشمالية","أمريكا الجنوبية","أستراليا","أنتاركتيكا"]}
-];
-const whoQuestions=[
-{q:"أنا كوكب يُعرف بالكوكب الأحمر. من أكون؟",a:["المريخ","الزهرة","زحل","عطارد"],k:0},
-{q:"أنا لاعب أرجنتيني فاز بكأس العالم 2022. من أكون؟",a:["رونالدو","ميسي","دي ماريا","أغويرو"],k:1},
-{q:"أنا نهر مشهور في العراق، وأجري مع دجلة. من أكون؟",a:["النيل","الفرات","الأردن","العاصي"],k:1},
-{q:"أحلم بأن أصبح ملك القراصنة في الأنمي. من أكون؟",a:["لوفي","ناروتو","غوكو","إيتادوري"],k:0}
-];
-function shuffle(a){return a.slice().sort(()=>Math.random()-.5)}
-function esc(s){return String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]))}
-function selectGroup(id,key){
-$(id).addEventListener("click",e=>{
-const b=e.target.closest("[data-value]");if(!b)return;
-all("#"+id+" .choice").forEach(x=>x.classList.remove("selected"));
-b.classList.add("selected");state[key]=b.dataset.value;updateSettings();
-});
+const bank={
+quiz:{
+easy:[
+["ما عاصمة العراق؟",["بغداد","البصرة","الموصل","أربيل"],0],
+["كم عدد أيام الأسبوع؟",["5","6","7","8"],2],
+["ما لون أوراق الشجر غالباً؟",["أزرق","أخضر","أحمر","أسود"],1],
+["أي حيوان يُعرف بسفينة الصحراء؟",["الحصان","الجمل","الغزال","الذئب"],1],
+["كم يساوي 5 + 7؟",["10","11","12","13"],2]],
+medium:[
+["ما أكبر محيط على الأرض؟",["الأطلسي","الهندي","الهادئ","المتجمد الشمالي"],2],
+["من كتب رواية البؤساء؟",["فيكتور هوغو","تولستوي","شكسبير","نجيب محفوظ"],0],
+["ما العنصر الكيميائي الذي رمزه Fe؟",["الفضة","الحديد","الفلور","الذهب"],1],
+["في أي قارة تقع الأرجنتين؟",["آسيا","أفريقيا","أمريكا الجنوبية","أوروبا"],2],
+["كم ضلعاً للمسدس؟",["5","6","7","8"],1]],
+hard:[
+["ما العدد الأولي الذي يأتي بعد 89؟",["91","93","97","99"],2],
+["ما اسم العملية التي تصنع بها النباتات غذاءها باستخدام الضوء؟",["التنفس","البناء الضوئي","التبخر","التكاثف"],1],
+["أي حضارة بنت مدينة ماتشو بيتشو؟",["المايا","الإنكا","الرومان","الفينيقيون"],1],
+["ما وحدة قياس المقاومة الكهربائية؟",["الفولت","الأمبير","الأوم","الواط"],2],
+["أي طبقة من الغلاف الجوي تحتوي معظم الأوزون؟",["التروبوسفير","الستراتوسفير","الميزوسفير","الإكسوسفير"],1]],
+genius:[
+["إذا كان مجموع عددين 30 والفرق بينهما 8، فما العدد الأكبر؟",["11","15","19","22"],2],
+["كم مربعاً في شبكة 2×2 إذا حسبنا المربعات بكل الأحجام؟",["4","5","6","8"],2],
+["ما أصغر عدد موجب يقبل القسمة على 2 و3 و4 و5 و6 معاً؟",["30","40","60","120"],2],
+["إذا كانت الساعة 3:15، فما الزاوية الأصغر بين العقربين؟",["0°","7.5°","15°","22.5°"],1],
+["ما العدد التالي: 2، 6، 12، 20، 30، ؟",["36","40","42","44"],2]]
+},
+football:{
+easy:[["كم لاعباً يبدأ به فريق كرة القدم داخل الملعب؟",["9","10","11","12"],2],["كم دقيقة مدة المباراة الأصلية عادةً دون الوقت بدل الضائع؟",["60","80","90","100"],2],["أي لاعب يُسمح له باستخدام يديه داخل منطقة جزائه وفق القواعد؟",["المهاجم","الحارس","المدافع","الجناح"],1],["كم نقطة يحصل الفريق عادةً على الفوز في الدوري؟",["1","2","3","4"],2],["ما لون البطاقة التي تعني الطرد؟",["الصفراء","الخضراء","الحمراء","الزرقاء"],2]],
+medium:[["كم منتخباً شارك في كأس العالم 2022؟",["24","32","36","48"],1],["أي دولة استضافت كأس العالم 2010؟",["البرازيل","ألمانيا","جنوب أفريقيا","روسيا"],2],["كم لاعباً من الفريق الواحد ينفذ ركلات الترجيح في السلسلة الأولى عادةً؟",["3","4","5","6"],2],["ما اسم الجائزة التي تُمنح لأفضل لاعب في كأس العالم؟",["الحذاء الذهبي","الكرة الذهبية","القفاز الذهبي","جائزة اللعب النظيف"],1],["ما أقصى عدد تبديلات مسموح به غالباً في القواعد الحديثة للمباريات الرسمية؟",["3","4","5","7"],2]],
+hard:[["أي منتخب فاز بكأس العالم 2014؟",["الأرجنتين","ألمانيا","هولندا","البرازيل"],1],["من فاز بكأس العالم 1998؟",["فرنسا","إيطاليا","البرازيل","ألمانيا"],0],["أي مركز يرتديه عادةً اللاعب رقم 1؟",["حارس المرمى","قلب الدفاع","المهاجم","لاعب الوسط"],0],["ما المنتخب الذي فاز ببطولة أمم أوروبا 2004؟",["البرتغال","اليونان","إسبانيا","التشيك"],1],["أي نادٍ إيطالي يلعب مبارياته البيتية في ملعب سان سيرو مع إنتر؟",["روما","لاتسيو","ميلان","نابولي"],2]],
+genius:[["من فاز بكأس العالم 2010؟",["هولندا","ألمانيا","إسبانيا","الأوروغواي"],2],["أي منتخب أحرز لقب يورو 2016؟",["فرنسا","البرتغال","إيطاليا","بلجيكا"],1],["في أي سنة أقيم أول كأس عالم لكرة القدم؟",["1920","1930","1940","1950"],1],["ما الدولة التي فازت بأكبر عدد من ألقاب كأس العالم للرجال حتى نسخة 2022؟",["ألمانيا","إيطاليا","الأرجنتين","البرازيل"],3],["أي نادٍ فاز بدوري أبطال أوروبا 2004؟",["موناكو","بورتو","ميلان","تشيلسي"],1]]
+},
+million:{
+easy:[["كم يساوي 2 × 6؟",["8","10","12","14"],2],["ما عاصمة مصر؟",["القاهرة","الإسكندرية","الجيزة","الأقصر"],0],["أيها فاكهة؟",["الجزر","التفاح","الخس","البطاطا"],1],["كم شهراً في السنة؟",["10","11","12","13"],2],["أي كوكب نعيش عليه؟",["المريخ","الأرض","زحل","عطارد"],1]],
+medium:[["ما الغاز الذي تمتصه النباتات في البناء الضوئي؟",["الأكسجين","النيتروجين","ثاني أكسيد الكربون","الهيدروجين"],2],["ما عاصمة اليابان؟",["كيوتو","أوساكا","طوكيو","ناغويا"],2],["كم ضلعاً للمثمن؟",["6","7","8","9"],2],["ما العملة الرسمية لليابان؟",["اليوان","الين","الوون","الروبية"],1],["أي عضو يضخ الدم في الجسم؟",["الكبد","الرئة","القلب","المعدة"],2]],
+hard:[["ما الجذر التربيعي للعدد 2025؟",["35","40","45","55"],2],["ما اسم أقرب نجم إلى الأرض بعد الشمس؟",["سيريوس","بروكسيما قنطورس","فيغا","منكب الجوزاء"],1],["ما عاصمة كازاخستان الحالية؟",["ألماتي","أستانا","طشقند","بيشكيك"],1],["أي عالم صاغ قوانين الحركة الثلاثة؟",["نيوتن","أينشتاين","غاليليو","فاراداي"],0],["ما الرمز الكيميائي للبوتاسيوم؟",["P","Pt","K","Po"],2]],
+genius:[["إذا كان 3 أس 4 يساوي؟",["27","64","81","243"],2],["أي عدد أولي مجموع أرقامه 10؟",["19","21","27","33"],0],["كم درجة مجموع زوايا الشكل الرباعي؟",["180°","270°","360°","540°"],2],["ما اسم المجرة التي تضم المجموعة الشمسية؟",["المرأة المسلسلة","درب التبانة","مجرة المثلث","سحابة ماجلان"],1],["إذا قطعت سيارة 150 كم في ساعتين ونصف، فما متوسط سرعتها؟",["50 كم/س","55 كم/س","60 كم/س","75 كم/س"],2]]
+},
+riddle:{
+easy:[["شيء له أسنان ولا يعض، ما هو؟",["المشط","الكلب","المفتاح","المنشار"],0],["شيء نراه في الليل ثلاث مرات وفي النهار مرة واحدة، ما هو؟",["القمر","حرف اللام","النجوم","الظل"],1],["له عين ولا يرى، ما هو؟",["الإبرة","الإنسان","العاصفة","السمكة"],0],["كلما أخذت منه كبر، ما هو؟",["الظل","الحفرة","العمر","الصوت"],1],["يمشي بلا قدمين ويبكي بلا عينين، ما هو؟",["السحاب","الكرسي","الحجر","الكتاب"],0]],
+medium:[["ما الشيء الذي إذا نطقت اسمه كسرته؟",["الزجاج","الصمت","الوعد","السر"],1],["له مدن بلا بيوت وأنهار بلا ماء، ما هو؟",["الحلم","الخريطة","الكتاب","المرآة"],1],["ما الشيء الذي يملأ الغرفة ولا يشغل حيزاً؟",["الضوء","الهواء","الماء","الرمل"],0],["ما الذي يكتب ولا يقرأ؟",["القلم","الطالب","المعلم","الكتاب"],0],["شيء تملكه أنت ويستعمله الآخرون أكثر منك، ما هو؟",["مالك","اسمك","بيتك","قلمك"],1]],
+hard:[["رجل ينظر إلى صورة ويقول: ليس لي أخ ولا أخت، لكن والد هذا الرجل هو ابن أبي. من في الصورة؟",["ابنه","أبوه","عمه","جده"],0],["لديك 3 مفاتيح خارج غرفة ومصباح داخلها، يمكنك دخول الغرفة مرة واحدة فقط. كيف تعرف مفتاح المصباح؟",["تجربة كل المفاتيح داخل الغرفة","تشغيل مفتاح وتركه ثم تشغيل الثاني والدخول وملاحظة الضوء والحرارة","اختيار عشوائي","لا يمكن"],1],["ما العدد الذي إذا ضربته بنفسه ثم أضفت إليه نفسه كان الناتج 12؟",["2","3","4","6"],1],["شيء كلما زاد نقص، ما هو؟",["المال","العمر المتبقي","العلم","الضوء"],1],["ما الشيء الذي له مفاتيح كثيرة ولا يفتح باباً؟",["البيانو","القفل","المفتاح الرئيسي","الباب"],0]],
+genius:[["لديك 8 كرات متشابهة وواحدة أثقل، وميزان كفتين. ما أقل عدد وزنات مضمون لتحديدها؟",["1","2","3","4"],1],["أب وابنه تعرضا لحادث، الأب لم ينجُ، والجراح قال عن الابن: هذا ابني. كيف؟",["الجراح أمه","الجراح صديقه","الجراح أخوه","لا يمكن"],0],["إذا تجاوزت المتسابق الذي في المركز الثاني، فما مركزك؟",["الأول","الثاني","الثالث","الرابع"],1],["ما أقل عدد من القطوع المستقيمة اللازمة لتقسيم دائرة إلى 8 مناطق كحد أقصى بخطوط مستقيمة؟",["2","3","4","5"],1],["لدى مزارع 17 خروفاً، ماتت كلها ما عدا 9. كم بقي؟",["8","9","17","0"],1]]
 }
-selectGroup("modes","mode");selectGroup("activities","activity");
-selectGroup("categories","category");selectGroup("difficulties","difficulty");
-
-function updateSettings(){
-$("multiSettings").classList.toggle("hidden",state.mode==="solo");
-$("countBox").classList.toggle("hidden",state.mode!=="players");
-$("teamBox").classList.toggle("hidden",state.mode!=="teams");
-}
-updateSettings();
-
-function makePlayers(){
-const names=$("names").value.split(/[,،]/).map(s=>s.trim()).filter(Boolean);
-if(state.mode==="solo")return[{name:names[0]||"اللاعب",score:0}];
-const n=state.mode==="teams"?Number($("teamCount").value):Number($("playerCount").value);
-return Array.from({length:n},(_,i)=>({name:names[i]||(state.mode==="teams"?"الفريق ":"اللاعب ")+(i+1),score:0}));
-}
-function startGame(){
-try{
-clearInterval(timerId);timerId=null;
-players=makePlayers();index=0;turn=0;answered=false;
-memoryOpen=[];memoryPairs=0;memoryMoves=0;topFound=0;
-$("error").classList.add("hidden");
-$("home").classList.add("hidden");$("result").classList.add("hidden");$("game").classList.remove("hidden");
-$("activityLabel").textContent=({quiz:"سؤال وجواب",top10:"توب 10",memory:"الذاكرة",tf:"صح أو خطأ",who:"منو أني؟"})[state.activity];
-$("categoryLabel").textContent=state.category==="all"?"كل التصنيفات":state.category;
-if(state.activity==="memory"){startMemory();return}
-if(state.activity==="top10"){round=shuffle(top10).slice(0,Math.min(5,Number($("questionCount").value)));showTop10();return}
-if(state.activity==="tf"){
-let a=tfQuestions.filter(q=>state.category==="all"||q.c===state.category);if(!a.length)a=tfQuestions;
-round=shuffle(a).slice(0,Math.min(Number($("questionCount").value),a.length));
-}else if(state.activity==="who"){
-round=shuffle(whoQuestions).slice(0,Math.min(Number($("questionCount").value),whoQuestions.length));
-}else{
-let a=questions.filter(q=>(state.category==="all"||q.c===state.category)&&(state.difficulty==="mixed"||q.d===state.difficulty));
-if(!a.length)a=questions.filter(q=>state.category==="all"||q.c===state.category);
-if(!a.length)a=questions;
-round=shuffle(a).slice(0,Math.min(Number($("questionCount").value),a.length));
-}
-showQuestion();
-}catch(err){
-$("game").classList.add("hidden");$("home").classList.remove("hidden");
-$("error").textContent="صار خطأ أثناء بدء اللعبة: "+err.message;
-$("error").classList.remove("hidden");console.error(err);
-}
-}
-$("start").addEventListener("click",startGame);
-$("next").addEventListener("click",next);
-$("quit").addEventListener("click",()=>finish(true));
-$("again").addEventListener("click",startGame);
-$("back").addEventListener("click",home);
-
-function showQuestion(){
-clearInterval(timerId);timerId=null;answered=false;
-$("feedback").classList.add("hidden");$("next").classList.add("hidden");
-const q=round[index];if(!q){finish();return}
-$("number").textContent=(index+1)+"/"+round.length;
-$("bar").style.width=(index/round.length*100)+"%";
-$("score").textContent=players.reduce((s,p)=>s+p.score,0);
-$("timer").textContent=$("seconds").value==="0"?"∞":$("seconds").value;
-$("quit").classList.remove("hidden");
-$("content").innerHTML=`<div class="question">${esc(q.q)}</div>`;
-if(state.activity==="tf"){
-$("content").innerHTML+=`<div class="answers"><button class="answer" data-tf="true">✅ صح</button><button class="answer" data-tf="false">❌ خطأ</button></div>`;
-}else{
-let choices=q.a.map((v,i)=>({v,i}));if(state.activity!=="who")choices=shuffle(choices);
-$("content").innerHTML+=`<div class="answers">${choices.map(x=>`<button class="answer" data-answer="${x.i}">${esc(x.v)}</button>`).join("")}</div>`;
-}
-$("turnLabel")?.remove();
-all(".answer",$("content")).forEach(b=>b.addEventListener("click",()=>{
-if(state.activity==="tf")check(b.dataset.tf==="true");
-else check(Number(b.dataset.answer));
-}));
-startTimer();
-}
-function startTimer(){
-clearInterval(timerId);let s=Number($("seconds").value);timeLeft=s;
-if(!s){$("timer").textContent="∞";return}
-$("timer").textContent=timeLeft;
-timerId=setInterval(()=>{timeLeft--;$("timer").textContent=timeLeft;if(timeLeft<=0){clearInterval(timerId);timerId=null;if(!answered)timeoutAnswer()}},1000);
-}
-function timeoutAnswer(){
-answered=true;all(".answer",$("content")).forEach(b=>b.disabled=true);
-$("feedback").textContent="⏰ انتهى الوقت!";$("feedback").className="feedback bad";$("feedback").classList.remove("hidden");showNext();
-}
-function check(value){
-if(answered)return;answered=true;clearInterval(timerId);
-const q=round[index];let ok=false,answerText="";
-if(state.activity==="tf"){
-ok=value===q.k;answerText=q.k?"صح":"خطأ";
-all(".answer",$("content")).forEach(b=>{b.disabled=true;if(b.dataset.tf===String(q.k))b.classList.add("correct");else if(b.dataset.tf===String(value))b.classList.add("wrong")});
-}else{
-ok=value===q.k;answerText=q.a[q.k];
-all(".answer",$("content")).forEach(b=>{b.disabled=true;if(Number(b.dataset.answer)===q.k)b.classList.add("correct");else if(Number(b.dataset.answer)===value)b.classList.add("wrong")});
-}
-if(ok){
-let points=state.difficulty==="easy"?10:state.difficulty==="hard"?30:20;
-if(Number($("seconds").value)>0)points+=Math.max(0,Math.floor(timeLeft/3));
-players[turn].score+=points;
-$("feedback").textContent="🎉 إجابة صحيحة! +"+points+" نقطة";
-$("feedback").className="feedback good";
-}else{
-$("feedback").textContent="❌ الإجابة الصحيحة: "+answerText+(q.why?" — "+q.why:"");
-$("feedback").className="feedback bad";
-}
-$("feedback").classList.remove("hidden");$("score").textContent=players.reduce((s,p)=>s+p.score,0);showNext();
-}
-function showNext(){
-$("next").classList.remove("hidden");$("next").textContent=index===round.length-1?"عرض النتائج 🏆":"السؤال التالي ←";
-}
-function next(){
-if(state.activity==="memory"){if(memoryPairs===8)finish();return}
-if(!answered&&state.activity!=="top10")return;
-if(index>=round.length-1){finish();return}
-index++;if(players.length>1)turn=(turn+1)%players.length;
-if(state.activity==="top10")showTop10();else showQuestion();
-}
-function showTop10(){
-answered=false;clearInterval(timerId);const q=round[index];
-$("number").textContent=(index+1)+"/"+round.length;
-$("bar").style.width=(index/round.length*100)+"%";
-$("score").textContent=players.reduce((s,p)=>s+p.score,0);
-$("timer").textContent="∞";$("feedback").classList.add("hidden");$("next").classList.add("hidden");
-$("content").innerHTML=`<div class="question">🔟 ${esc(q.q)}</div>
-<p class="muted">اكتب إجابة من الإجابات المقبولة. كل إجابة جديدة صحيحة = 10 نقاط.</p>
-<div class="row"><input id="topInput" placeholder="اكتب إجابتك"><button type="button" class="primary" id="topSubmit">تأكيد ا
+,geohistory:{
+easy:[['ما عاصمة فرنسا؟',['مدريد','باريس','روما','لندن'],1],['في أي قارة تقع مصر؟',['آسيا فقط','أفريقيا','أوروبا','أمريكا الجنوبية'],1],['ما أكبر دولة مساحةً في العالم؟',['كندا','الصين','روسيا','أستراليا'],2],['أي نهر يمر في بغداد؟',['النيل','دجلة','الفرات فقط','الأردن'],1],['في أي بلد تقع الأهرامات الشهيرة في الجيزة؟',['العراق','مصر','المكسيك','اليونان'],1],['ما عاصمة اليابان؟',['طوكيو','سيول','بكين','بانكوك'],0]],
+medium:[['في أي سنة انتهت الحرب العالمية الثانية؟',['1943','1944','1945','1946'],2],['ما عاصمة أستراليا؟',['سيدني','ملبورن','كانبيرا','بيرث'],2],['أي حضارة اشتهرت بالكتابة المسمارية في بلاد الرافدين؟',['السومرية','الإغريقية','الرومانية','المايا'],0],['ما المضيق الذي يفصل آسيا عن أمريكا الشمالية؟',['جبل طارق','بيرينغ','هرمز','ملقا'],1],['من بنى مدينة البتراء القديمة؟',['الأنباط','الفراعنة','الآشوريون','الفرس'],0],['ما أعلى جبل في العالم؟',['كي 2','إيفرست','كليمنجارو','مون بلان'],1]],
+hard:[['في أي سنة سقطت بغداد بيد المغول؟',['1258','1299','1206','1401'],0],['ما عاصمة كازاخستان؟',['ألماتي','أستانا','دوشنبه','طشقند'],1],['أي نهر يمر بمدينة باريس؟',['الراين','السين','الدانوب','التايمز'],1],['من قاد رحلة الوصول الأوروبية إلى الهند بحراً حول أفريقيا؟',['فاسكو دا غاما','كولومبوس','ماجلان','جيمس كوك'],0],['أي دولة كانت تُعرف قديماً ببلاد فارس؟',['إيران','العراق','تركيا','سوريا'],0],['ما اسم المعاهدة التي أنهت الحرب العالمية الأولى مع ألمانيا؟',['فرساي','فيينا','لوزان','وستفاليا'],0]],
+genius:[['ما عاصمة بوتان؟',['كاتماندو','تيمفو','دكا','نيودلهي'],1],['أي إمبراطورية اتخذت القسطنطينية عاصمة لها؟',['البيزنطية','المغولية','الفارسية الأخمينية','الفرنسية'],0],['ما أعمق بحيرة في العالم؟',['فيكتوريا','بايكال','سوبيريور','تنغانيقا'],1],['في أي عام بدأت الثورة الفرنسية؟',['1776','1789','1812','1848'],1],['أي حضارة بنت تشيتشن إيتزا؟',['المايا','الإنكا','الرومان','السومريون'],0],['ما الدولة التي تقع فيها مدينة قرطبة؟',['إسبانيا','البرتغال','المغرب','إيطاليا'],0]]
+},
+movies:{
+easy:[['من هو بطل سلسلة أفلام Pirates of the Caribbean؟',['جاك سبارو','باتمان','ثور','شريك'],0],['ما اسم مدرسة السحر في Harry Potter؟',['هوغوورتس','نارنيا','أرنديل','متروبوليس'],0],['أي شخصية خيالية هو الرجل الوطواط؟',['سوبرمان','باتمان','آيرون مان','سبايدرمان'],1],['ما نوع شخصية شريك؟',['غول','روبوت','تنين','قرش'],0],['في أي فيلم تظهر شخصية إلسا؟',['Toy Story','Frozen','Coco','Up'],1],['ما اسم أسد The Lion King؟',['سيمبا','تيمون','بامبي','موفاسا'],0]],
+medium:[['من أخرج فيلم Titanic الصادر عام 1997؟',['جيمس كاميرون','كريستوفر نولان','ستيفن سبيلبرغ','جورج لوكاس'],0],['ما اسم البطل في سلسلة The Matrix؟',['نيو','لوكي','بيتر','دوم'],0],['أي سلسلة أفلام تضم شخصية دارث فيدر؟',['Star Wars','Star Trek','Rocky','Shrek'],0],['ما اسم مدينة باتمان الخيالية؟',['غوثام','متروبوليس','سنترال سيتي','أتلانتس'],0],['أي فيلم رسوم متحركة تدور أحداثه حول عائلة خارقة؟',['The Incredibles','Cars','Ratatouille','Finding Nemo'],0],['من يؤدي دور شخصية آيرون مان في عالم مارفل السينمائي؟',['روبرت داوني جونيور','كريس إيفانز','هيو جاكمان','توم هولاند'],0]],
+hard:[['ما اسم كوكب موطن شخصية سوبرمان؟',['كريبتون','أسغارد','تاتوين','زاندار'],0],['في أي فيلم تظهر شخصية فورست غامب؟',['Forrest Gump','Cast Away','The Terminal','Rain Man'],0],['ما اسم السفينة في فيلم Alien الأصلي؟',['نوسترومو','إنتربرايز','ميلينيوم فالكون','أورورا'],0],['من أخرج فيلم Inception؟',['كريستوفر نولان','ريدلي سكوت','كوينتن تارانتينو','ديفيد فينشر'],0],['أي فيلم فاز بأوسكار أفضل فيلم لعام 2020 (حفل 2020)؟',['Parasite','Joker','1917','Once Upon a Time in Hollywood'],0],['ما اسم شخصية توم هانكس في Cast Away؟',['تشاك نولاند','بول إيدجكومب','جيم لوفيل','فورست غامب'],0]],
+genius:[['ما اسم الحاسوب في فيلم 2001: A Space Odyssey؟',['HAL 9000','JARVIS','Skynet','Mother'],0],['أي فيلم للمخرج أكيرا كوروساوا ألهم قصة The Magnificent Seven؟',['Seven Samurai','Rashomon','Ikiru','Throne of Blood'],0],['ما اسم الشخصية التي لعبها أنطوني هوبكنز في The Silence of the Lambs؟',['هانيبال ليكتر','نورمان بيتس','ماكس كادي','جون دو'],0],['في أي فيلم قال شخصية دارث فيدر عبارته الشهيرة عن الأبوة؟',['The Empire Strikes Back','A New Hope','Return of the Jedi','Rogue One'],0],['أي مخرج صنع فيلم Pulp Fiction؟',['كوينتن تارانتينو','مارتن
